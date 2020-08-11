@@ -1,6 +1,5 @@
 import scipy.ndimage
 import numpy
-import scipy.specialcmd
 import matplotlib
 
 class neuralNetwork:
