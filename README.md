@@ -1,2 +1,2 @@
 # NaOs
-Yup
+Glad to make this OS for everyone
