@@ -5,7 +5,7 @@ from itertools import cycle
 
 client = commands.Bot(command_prefix = '.', help_command=None)
 
-status = cycle(['Keter Bot', 'Made by ShiDis Team'])
+status = cycle(['Keter Bot', 'With Shio & Yeon & RedTea & ych_aviation'])
 
 @client.event
 async def on_ready():
