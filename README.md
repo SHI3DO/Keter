@@ -1,2 +1,6 @@
-# NaOs
-GlaD to make this OS for everyone
+# Keter
+Keter Bot
+- Shio
+- Yeon
+- RedTea
+- ych_aviation
