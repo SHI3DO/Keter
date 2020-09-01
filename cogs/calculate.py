@@ -15,8 +15,7 @@ class Calculate(commands.Cog):
         client = wolframalpha.Client(app_id)
         res = client.query(content)
         answer = next(res.results).text
-        embed = discord.Embed(title="Result", description=answer, color=0xff0051)
-        embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+        embed = discord.Embed(title="Result", description=answer, color=0xeff0f1)
         await ctx.send(embed=embed)
 
 def setup(client):
