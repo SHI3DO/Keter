@@ -15,7 +15,6 @@ class Avatar(commands.Cog):
                 embed = discord.Embed(title="**" +user.name + "**님의 아바타", description="[Link]" + "(" + pfp + ")",
                                       color=0xff0051)
                 embed.set_image(url=pfp)
-                embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
                 await ctx.trigger_typing()
                 await ctx.send(embed=embed)
         else:
@@ -23,7 +22,6 @@ class Avatar(commands.Cog):
             embed = discord.Embed(title="**" + ctx.author.name + "**님의 아바타", description="[Link]" + "(" + str(pfp) + ")",
                                 color=0xff0051)
             embed.set_image(url=pfp)
-            embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
             await ctx.trigger_typing()
             await ctx.send(embed=embed)
 
