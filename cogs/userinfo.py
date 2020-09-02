@@ -32,16 +32,16 @@ class Userinfo(commands.Cog):
         else:
             embed = discord.Embed(title=ctx.author.name + "님의 정보", description="",
                                   color=0xeff0f1)
-            embed.add_field(name="**ID**",
+            embed.add_field(name="**아이디**",
                             value=ctx.author.id,
                             inline=True)
-            embed.add_field(name="**Nickname**",
+            embed.add_field(name="**닉네임**",
                             value=ctx.author.display_name,
                             inline=True)
-            embed.add_field(name="**Status**",
+            embed.add_field(name="**상태**",
                             value=ctx.author.status,
                             inline=True)
-            embed.add_field(name="**Mention**",
+            embed.add_field(name="**멘션**",
                             value="<@" + str(ctx.author.id) + ">",
                             inline=True)
             embed.set_thumbnail(url=ctx.author.avatar_url)
