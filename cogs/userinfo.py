@@ -1,10 +1,12 @@
 import discord
 from discord.ext import commands
+from evs import default
 
 class Userinfo(commands.Cog):
-
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
+        self.config = default.get("config.json")
+        self._last_result = None
 
     # Commands
     @commands.command()
