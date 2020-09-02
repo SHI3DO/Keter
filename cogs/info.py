@@ -26,7 +26,8 @@ class Information(commands.Cog):
     @commands.command(aliases=['joinme', 'join', 'botinvite'])
     async def invite(self, ctx):
         """ Invite me to your server """
-        await ctx.send(f"**{ctx.author.name}**, use this URL to invite me\n[here](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)")
+        embed = discord.Embed(title="Invite", description=f"**{ctx.author.name}**, use this URL to invite me\n[link](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)", color=0xeff0f1)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def source(self, ctx):
