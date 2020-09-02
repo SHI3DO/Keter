@@ -153,15 +153,15 @@ class Translate(commands.Cog):
                     # Final Result
                     translatedText = api_callResult['message']['result']["translatedText"]
                     embed = discord.Embed(title="번역결과", description=translatedText, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title="에러", description="에러 코드: " + responsedCode, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed = embed)
         except HTTPError as e:
             embed = discord.Embed(title="에러", description="오류가 발생하여 번역에 실패했어요.", color=0xff0051)
-            embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
             await ctx.send(embed = embed)
 
     #Ko to Ja
@@ -176,7 +176,7 @@ class Translate(commands.Cog):
         try:
             if len(reply) == 1:
                 embed = discord.Embed(title="에러", description="단어 혹은 문장이 입력되지 않았어요. 다시한번 확인해주세요.", color=0xff0051)
-                embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                 await ctx.send(embed = embed)
             else:
                 await ctx.trigger_typing()
@@ -198,15 +198,15 @@ class Translate(commands.Cog):
                     # Final Result
                     translatedText = api_callResult['message']['result']["translatedText"]
                     embed = discord.Embed(title="번역결과", description=translatedText, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title="에러", description="에러 코드: " + responsedCode, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed = embed)
         except HTTPError as e:
             embed = discord.Embed(title="에러", description="오류가 발생하여 번역에 실패했어요.", color=0xff0051)
-            embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
             await ctx.send(embed = embed)
 
     #Ja to Ko
@@ -221,7 +221,7 @@ class Translate(commands.Cog):
         try:
             if len(reply) == 1:
                 embed = discord.Embed(title="에러", description="단어 혹은 문장이 입력되지 않았어요. 다시한번 확인해주세요.", color=0xff0051)
-                embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                 await ctx.send(embed = embed)
             else:
                 dataParmas = "source=ja&target=ko&text=" + reply[1]
@@ -242,15 +242,15 @@ class Translate(commands.Cog):
                     # Final Result
                     translatedText = api_callResult['message']['result']["translatedText"]
                     embed = discord.Embed(title="번역결과", description=translatedText, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title="에러", description="에러 코드: " + responsedCode, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed = embed)
         except HTTPError as e:
             embed = discord.Embed(title="에러", description="오류가 발생하여 번역에 실패했어요.", color=0xff0051)
-            embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
             await ctx.send(embed = embed)
 
     #zh-CN to Ko(간체)
@@ -265,7 +265,7 @@ class Translate(commands.Cog):
         try:
             if len(reply) == 1:
                 embed = discord.Embed(title="에러", description="단어 혹은 문장이 입력되지 않았어요. 다시한번 확인해주세요.", color=0xff0051)
-                embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                 await ctx.send(embed = embed)
             else:
                 dataParmas = "source=zh-CN&target=ko&text=" + reply[1]
@@ -286,15 +286,15 @@ class Translate(commands.Cog):
                     # Final Result
                     translatedText = api_callResult['message']['result']["translatedText"]
                     embed = discord.Embed(title="번역결과", description=translatedText, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed=embed)
                 else:
                     embed = discord.Embed(title="에러", description="에러 코드: " + responsedCode, color=0xff0051)
-                    embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
                     await ctx.send(embed = embed)
         except HTTPError as e:
             embed = discord.Embed(title="에러", description="오류가 발생하여 번역에 실패했어요.", color=0xff0051)
-            embed.set_footer(text="Shio D Project", icon_url="https://raw.githubusercontent.com/Shio7/V11DX/master/images/a11.png")
+
             await ctx.send(embed = embed)
 
 

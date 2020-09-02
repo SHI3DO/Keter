@@ -2,14 +2,14 @@ import discord
 from discord.ext import commands
 import wolframalpha
 
-class Calculate(commands.Cog):
+class Answer(commands.Cog):
 
     def __init__(self, client):
         self.client = client
 
     # Commands
-    @commands.command(name = '계산')
-    async def _calculate(self, ctx, *, content:str):
+    @commands.command(name = 'answer')
+    async def _answer(self, ctx, *, content:str):
         await ctx.trigger_typing()
         app_id = "VPR9G7-54PV53JYTK"
         client = wolframalpha.Client(app_id)
@@ -19,4 +19,4 @@ class Calculate(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(client):
-    client.add_cog(Calculate(client))
+    client.add_cog(Answer(client))
