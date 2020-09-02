@@ -1,3 +1,0 @@
-- [Introduction](README.md)
-- Commands
-    - [Avatar](Objects/Avatar.md)
