@@ -2,12 +2,16 @@
   "token": "",
   "join_message": "I has joined to do stuff 🌟",
   "owners": [
-    643116087919116298
+    643116087919116298,
+    528925841241931786,
+    611396886418685982,
+    602011789408075777
+
   ],
   "prefix": [
     "."
   ],
-  "playing": "games!",
+  "playing": "Made With Shio & Yeon & RedTea & ych_aviation",
   "playing_type": "playing|watching|listening",
   "status_type": "online|idle|dnd",
   "version": "1.0.0"
