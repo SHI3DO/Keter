@@ -6,7 +6,6 @@ class Userinfo(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
-        self._last_result = None
 
     # Commands
     @commands.command()
@@ -47,5 +46,5 @@ class Userinfo(commands.Cog):
             embed.set_thumbnail(url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
 
-def setup(client):
-    client.add_cog(Userinfo(client))
+def setup(bot):
+    bot.add_cog(Userinfo(bot))

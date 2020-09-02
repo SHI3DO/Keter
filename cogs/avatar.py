@@ -1,10 +1,11 @@
 import discord
 from discord.ext import commands
+from evs import default
 
 class Avatar(commands.Cog):
-
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
+        self.config = default.get("config.json")
 
     # Commands
     @commands.command()
@@ -25,5 +26,5 @@ class Avatar(commands.Cog):
             await ctx.trigger_typing()
             await ctx.send(embed=embed)
 
-def setup(client):
-    client.add_cog(Avatar(client))
+def setup(bot):
+    bot.add_cog(Avatar(bot))

@@ -1,13 +1,14 @@
 import discord
 from discord.ext import commands
+from evs import default
 
 class Say(commands.Cog):
-
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, bot):
+        self.bot = bot
+        self.config = default.get("config.json")
 
     # Commands
-    @commands.command(name="말하기")
+    @commands.command(name="say")
     async def _say(self, ctx, *, content:str):
         async with ctx.typing():
             await ctx.message.delete()
@@ -17,5 +18,5 @@ class Say(commands.Cog):
         else:
             await ctx.send(content)
 
-def setup(client):
-    client.add_cog(Say(client))
+def setup(bot):
+    bot.add_cog(Say(bot))
