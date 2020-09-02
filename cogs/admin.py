@@ -18,7 +18,7 @@ class Admin(commands.Cog):
     async def amiadmin(self, ctx):
         """ Are you an admin? """
         if ctx.author.id in self.config.owners:
-            return await ctx.send(f"오 **{ctx.author.name}**님은 관리자셔요! ✅")
+            return await ctx.send(f"**{ctx.author.name}**님은 관리자셔요! ✅")
 
     @commands.command()
     @commands.check(permissions.is_owner)
