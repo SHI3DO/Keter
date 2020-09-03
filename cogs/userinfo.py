@@ -9,10 +9,10 @@ class Userinfo(commands.Cog):
 
     # Commands
     @commands.command()
-    async def 유저정보(self, ctx):
+    async def userinfo(self, ctx):
         if (ctx.message.mentions.__len__() > 0):
             for user in ctx.message.mentions:
-                embed = discord.Embed(title="**" + user.name + "**님의 정보", description="",
+                embed = discord.Embed(title="**" + user.name + "'s Profile", description="",
                                       color=0xeff0f1)
                 embed.add_field(name="**아이디**",
                                 value=user.id,
@@ -29,7 +29,7 @@ class Userinfo(commands.Cog):
                 embed.set_thumbnail(url=user.avatar_url)
                 await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title=ctx.author.name + "님의 정보", description="",
+            embed = discord.Embed(title=ctx.author.name + "'s Profile", description="",
                                   color=0xeff0f1)
             embed.add_field(name="**아이디**",
                             value=ctx.author.id,
