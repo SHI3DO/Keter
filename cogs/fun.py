@@ -135,7 +135,7 @@ class Fun_Commands(commands.Cog):
             except aiohttp.ContentTypeError:
                 return await ctx.send("The API returned an error or didn't return JSON...")
 
-            embed = discord.Embed(colour=r["int"])
+            embed = discord.Embed(colour=0xeff0f1)
             embed.set_thumbnail(url=r["image"])
             embed.set_image(url=r["image_gradient"])
 
