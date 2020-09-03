@@ -99,6 +99,14 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
+    async def restart(self, ctx):
+            await message.channel.send("Restart the bot now...")
+            os.system("main.py")
+            time.sleep(1)
+            sys.exit()
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
     async def dm(self, ctx, user_id: int, *, message: str):
         """ DM the user of your choice """
         user = self.bot.get_user(user_id)
