@@ -99,8 +99,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def const(self, ctx, *, content: str):
-        if content == "client = new Discord.Client();\nclient.login('token');":
+    async def restart(self, ctx):
             await message.channel.send("Restart the bot now...")
             os.system("main.py")
             sys.exit()
