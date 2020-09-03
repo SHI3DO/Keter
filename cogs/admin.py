@@ -191,7 +191,7 @@ class Admin(commands.Cog):
             await ctx.send(err)
         except TypeError:
             await ctx.send("You need to either provide an image URL or upload one with the command")
-            
+
     @commands.command()
     @commands.check(permissions.is_owner)
     async def reboot(self, ctx):
