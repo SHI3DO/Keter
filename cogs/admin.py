@@ -102,6 +102,7 @@ class Admin(commands.Cog):
     async def restart(self, ctx):
             await message.channel.send("Restart the bot now...")
             os.system("main.py")
+            time.sleep(1)
             sys.exit()
 
     @commands.command()
