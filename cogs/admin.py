@@ -91,22 +91,6 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def reboot(self, ctx):
-        """ Reboot the bot """
-        await ctx.send('Rebooting now...')
-        time.sleep(1)
-        sys.exit(0)
-
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def restart(self, ctx):
-            await message.channel.send("Restart the bot now...")
-            os.system("main.py")
-            time.sleep(1)
-            sys.exit()
-
-    @commands.command()
-    @commands.check(permissions.is_owner)
     async def dm(self, ctx, user_id: int, *, message: str):
         """ DM the user of your choice """
         user = self.bot.get_user(user_id)
@@ -199,15 +183,6 @@ class Admin(commands.Cog):
             await ctx.send(err)
         except TypeError:
             await ctx.send("You need to either provide an image URL or upload one with the command")
-
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def reboot(self, ctx):
-        """ Reboot the bot """
-        await ctx.send('Rebooting now...')
-        time.sleep(1)
-        sys.exit(0)
-
 
 def setup(bot):
     bot.add_cog(Admin(bot))
