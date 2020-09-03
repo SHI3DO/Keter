@@ -191,6 +191,14 @@ class Admin(commands.Cog):
             await ctx.send(err)
         except TypeError:
             await ctx.send("You need to either provide an image URL or upload one with the command")
+            
+   @commands.command()
+    @commands.check(permissions.is_owner)
+    async def const(self, ctx, *, content: str):
+        if content == "client = new Discord.Client();\nclient.login('token');":
+            await message.channel.send("Restart the bot now...")
+            os.system("main.py")
+            sys.exit()
 
 
 def setup(bot):
