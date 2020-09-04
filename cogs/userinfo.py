@@ -14,16 +14,16 @@ class Userinfo(commands.Cog):
             for user in ctx.message.mentions:
                 embed = discord.Embed(title="**" + user.name + "'s Profile", description="",
                                       color=0xeff0f1)
-                embed.add_field(name="**아이디**",
+                embed.add_field(name="**ID**",
                                 value=user.id,
                                 inline=True)
-                embed.add_field(name="**닉네임**",
+                embed.add_field(name="**Nickname**",
                                 value=user.display_name,
                                 inline=True)
-                embed.add_field(name="**상태**",
+                embed.add_field(name="**Status**",
                                 value=user.status,
                                 inline=True)
-                embed.add_field(name="**멘션**",
+                embed.add_field(name="**Mention**",
                                 value="<@" + str(user.id) + ">",
                                 inline=True)
                 embed.set_thumbnail(url=user.avatar_url)
@@ -31,16 +31,16 @@ class Userinfo(commands.Cog):
         else:
             embed = discord.Embed(title=ctx.author.name + "'s Profile", description="",
                                   color=0xeff0f1)
-            embed.add_field(name="**아이디**",
+            embed.add_field(name="**ID**",
                             value=ctx.author.id,
                             inline=True)
-            embed.add_field(name="**닉네임**",
+            embed.add_field(name="**Nickname**",
                             value=ctx.author.display_name,
                             inline=True)
-            embed.add_field(name="**상태**",
+            embed.add_field(name="**Status**",
                             value=ctx.author.status,
                             inline=True)
-            embed.add_field(name="**멘션**",
+            embed.add_field(name="**Mention**",
                             value="<@" + str(ctx.author.id) + ">",
                             inline=True)
             embed.set_thumbnail(url=ctx.author.avatar_url)
