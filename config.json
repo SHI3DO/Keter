@@ -9,10 +9,13 @@
 
   ],
   "prefix": [
-    "."
+    ".",
+    "<@749629426777456691> "
   ],
   "playing": "Made With Shio & Yeon & RedTea & ych_aviation",
   "playing_type": "playing|watching|listening",
   "status_type": "online|idle|dnd",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "github_token": "1e4f10412d854cb55b6c9ef16cfaa1833d7b33a6",
+  "loc_repository": "Keter"
 }
