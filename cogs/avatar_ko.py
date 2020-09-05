@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from evs import default
 
-class Avatar(commands.Cog):
+class Avatar_Ko(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
@@ -27,4 +27,4 @@ class Avatar(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Avatar(bot))
+    bot.add_cog(Avatar_Ko(bot))
