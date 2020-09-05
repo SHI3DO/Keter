@@ -13,7 +13,7 @@ class Avatar_Ko(commands.Cog):
         if (ctx.message.mentions.__len__() > 0):
             for user in ctx.message.mentions:
                 pfp = str(user.avatar_url)
-                embed = discord.Embed(title="**" +user.name + "**님의 아바타", description="[Link]" + "(" + pfp + ")",
+                embed = discord.Embed(title="**" +user.name + "**님의 프로필", description="[Link]" + "(" + pfp + ")",
                                       color=0xeff0f1)
                 embed.set_image(url=pfp)
                 await ctx.trigger_typing()
