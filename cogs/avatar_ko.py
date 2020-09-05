@@ -8,7 +8,7 @@ class Avatar_Ko(commands.Cog):
         self.config = default.get("config.json")
 
     # Commands
-    @commands.command(name=아바타)
+    @commands.command(name='아바타')
     async def _avatar(self, ctx):
         if (ctx.message.mentions.__len__() > 0):
             for user in ctx.message.mentions:
