@@ -16,7 +16,7 @@ class Answer(commands.Cog):
         try:
             res = client.query(content)
         except:
-            embed = discord.Embed(title="Result", description="I don't know about This bruuu.", color=0xeff0f1)
+            embed = discord.Embed(title="IDK", description="I don't know about This bruuu.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/751791353779716099/751791533958627368/DARK_KETER.png")
             await ctx.send(embed=embed)
             return
