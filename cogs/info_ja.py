@@ -33,7 +33,7 @@ class Information_ja(commands.Cog):
         """ Check out my source code <3 """
         await ctx.send(f"**{ctx.bot.user}** コードはこちらからご確認ください。:\nhttps://github.com/Shio7/Keter")
 
-    @commands.command(aliases=['サーバ', 'サバ'])
+    @commands.command(aliases=['サーバ', 'サバー', 'サバ'])
     async def サーバー(self, ctx):
         """ Get an invite to our support server! """
         if isinstance(ctx.channel, discord.DMChannel) or ctx.guild.id != 749595288280498188:
