@@ -29,7 +29,7 @@ class Information_ko(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def 소스코스(self, ctx):
+    async def 소스코드(self, ctx):
         """ Check out my source code <3 """
         await ctx.send(f"**{ctx.bot.user}** 이 소스 코드로 돌아갑니다:\nhttps://github.com/Shio7/Keter")
 
