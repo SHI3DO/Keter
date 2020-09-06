@@ -18,6 +18,13 @@ class Autoupdate(commands.Cog):
         await ctx.send("Updating source code...")
         r = requests.get(link, allow_redirects=True)
         open('./cogs/' + filename + ".py", 'wb').write(r.content)
+        await ctx.send("Updated: "+filename+".py")
+        """ Loads an extension. """
+        try:
+            self.bot.load_extension(f"cogs.{filename}")
+        except Exception as e:
+            return await ctx.send(default.traceback_maker(e))
+        await ctx.send(f"Loaded extension **{filename}.py**")
 
 
 def setup(bot):
