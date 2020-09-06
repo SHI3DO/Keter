@@ -12,7 +12,7 @@ class Userinfo_Ko(commands.Cog):
     async def _userinfo(self, ctx):
         if (ctx.message.mentions.__len__() > 0):
             for user in ctx.message.mentions:
-                embed = discord.Embed(title="**" + user.name + "님의 프로필", description="",
+                embed = discord.Embed(title="**" + user.name + "**님의 프로필", description="",
                                       color=0xeff0f1)
                 embed.add_field(name="**아이디**",
                                 value=user.id,
