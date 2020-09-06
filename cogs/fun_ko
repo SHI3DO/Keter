@@ -16,7 +16,7 @@ class Fun_Commands_ko(commands.Cog):
         self.bot = bot
         self.config = default.get("config.json")
 
-    @commands.command(aliases=['8'])
+    @commands.command(aliases=['8공'])
     async def 8볼(self, ctx, *, question: commands.clean_content):
         """ Consult 8ball to receive an answer """
         answer = random.choice(lists.ballresponse)
