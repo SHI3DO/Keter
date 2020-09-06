@@ -181,7 +181,6 @@ class Moderator(commands.Cog):
 
     @commands.group()
     @commands.guild_only()
-    @permissions.has_permissions(ban_members=True)
     async def find(self, ctx):
         """ Finds a user within your search term """
         if ctx.invoked_subcommand is None:
