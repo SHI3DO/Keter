@@ -163,7 +163,7 @@ class Fun_Commands_ko(commands.Cog):
                 definition = definition.rsplit(' ', 1)[0]
                 definition += '...'
 
-            await ctx.send(f"📚 Definitions for **{result['word']}**```fix\n{definition}```")
+            await ctx.send(f"📚 **{result['word']}의 의미**```fix\n{definition}```")
 
     @commands.command()
     async def 거꾸로(self, ctx, *, text: str):
