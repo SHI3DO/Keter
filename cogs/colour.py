@@ -15,7 +15,7 @@ class Colour(commands.Cog):
         self.bot = bot
         self.config = default.get("config.json")
 
-    @commands.command(aliases=['import color', 'import colour'])
+    @commands.command(aliases=['import colour'])
     @commands.has_permissions(administrator=True, manage_messages=True, manage_roles=True)
     async def import_color(self, ctx, *, content: str):
         """ Loads color roles. """
