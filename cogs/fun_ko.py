@@ -183,7 +183,7 @@ class Fun_Commands_ko(commands.Cog):
         rate_amount = random.uniform(0.0, 100.0)
         await ctx.send(f"`{thing}`님을 **{round(rate_amount, 4)} / 100** 로 평가했어요!")
 
-    @commands.command(aliases=['맥주', '비어', '부어라 마셔라'])
+    @commands.command(aliases=['맥주', '비어', '한잔해'])
     async def 술(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! 🍻 """
         if not user or user.id == ctx.author.id:
