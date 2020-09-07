@@ -92,7 +92,7 @@ class Fun_Commands_ko(commands.Cog):
 
         inputText = urllib.parse.quote(' '.join(args.input))
         if len(inputText) > 500:
-            return await ctx.send(f"**{ctx.author.name}**, the Supreme API is limited to 500 characters, sorry.")
+            return await ctx.send(f"**{ctx.author.name}**, 500자 미만으로만 가능해요.")
 
         darkorlight = ""
         if args.dark:
@@ -100,7 +100,7 @@ class Fun_Commands_ko(commands.Cog):
         if args.light:
             darkorlight = "light=true"
         if args.dark and args.light:
-            return await ctx.send(f"**{ctx.author.name}**, you can't define both --dark and --light, sorry..")
+            return await ctx.send(f"**{ctx.author.name}**, 동시에 --dark 와 --light를 지정할 수 없어요..")
 
         await self.api_img_creator_(ctx, f"https://api.alexflipnote.dev/supreme?text={inputText}&{darkorlight}", "supreme.png")
 
@@ -124,9 +124,9 @@ class Fun_Commands_ko(commands.Cog):
             try:
                 r = await http.get(f"https://api.alexflipnote.dev/colour/{colour}", res_method="json", no_cache=True)
             except aiohttp.ClientConnectorError:
-                return await ctx.send("The API seems to be down...")
+                return await ctx.send("API에 문제가 발생했어요...")
             except aiohttp.ContentTypeError:
-                return await ctx.send("The API returned an error or didn't return JSON...")
+                return await ctx.send("API가 값을 제대로 출력하지 ...")
 
             embed = discord.Embed(colour=0xeff0f1)
             embed.set_thumbnail(url=r["image"])
