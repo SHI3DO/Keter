@@ -18,19 +18,19 @@ class Colour(commands.Cog):
 
     @commands.command(aliases=['import colour'])
     @has_permissions(administrator=True, manage_messages=True, manage_roles=True)
-    async def import_color(self, ctx, *, criterion: str):
-        """ Loads color roles. * Alert : Don't use it double."""
+    async def import_color(self, ctx, *, content: str):
+        """ Loads color roles. <content> is a cirteria role\n* Alert : Don't use it double."""
         roles = ctx.guild.roles
         position = 0
         for i in range(0, len(roles)):
-            if roles[i].name == criterion:
+            if roles[i].name == content:
                 position = roles[i].position + 1
         if position == 0:
             return await ctx.send("I can't understand of position ;-;")
         filename = "lib/color.xlsx"
         book = openpyxl.load_workbook(filename)
         sheet = book.active
-        embed = discord.Embed(title='**Import**', description='Completely imported whole roles.', colour=0xeff0f1)
+        embed = discord.Embed(title='**Import**', description='Started to import whole roles.', colour=0xeff0f1)
         await ctx.send(embed=embed)
         for i in range(3, 137):
             name = sheet["B" + str(i)].value
