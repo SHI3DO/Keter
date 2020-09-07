@@ -24,12 +24,16 @@ class Colour(commands.Cog):
         position = 0
         for i in range(0, len(roles)):
             if roles[i].name == content:
-                position = roles[i].position + 2
+                position = roles[i].position + 1
         if position == 0:
             return await ctx.send("I can't understand of position ;-;")
         filename = "lib/color.xlsx"
         book = openpyxl.load_workbook(filename)
         sheet = book.active
+        embed = discord.Embed(title='**Import**', description='Completely imported whole roles.', colour=0xeff0f1)
+        await ctx.send(embed=embed)
+        embed = discord.Embed(title='**WARNING!!**', description="don't use this command in double!", colour=0xff0000)
+        await ctx.send(embed=embed)
         for i in range(3, 137):
             name = sheet["B" + str(i)].value
             color_code = sheet["C" + str(i)].value.replace("#", "")
@@ -56,7 +60,7 @@ class Colour(commands.Cog):
         await ctx.send(embed=embed)
         for i in range(0, len(roles)):
             if roles[i].name in colors:
-                roles[i].delete()
+                roles[i].delete(reason='refra')
         embed = discord.Embed(title='**Remove**', description='Completely Removed whole roles.', colour=0xeff0f1)
         await ctx.send(embed=embed)
 
