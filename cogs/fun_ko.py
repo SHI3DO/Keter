@@ -163,23 +163,15 @@ class Fun_Commands_ko(commands.Cog):
                 definition = definition.rsplit(' ', 1)[0]
                 definition += '...'
 
-            await ctx.send(f"📚 **{result['word']}의 의미**```fix\n{definition}```")
+            await ctx.send(f"📚 **{result['word']}** 의 의미```fix\n{definition}```")
 
     @commands.command()
     async def 거꾸로(self, ctx, *, text: str):
-        """ !poow ,ffuts esreveR
-        Everything you type after reverse will of course, be reversed
-        """
         t_rev = text[::-1].replace("@", "@\u200B").replace("&", "&\u200B")
         await ctx.send(f"🔁 {t_rev}")
 
     @commands.command()
     async def 비밀번호(self, ctx, nbytes: int = 18):
-        """ Generates a random password string for you
-
-        This returns a random URL-safe text string, containing nbytes random bytes.
-        The text is Base64 encoded, so on average each byte results in approximately 1.3 characters.
-        """
         if nbytes not in range(3, 1401):
             return await ctx.send("I only accept any numbers between 3-1400")
         if hasattr(ctx, 'guild') and ctx.guild is not None:
@@ -188,9 +180,8 @@ class Fun_Commands_ko(commands.Cog):
 
     @commands.command()
     async def 평가(self, ctx, *, thing: commands.clean_content):
-        """ Rates what you desire """
         rate_amount = random.uniform(0.0, 100.0)
-        await ctx.send(f"I'd rate `{thing}` a **{round(rate_amount, 4)} / 100**")
+        await ctx.send(f"`{thing}`을/를 **{round(rate_amount, 4)} / 100** 로 평가했어요!")
 
     @commands.command()
     async def 술(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
