@@ -16,9 +16,10 @@ class Colour(commands.Cog):
         self.config = default.get("config.json")
 
     @commands.command(aliases=['import color', 'import colour'])
-    @commands.check(permissions.is_administrator)
+    @commands.has_permissions(administrator=True, manage_messages=True, manage_roles=True)
     async def import_color(self, ctx, *, content: str):
         """ Loads color roles. """
+        if not ctx.author.permissions.administrator
         if not permissions.manage_roles(ctx):
             return await ctx.send("I don't have permission to manage roles ;-;")
         roles = ctx.guild.roles
