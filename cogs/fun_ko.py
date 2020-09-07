@@ -76,8 +76,8 @@ class Fun_Commands_ko(commands.Cog):
     @commands.command(aliases=['동전 던지기', '코인'])
     async def 동전(self, ctx):
         """ Coinflip! """
-        coinsides = ['Heads', 'Tails']
-        await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
+        coinsides = ['앞면', '뒷면']
+        await ctx.send(f"**{ctx.author.name}**님이 동전을 던져 **{random.choice(coinsides)}**이 나왔습니다!")
 
     @commands.command()
     async def 슈프림(self, ctx, *, text: commands.clean_content(fix_channel_mentions=True)):
@@ -110,9 +110,9 @@ class Fun_Commands_ko(commands.Cog):
         """ View the colour HEX details """
         async with ctx.channel.typing():
             if not permissions.can_embed(ctx):
-                return await ctx.send("I can't embed in this channel ;-;")
+                return await ctx.send("임베딩을 할 수 없어요 ;-;")
 
-            if colour == "random":
+            if colour == "랜덤" or colour == "무작위":
                 colour = "%06x" % random.randint(0, 0xFFFFFF)
 
             if colour[:1] == "#":
@@ -137,7 +137,7 @@ class Fun_Commands_ko(commands.Cog):
             embed.add_field(name="Int", value=r['int'], inline=True)
             embed.add_field(name="Brightness", value=r['brightness'], inline=True)
 
-            await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} name: **{r['name']}**")
+            await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} 이름: **{r['name']}**")
 
     @commands.command()
     @commands.cooldown(rate=1, per=2.0, type=commands.BucketType.user)
@@ -147,13 +147,13 @@ class Fun_Commands_ko(commands.Cog):
             try:
                 url = await http.get(f'https://api.urbandictionary.com/v0/define?term={search}', res_method="json")
             except Exception:
-                return await ctx.send("Urban API returned invalid data... might be down atm.")
+                return await ctx.send("불러오는 중에 예외가 발생했어요.")
 
             if not url:
-                return await ctx.send("I think the API broke...")
+                return await ctx.send("API가 망가진 것 같아요...")
 
             if not len(url['list']):
-                return await ctx.send("Couldn't find your search in the dictionary...")
+                return await ctx.send("사전에 없는 말이에요...")
 
             result = sorted(url['list'], reverse=True, key=lambda g: int(g["thumbs_up"]))[0]
 
@@ -175,25 +175,25 @@ class Fun_Commands_ko(commands.Cog):
         if nbytes not in range(3, 1401):
             return await ctx.send("I only accept any numbers between 3-1400")
         if hasattr(ctx, 'guild') and ctx.guild is not None:
-            await ctx.send(f"Sending you a private message with your random generated password **{ctx.author.name}**")
+            await ctx.send(f"**{ctx.author.name}**님에게 임의의 비밀번호를 보냈어요!")
         await ctx.author.send(f"🎁 **Here is your password:**\n{secrets.token_urlsafe(nbytes)}")
 
     @commands.command()
     async def 평가(self, ctx, *, thing: commands.clean_content):
         rate_amount = random.uniform(0.0, 100.0)
-        await ctx.send(f"`{thing}`을/를 **{round(rate_amount, 4)} / 100** 로 평가했어요!")
+        await ctx.send(f"`{thing}`님을 **{round(rate_amount, 4)} / 100** 로 평가했어요!")
 
-    @commands.command()
+    @commands.command(aliases=['맥주', '비어', '부어라 마셔라'])
     async def 술(self, ctx, user: discord.Member = None, *, reason: commands.clean_content = ""):
         """ Give someone a beer! 🍻 """
         if not user or user.id == ctx.author.id:
-            return await ctx.send(f"**{ctx.author.name}**: paaaarty!🎉🍺")
+            return await ctx.send(f"**{ctx.author.name}**: 건배!🎉🍺")
         if user.id == self.bot.user.id:
-            return await ctx.send("*drinks beer with you* 🍻")
+            return await ctx.send("*같이 한잔 하자고요? 좋아요!* 🍻")
         if user.bot:
-            return await ctx.send(f"I would love to give beer to the bot **{ctx.author.name}**, but I don't think it will respond to you :/")
+            return await ctx.send(f"I would love to give beer to the bot **{ctx.author.name}**, 봇들은 술을 못 마실 거라 생각해요 :/")
 
-        beer_offer = f"**{user.name}**, you got a 🍺 offer from **{ctx.author.name}**"
+        beer_offer = f"**{user.name}**님 **{ctx.author.name}**님에게 커플샷🍻 제의가 왔어요!"
         beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
         msg = await ctx.send(beer_offer)
 
@@ -205,13 +205,13 @@ class Fun_Commands_ko(commands.Cog):
         try:
             await msg.add_reaction("🍻")
             await self.bot.wait_for('raw_reaction_add', timeout=30.0, check=reaction_check)
-            await msg.edit(content=f"**{user.name}** and **{ctx.author.name}** are enjoying a lovely beer together 🍻")
+            await msg.edit(content=f"**{user.name}**님과**{ctx.author.name}**님은 서로 즐겁게 커플샷을 마셨습니다. 🍻")
         except asyncio.TimeoutError:
             await msg.delete()
-            await ctx.send(f"well, doesn't seem like **{user.name}** wanted a beer with you **{ctx.author.name}** ;-;")
+            await ctx.send(f"아마도 **{user.name}**님은 **{ctx.author.name}**님과 같이 마시기 싫으신 것 같아요 ;-;")
         except discord.Forbidden:
             # Yeah so, bot doesn't have reaction permission, drop the "offer" word
-            beer_offer = f"**{user.name}**, you got a 🍺 from **{ctx.author.name}**"
+            beer_offer = f"**{user.name}**님 **{ctx.author.name}**님에게 커플샷🍻 제의가 왔어요!"
             beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
             await msg.edit(content=beer_offer)
 
@@ -232,13 +232,13 @@ class Fun_Commands_ko(commands.Cog):
         if hot > 75:
             emoji = "💞"
 
-        await ctx.send(f"**{user.name}** is **{hot:.2f}%** hot {emoji}")
+        await ctx.send(f"**{user.name}**님은 **{hot:.2f}%**만큼 H.O.T 해요! {emoji}")
 
     @commands.command()
     async def 알림(self, ctx):
         """ Notice me senpai! owo """
         if not permissions.can_upload(ctx):
-            return await ctx.send("I cannot send images here ;-;")
+            return await ctx.send("메시지를 보낼 수 없어요 ;-;")
 
         bio = BytesIO(await http.get("https://i.alexflipnote.dev/500ce4.gif", res_method="read"))
         await ctx.send(file=discord.File(bio, filename="noticeme.gif"))
@@ -255,11 +255,11 @@ class Fun_Commands_ko(commands.Cog):
         slotmachine = f"**[ {a} {b} {c} ]\n{ctx.author.name}**,"
 
         if (a == b == c):
-            await ctx.send(f"{slotmachine} All matching, you won! 🎉")
+            await ctx.send(f"{slotmachine} 모두 매칭되었어요! 축하드려요! 🎉")
         elif (a == b) or (a == c) or (b == c):
-            await ctx.send(f"{slotmachine} 2 in a row, you won! 🎉")
+            await ctx.send(f"{slotmachine} 2개가 맞았어요! 축하드려요! 🎉")
         else:
-            await ctx.send(f"{slotmachine} No match, you lost 😢")
+            await ctx.send(f"{slotmachine} 아무것도 맞은게  😢")
 
 
 def setup(bot):
