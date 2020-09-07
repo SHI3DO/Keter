@@ -60,7 +60,7 @@ class Colour(commands.Cog):
         await ctx.send(embed=embed)
         for i in range(0, len(roles)):
             if roles[i].name in colors:
-                roles[i].delete(reason='refra')
+                await roles[i].delete(reason='refra')
         embed = discord.Embed(title='**Remove**', description='Completely Removed whole roles.', colour=0xeff0f1)
         await ctx.send(embed=embed)
 
