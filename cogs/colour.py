@@ -34,7 +34,7 @@ class Colour(commands.Cog):
             name = sheet["B" + str(i)].value
             color_code = sheet["C" + str(i)].value.replace("#", "")
             color = hex(int(color_code, 16))
-            role = await ctx.guild._add_role(name=name, color=color)
+            role = await ctx.guild.create_role(name=name, color=color)
             positions = {role: position}
             await ctx.guild.edit_role_positions(positions=positions)
         embed = discord.Embed(title='**Import**', description='Completely imported whole roles.', colour=0xeff0f1)
