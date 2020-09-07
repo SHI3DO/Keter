@@ -14,9 +14,10 @@ class Autoupdate(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def update(self, ctx, link: str, filename: str):
+    async def update(self, ctx, filename: str):
         await ctx.trigger_typing()
         await ctx.send("Updating source code...")
+        link = "https://raw.githubusercontent.com/Shio7/Keter/master/cogs/" + filename + ".py"
         r = requests.get(link, allow_redirects=True)
         if os.path.isfile('./cogs/' + filename + ".py"):
             try:
