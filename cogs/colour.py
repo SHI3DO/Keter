@@ -52,6 +52,8 @@ class Colour(commands.Cog):
         colors = []
         for i in range(3, 137):
             colors.append(sheet["B" + str(i)].value)
+        embed = discord.Embed(title='**Remove**', description='Trying to remove whole roles.', colour=0xeff0f1)
+        await ctx.send(embed=embed)
         for i in range(0, len(roles)):
             if roles[i].name in colors:
                 ctx.guild.remove_roles(roles[i])
