@@ -9,7 +9,6 @@ owners = default.get("config.json").owners
 def is_owner(ctx):
     return ctx.author.id in owners
 
-
 async def check_permissions(ctx, perms, *, check=all):
     if ctx.author.id in owners:
         return True
