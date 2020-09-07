@@ -28,7 +28,7 @@ class Autoupdate_ko(commands.Cog):
             open('./cogs/' + filename + ".py", 'wb').write(r.content)
         else:
             open('./cogs/' + filename + ".py", 'wb').write(r.content)
-        await ctx.send("소스: "+filename+".py")
+        await ctx.send("업데이트 완료: "+filename+".py")
         """ Loads an extension. """
         try:
             self.bot.load_extension(f"cogs.{filename}")
