@@ -32,8 +32,8 @@ class Colour(commands.Cog):
         sheet = book.active
         for i in range(3, 137):
             name = sheet["B" + str(i)].value
-            color_code = sheet["C" + str(i)].value
-            color = int(color_code, 16)
+            color_code = sheet["C" + str(i)].value.replace("#", "")
+            color = hex(int(color_code, 16))
             role = await ctx.guild._add_role(name=name, color=color)
             positions = {role: position}
             await ctx.guild.edit_role_positions(positions=positions)
