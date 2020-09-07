@@ -8,6 +8,7 @@ import sys
 
 from discord.ext import commands
 from evs import permissions, default, http, dataIO
+from discord.ext.commands import has_permissions
 
 
 class Colour(commands.Cog):
@@ -16,7 +17,7 @@ class Colour(commands.Cog):
         self.config = default.get("config.json")
 
     @commands.command(aliases=['import colour'])
-    @commands.has_permissions(administrator=True, manage_messages=True, manage_roles=True)
+    @has_permissions(administrator=True, manage_messages=True, manage_roles=True)
     async def import_color(self, ctx, *, content: str):
         """ Loads color roles. """
         roles = ctx.guild.roles
