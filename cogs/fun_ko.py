@@ -1,4 +1,5 @@
 import random
+import time
 import discord
 import urllib
 import secrets
@@ -220,7 +221,7 @@ class Fun_Commands_ko(commands.Cog):
         """ Returns a random percent for how hot is a discord user """
         user = user or ctx.author
 
-        random.seed(user.id)
+        random.seed(user.id + round(time.time()))
         r = random.randint(1, 100)
         hot = r / 1.17
 
