@@ -24,7 +24,7 @@ class Colour(commands.Cog):
         position = 0
         for i in range(0, len(roles)):
             if roles[i].name == content:
-                position = roles[i].position
+                position = roles[i].position + 2
         if position == 0:
             return await ctx.send("I can't understand of position ;-;")
         filename = "lib/color.xlsx"
