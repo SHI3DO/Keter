@@ -259,7 +259,7 @@ class Fun_Commands_ko(commands.Cog):
         elif (a == b) or (a == c) or (b == c):
             await ctx.send(f"{slotmachine} 2개가 맞았어요! 축하드려요! 🎉")
         else:
-            await ctx.send(f"{slotmachine} 아무것도 맞은게  😢")
+            await ctx.send(f"{slotmachine} 아무것도 맞은게 없어요 😢")
 
 
 def setup(bot):
