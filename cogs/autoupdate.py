@@ -41,11 +41,6 @@ class Autoupdate(commands.Cog):
     @commands.check(permissions.is_owner)
     async def remove(self, ctx, filename: str):
         if os.path.isfile('./cogs/' + filename + ".py"):
-            try:
-                self.bot.unload_extension(f"cogs.{filename}")
-            except Exception as e:
-                return await ctx.send(default.traceback_maker(e))
-            await ctx.send(f"Unloaded extension **{filename}.py**")
             os.remove('./cogs/' + filename + ".py")
             await ctx.send(f"**{filename}.py** removed")
         else:
