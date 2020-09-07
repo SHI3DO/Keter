@@ -18,12 +18,12 @@ class Colour(commands.Cog):
 
     @commands.command(aliases=['import colour'])
     @has_permissions(administrator=True, manage_messages=True, manage_roles=True)
-    async def import_color(self, ctx, *, content: str):
+    async def import_color(self, ctx, *, criterion: str):
         """ Loads color roles. """
         roles = ctx.guild.roles
         position = 0
         for i in range(0, len(roles)):
-            if roles[i].name == content:
+            if roles[i].name == criterion:
                 position = roles[i].position + 1
         if position == 0:
             return await ctx.send("I can't understand of position ;-;")
