@@ -1,4 +1,3 @@
-import time
 import discord
 import psutil
 import os
