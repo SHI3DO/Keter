@@ -31,6 +31,11 @@ class economy_ko(commands.Cog):
             await self.bot.wait_for('raw_reaction_add', timeout=30.0, check=reaction_check_)
             embed = discord.Embed(title="케테르 경제", description="케테르 경제에 참여하셨습니다.", color=0xeff0f1)
             await ctx.send(embed=embed)
+            if os.path.isdir("./lib/economy/users"):
+                print("aaa")
+            else:
+                os.makedirs("./lib/economy/users")
+
         except asyncio.TimeoutError:
             await msg.delete()
             embed = discord.Embed(title="케테르 경제", description="서명하지 않으셨습니다. 다음 기회에..", color=0xeff0f1)
