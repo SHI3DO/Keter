@@ -1,4 +1,5 @@
 import discord
+import time
 import psutil
 import os
 import asyncio
