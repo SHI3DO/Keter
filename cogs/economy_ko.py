@@ -39,13 +39,15 @@ class economy_ko(commands.Cog):
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
             embed = discord.Embed(title="케테르 경제", description="케테르 경제에 참여하셨습니다.", color=0xeff0f1)
             await ctx.send(embed=embed)
-            
+
             if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
                 embed = discord.Embed(title="케테르 경제", description="이미 참여하셨습니다.", color=0xeff0f1)
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title="케테르 경제", description="새로 오셨군요? " + str(ctx.author.name) + "님을 위한 파일들을 생성중이에요!",
                                       color=0xeff0f1)
+                embed.set_thumbnail(
+                    url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 await ctx.send(embed=embed)
 
         except asyncio.TimeoutError:
