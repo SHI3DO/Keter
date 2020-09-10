@@ -117,7 +117,7 @@ class economy_ko(commands.Cog):
             prestige = ws.cell(row=1, column=3).value
             wb.close()
             embed = discord.Embed(title="PRESTIGE", description="<@" + str(ctx.author.id) + "> " + str(
-                prestige) + "<:pre:753454200658067510>을 가지고 계십니다!", color=0xeff0f1)
+                prestige) + "<:pre:753458787465297993>을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
