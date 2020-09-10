@@ -1,6 +1,5 @@
 import discord
 import time
-import math
 import psutil
 import os
 import asyncio
@@ -17,16 +16,15 @@ class economy_ko(commands.Cog):
         self.bot = bot
         self.config = default.get("config.json")
         self.process = psutil.Process(os.getpid())
-
-    #참여
-    @commands.command()
-    async def 참여(self, ctx):
-
         #폴더생성
         if os.path.isdir("./lib/economy/users"):
             print("user folder exist")
         else:
             os.makedirs("./lib/economy/users")
+
+    #참여
+    @commands.command()
+    async def 참여(self, ctx):
 
         embed = discord.Embed(title="케테르 경제", description="케테르 경제에 참여하시겠습니까?", color=0xeff0f1)
         embed.set_thumbnail(
@@ -54,7 +52,6 @@ class economy_ko(commands.Cog):
                 ws = wb.active
                 ws.cell(row=1, column=1).value = "money"
                 ws.cell(row=1, column=2).value = "8600000"
-                ws.cell(row=1, column=3).value = "0"
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 time.sleep(1)
@@ -109,21 +106,6 @@ class economy_ko(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
-            
-    @commands.command(aliases=['프리스티지', '프레스티지'])
-    async def 호프(self, ctx):
-        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
-            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
-            ws = wb.active
-            prestige = ws.cell(row=1, column=3).value
-            wb.close()
-            embed = discord.Embed(title="PRESTIGE", description="<@" + str(ctx.author.id) + "> " + str(money) + "<:pre:753454200658067510>을 가지고 계십니다!", color=0xeff0f1)
-            await ctx.send(embed=embed)
-        else:
-            embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.check(permissions.is_owner)
@@ -134,11 +116,38 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + file_list[i])
             ws = wb.active
             ws.cell(row=1, column=2).value = "8600000"
-            ws.cell(row=1, column=3).value = math.ceil(ws.cell(row=1, column=2).value/1000000000)
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
         await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 돈추가(self, ctx, mention:str, value:int):
+        if (ctx.message.mentions.__len__() > 0):
+            for user in ctx.message.mentions:
+                if os.path.isfile(userlib + str(user.id) + ".xlsx"):
+                    wb = openpyxl.load_workbook(userlib + str(user.id) + ".xlsx")
+                    ws = wb.active
+                    money = ws.cell(row=1, column=2).value
+                    money = int(money)+value
+                    ws.cell(row=1, column=2).value = money
+                    wb.save(userlib + str(user.id) + ".xlsx")
+                    wb.close()
+                    embed = discord.Embed(title="KET", description=str(money) + "<:ket:753449741186105375> 추가 완료", color=0xeff0f1)
+                    await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title="NO", description="유저가 ``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
+                    embed.set_thumbnail(
+                        url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                    await ctx.send(embed=embed)
+
+        else:
+            embed = discord.Embed(title="NO", description="켓을 추가할 대상을 지정해주세요", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
