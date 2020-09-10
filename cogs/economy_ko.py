@@ -133,8 +133,11 @@ class economy_ko(commands.Cog):
         for i in range(len(file_list)):
             wb = openpyxl.load_workbook(userlib + file_list[i])
             ws = wb.active
+            if ws.cell(row=1, column=3).value >= 1000:
+                ws.cell(row=1, column=3).value = str(int(ws.cell(row=1, column=3).value) + math.ceil(int(ws.cell(row=1, column=2).value) / 1000000000))
+            else:
+                ws.cell(row=1, column=3).value = str(round(int(ws.cell(row=1, column=3).value) / 2) + math.ceil(int(ws.cell(row=1, column=2).value) / 1000000000))
             ws.cell(row=1, column=2).value = "8600000"
-            ws.cell(row=1, column=3).value = str(math.ceil(int(ws.cell(row=1, column=2).value) / 1000000000))
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
