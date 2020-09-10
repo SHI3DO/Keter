@@ -77,7 +77,7 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['돈내놔', '돈줘'])
     async def 돈받기(self,ctx):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
-            num = random.randrange(10,60)
+            num = random.randrange(1,4)
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             getmoney = ws.cell(row=1, column=2).value
