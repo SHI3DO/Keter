@@ -52,7 +52,7 @@ class economy_ko(commands.Cog):
                 wb = openpyxl.Workbook()
                 ws = wb.active
                 ws.cell(row=1, column=1).value = "money"
-                ws.cell(row=1, column=2).value = "0"
+                ws.cell(row=1, column=2).value = "8600000"
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 time.sleep(1)
@@ -77,7 +77,7 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['돈내놔', '돈줘'])
     async def 돈받기(self,ctx):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
-            num = random.randrange(0,3)
+            num = random.randrange(0,6)
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             getmoney = ws.cell(row=1, column=2).value
@@ -85,7 +85,7 @@ class economy_ko(commands.Cog):
             ws.cell(row=1, column=2).value = str(getmoney)
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
-            embed = discord.Embed(title="KET", description=str(num)+"KET을 받았어요!", color=0xeff0f1)
+            embed = discord.Embed(title="KET", description="<@" + str(ctx.author.id) + "> " +str(num)+"KET을 받았어요!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
@@ -100,7 +100,7 @@ class economy_ko(commands.Cog):
             ws = wb.active
             money = ws.cell(row=1, column=2).value
             wb.close()
-            embed = discord.Embed(title="KET", description=str(money) + "KET을 가지고 계십니다!", color=0xeff0f1)
+            embed = discord.Embed(title="KET", description="<@" + str(ctx.author.id) + "> " + str(money) + "KET을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
