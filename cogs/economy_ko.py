@@ -161,12 +161,6 @@ class economy_ko(commands.Cog):
                         url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                     await ctx.send(embed=embed)
 
-        else:
-            embed = discord.Embed(title="NO", description="켓을 추가할 대상을 지정해주세요", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await ctx.send(embed=embed)
-
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
