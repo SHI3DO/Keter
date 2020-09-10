@@ -53,7 +53,7 @@ class economy_ko(commands.Cog):
                 ws = wb.active
                 ws.cell(row=1, column=1).value = "money"
                 ws.cell(row=1, column=2).value = "8600000"
-                ws.cell(row=1, column=3).value = "100"
+                ws.cell(row=1, column=3).value = "0"
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 time.sleep(1)
@@ -117,7 +117,7 @@ class economy_ko(commands.Cog):
             prestige = ws.cell(row=1, column=3).value
             wb.close()
             embed = discord.Embed(title="PRESTIGE", description="<@" + str(ctx.author.id) + "> " + str(
-                prestige) + "<:pre:753458787465297993>을 가지고 계십니다!", color=0xeff0f1)
+                prestige) + "<:pre:753454200658067510>을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
@@ -134,10 +134,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + file_list[i])
             ws = wb.active
             ws.cell(row=1, column=2).value = "8600000"
-            if ws.cell(row=1, column=3).value <= 1000:
-                ws.cell(row=1, column=3).value = str(ws.cell(row=1, column=3).value + math.ceil(ws.cell(row=1, column=2).value / 1000000000))
-            else:
-                ws.cell(row=1, column=3).value = str(round(ws.cell(row=1, column=3).value/2) + math.ceil(ws.cell(row=1, column=2).value / 1000000000))
+            ws.cell(row=1, column=3).value = str(math.ceil(ws.cell(row=1, column=2).value / 1000000000))
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
@@ -164,6 +161,14 @@ class economy_ko(commands.Cog):
                         url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                     await ctx.send(embed=embed)
 
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 전체초기화(self, ctx):
+        file_list = os.listdir(userlib)
+        file_list = [file for file in file_list if file.endswith(".xlsx")]
+        for i in range(len(file_list)):
+            os.remove(userlib + file_list[i])
+            await ctx.send(file_list[i] + "deleted")
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
