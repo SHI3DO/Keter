@@ -1,11 +1,11 @@
 import discord
 import time
-import math
 import psutil
 import os
 import asyncio
 import openpyxl
 import random
+import math
 
 from datetime import datetime
 from discord.ext import commands
@@ -108,7 +108,7 @@ class economy_ko(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
-    
+
     @commands.command(aliases=['프리스티지', '프레스티지'])
     async def 호프(self, ctx):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
@@ -116,7 +116,8 @@ class economy_ko(commands.Cog):
             ws = wb.active
             prestige = ws.cell(row=1, column=3).value
             wb.close()
-            embed = discord.Embed(title="KET", description="<@" + str(ctx.author.id) + "> " + str(prestige) + "<:pre:753449741186105375>을 가지고 계십니다!", color=0xeff0f1)
+            embed = discord.Embed(title="PRESTIGE", description="<@" + str(ctx.author.id) + "> " + str(
+                prestige) + "<:pre:753454200658067510>을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
@@ -133,7 +134,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + file_list[i])
             ws = wb.active
             ws.cell(row=1, column=2).value = "8600000"
-            ws.cell(row=1, column=3).value = math.ceil(int(ws.cell(row=1, column=3).value)/1000000000)
+            ws.cell(row=1, column=3).value = math.ceil(ws.cell(row=1, column=2).value / 1000000000)
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
