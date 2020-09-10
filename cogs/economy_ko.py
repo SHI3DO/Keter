@@ -85,7 +85,7 @@ class economy_ko(commands.Cog):
             ws.cell(row=1, column=2).value = str(getmoney)
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
-            embed = discord.Embed(title="KTR", description=str(num)+"KTR을 받았어요!", color=0xeff0f1)
+            embed = discord.Embed(title="KTR", description=str(num)+"KET을 받았어요!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
@@ -100,7 +100,7 @@ class economy_ko(commands.Cog):
             ws = wb.active
             money = ws.cell(row=1, column=2).value
             wb.close()
-            embed = discord.Embed(title="KTR", description=str(money) + "KTR을 가지고 계십니다!", color=0xeff0f1)
+            embed = discord.Embed(title="KTR", description=str(money) + "KET을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
