@@ -93,6 +93,22 @@ class economy_ko(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
 
+    @commands.command()
+    async def 돈(self, ctx):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            money = ws.cell(row=1, column=2).value
+            wb.close()
+            embed = discord.Embed(title="KTR", description=str(money) + "KTR을 가지고 계십니다!", color=0xeff0f1)
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
+
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
