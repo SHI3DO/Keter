@@ -8,7 +8,7 @@ import random
 
 from datetime import datetime
 from discord.ext import commands
-from evs import default
+from evs import default, permissions
 
 userlib = "./lib/economy/users/"
 class economy_ko(commands.Cog):
@@ -108,7 +108,19 @@ class economy_ko(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
 
-
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 초기화(self,ctx):
+        file_list = os.listdir(userlib)
+        file_list = [file for file in file_list if file.endswith(".xlsx")]
+        for i in range(len(file_list)):
+            wb = openpyxl.load_workbook(userlib + file_list[i])
+            ws = wb.active
+            ws.cell(row=1, column=2).value = "8600000"
+            wb.save(userlib + file_list[i])
+            wb.close()
+        embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
