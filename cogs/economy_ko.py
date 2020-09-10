@@ -53,7 +53,7 @@ class economy_ko(commands.Cog):
                 ws = wb.active
                 ws.cell(row=1, column=1).value = "money"
                 ws.cell(row=1, column=2).value = "8600000"
-                ws.cell(row=1, column=3).value = "0"
+                ws.cell(row=1, column=3).value = "100"
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 time.sleep(1)
@@ -134,7 +134,10 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + file_list[i])
             ws = wb.active
             ws.cell(row=1, column=2).value = "8600000"
-            ws.cell(row=1, column=3).value = str(math.ceil(ws.cell(row=1, column=2).value / 1000000000))
+            if ws.cell(row=1, column=3).value <= 1000:
+                ws.cell(row=1, column=3).value = str(ws.cell(row=1, column=3).value + math.ceil(ws.cell(row=1, column=2).value / 1000000000))
+            else:
+                ws.cell(row=1, column=3).value = str(round(ws.cell(row=1, column=3).value/2) + math.ceil(ws.cell(row=1, column=2).value / 1000000000))
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
