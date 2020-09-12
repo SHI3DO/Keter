@@ -167,6 +167,8 @@ class economy_ko(commands.Cog):
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
                     ws.cell(row=3, column=3).value = str(int(ws.cell(row=3, column=3).value) + 1)
                     embed = discord.Embed(title="도박", description="도박에 실패하여 돈을 잃으셨습니다. " + emj, color=0xeff0f1)
+                wb.save(userlib + str(ctx.author.id) + ".xlsx")
+                wb.close()
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title="NO", description="보유하신 잔액보다 큰 금액을 베팅할 수는 없어요.", color=0xeff0f1)
