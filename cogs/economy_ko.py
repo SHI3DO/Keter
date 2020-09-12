@@ -51,28 +51,26 @@ class economy_ko(commands.Cog):
                 await ctx.send(embed=embed)
                 wb = openpyxl.Workbook()
                 ws = wb.active
-                ws.cell(row=1, column=1).value = "money"
-                ws.cell(row=2, column=1).value = "casino"
-                ws.cell(row=2, column=2).value = "0"
-                ws.cell(row=1, column=2).value = "8600000"
-                ws.cell(row=1, column=3).value = "0"
-                ws.cell(row=1, column=4).value = "-"
-                ws.cell(row=1, column=5).value = "None"
-                ws.cell(row=1, column=6).value = "0"
-                ws.cell(row=1, column=7).value = "0"
-                ws.cell(row=1, column=8).value = "0"
-                ws.cell(row=1, column=9).value = "0"
-                ws.cell(row=1, column=10).value = "0"
-                ws.cell(row=1, column=11).value = "0"
-                ws.cell(row=1, column=12).value = "0"
-                ws.cell(row=1, column=13).value = "0"
-                ws.cell(row=1, column=14).value = "[1]"
-                ws.cell(row=1, column=15).value = "1"
-                ws.cell(row=1, column=16).value = "1"
-                ws.cell(row=1, column=17).value = "100"
-                ws.cell(row=1, column=18).value = "100"
-                ws.cell(row=1, column=19).value = "100"
-                ws.cell(row=1, column=20).value = "100"
+                ws.cell(row=1, column=1).value = "Hello World" #:)
+                ws.cell(row=1, column=2).value = "8600000" #money
+                ws.cell(row=1, column=3).value = "0" #pres
+                ws.cell(row=1, column=4).value = "-" #rank
+                ws.cell(row=2, column=1).value = "None" #status
+                ws.cell(row=2, column=2).value = "0" #perfect
+                ws.cell(row=2, column=3).value = "0" #great
+                ws.cell(row=2, column=4).value = "0" #good
+                ws.cell(row=2, column=5).value = "0" #bad
+                ws.cell(row=3, column=1).value = "0" #tsucc
+                ws.cell(row=3, column=2).value = "0" #tfail
+                ws.cell(row=3, column=3).value = "0" #fails
+                ws.cell(row=4, column=1).value = "0" #home count
+                ws.cell(row=4, column=2).value = "[1]" #title
+                ws.cell(row=4, column=3).value = "1" #header
+                ws.cell(row=4, column=4).value = "1" #tail
+                ws.cell(row=5, column=1).value = "100" #HP
+                ws.cell(row=5, column=2).value = "100" #STR
+                ws.cell(row=5, column=3).value = "100" #DEF
+                ws.cell(row=5, column=4).value = "100" #INT
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 time.sleep(1)
