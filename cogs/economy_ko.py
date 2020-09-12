@@ -151,20 +151,20 @@ class economy_ko(commands.Cog):
             if int(money) > val:
                 discrim = random.random()
                 if discrim < 0.02:
-                    ws.cell(row=1, column=2).value += 11*val
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 11*val)
                     ws.cell(row=3, column=3).value = "0"
                     embed = discord.Embed(title="도박", description="축하합니다! 대박이 나서 12배를 획득 하셨어요! 🎉", color=0xeff0f1)
                 elif 0.02 < discrim < 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100:
-                    ws.cell(row=1, column=2).value += 2*val
+                   ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 2*val)
                     ws.cell(row=3, column=3).value = "0"
                     embed = discord.Embed(title="도박", description="축하합니다! 도박에 성공하셔서 3배를 획득 하셨어요! 🎉", color=0xeff0f1)
                 elif 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100 < discrim < 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/50:
-                    ws.cell(row=1, column=2).value += val
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + val)
                     ws.cell(row=3, column=3).value = "0"
                     embed = discord.Embed(title="도박", description="축하합니다! 도박에 성공하셔서 2배를 획득 하셨어요! 🎉", color=0xeff0f1)
                 else:
                     emj = "<:dar:754345236574109716>"
-                    ws.cell(row=1, column=2).value -= val
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
                     ws.cell(row=3, column=3).value = str(int(ws.cell(row=3, column=3).value) + 1)
                     embed = discord.Embed(title="도박", description="도박에 실패하여 돈을 잃으셨습니다. " + emj, color=0xeff0f1)
                 await ctx.send(embed=embed)
