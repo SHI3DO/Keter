@@ -52,6 +52,8 @@ class economy_ko(commands.Cog):
                 wb = openpyxl.Workbook()
                 ws = wb.active
                 ws.cell(row=1, column=1).value = "money"
+                ws.cell(row=2, column=1).value = "casino"
+                ws.cell(row=2, column=2).value = "0"
                 ws.cell(row=1, column=2).value = "8600000"
                 ws.cell(row=1, column=3).value = "0"
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
@@ -119,6 +121,24 @@ class economy_ko(commands.Cog):
             embed = discord.Embed(title="PRESTIGE", description="<@" + str(ctx.author.id) + "> " + str(
                 prestige) + "<:pre:753458787465297993>을 가지고 계십니다!", color=0xeff0f1)
             await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
+    @commands.command(aliases=['ㄷㅂ'])
+    async def 도박(self, ctx, val:int):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            money = ws.cell(row=1, column=2).value
+            if int(money) > val:
+                embed = discord.Embed(title="도박", description="도박 참여가능", color=0xeff0f1)
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(title="NO", description="가진 켓보다 적은 양을 베팅해주세요", color=0xeff0f1)
+                await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
             embed.set_thumbnail(
