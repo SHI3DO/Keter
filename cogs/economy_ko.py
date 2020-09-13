@@ -180,6 +180,37 @@ class economy_ko(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
+    async def 송금(self, ctx, mention:str, valu:int):
+        if (ctx.message.mentions.__len__() > 0):
+            for user in ctx.message.mentions:
+                if os.path.isfile(userlib + str(user.id) + ".xlsx"):
+                    wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+                    ws = wb.active
+                    money = int(ws.cell(row=1, column=2).value)
+                    if int(money) > valu:
+                        wb2 = openpyxl.load_workbook(userlib + str(user.id) + ".xlsx")
+                        ws2 = wb2.active
+                        money2 = int(ws2.cell(row=1, column=2).value)
+                        money2 = money2+money
+                        ws2.cell(row=1, column=2).value = str(money2)
+                        wb2.save(userlib + str(user.id) + ".xlsx")
+                        wb2.close()
+                        money = money - valu
+                        ws.cell(row=1, column=2).value = str(money)
+                        wb.save(userlib + str(ctx.author.id) + ".xlsx")
+                        wb.close()
+                        embed = discord.Embed(title="송금", description="<@" + str(ctx.author.id) + "> " + str(valu) + " <:ket:753449741186105375>" + "송금 완료", color=0xeff0f1)
+                        await ctx.send(embed=embed)
+                    else:
+                        embed = discord.Embed(title="NO", description="보유하신 잔액보다 큰 금액을 송금할 수는 없어요.", color=0xeff0f1)
+                        await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title="NO", description="유저가 ``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
+                    embed.set_thumbnail(
+                        url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                    await ctx.send(embed=embed)
+
+    @commands.command()
     @commands.check(permissions.is_owner)
     async def 초기화(self,ctx):
         file_list = os.listdir(userlib)
