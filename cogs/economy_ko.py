@@ -191,7 +191,7 @@ class economy_ko(commands.Cog):
                         wb2 = openpyxl.load_workbook(userlib + str(user.id) + ".xlsx")
                         ws2 = wb2.active
                         money2 = int(ws2.cell(row=1, column=2).value)
-                        money2 = money2+money
+                        money2 = money2+valu
                         ws2.cell(row=1, column=2).value = str(money2)
                         wb2.save(userlib + str(user.id) + ".xlsx")
                         wb2.close()
