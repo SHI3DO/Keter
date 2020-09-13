@@ -141,6 +141,56 @@ class economy_ko(commands.Cog):
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 await ctx.send(embed=embed)
+                
+    @commands.command(aliases=['ㅋㄷ'])
+    async def 큰돈(self, ctx):
+        if (ctx.message.mentions.__len__() > 0):
+            
+            
+            def keundon(value:int):
+                value = int(value)
+                if value < 0:
+                    return "변수는 음수값을 가질 수 없습니다."
+                elif 0 <= value < 10000:
+                    return str(value)
+                elif 10000 <= value < 100000000:
+                    return str(math.floor(value/10000)) + "만 " + str(value - math.floor(value/10000)*10000)
+                elif 100000000 <= value < 1000000000000:
+                    return str(math.floor(value/100000000)) + "억 " + str(math.floor(value/10000) - math.floor(value/100000000)*10000) + "만 " + str(value - math.floor(value/10000)*10000)
+                elif 1000000000000 <= value < 10000000000000000:
+                    return str(math.floor(value/1000000000000)) + "조 " + str(math.floor(value/100000000) - math.floor(value/1000000000000)*10000) + "억 " + str(math.floor(value/10000) - math.floor(value/100000000)*10000) + "만 " + str(value - math.floor(value/10000)*10000)
+                elif 10000000000000000 <= value < 100000000000000000000:
+                    return str(math.floor(value/10000000000000000)) + "경 " + str(math.floor(value/1000000000000) - math.floor(value/10000000000000000)*10000) + "조 "+ str(math.floor(value/100000000) - math.floor(value/1000000000000)*10000) + "억 " + str(math.floor(value/10000) - math.floor(value/100000000)*10000) + "만 " + str(value - math.floor(value/10000)*10000)
+                else:
+                    return "변수의 크기가 너무 큽니다."
+                
+            for user in ctx.message.mentions:
+                if os.path.isfile(userlib + str(user.id) + ".xlsx"):
+                    wb = openpyxl.load_workbook(userlib + str(user.id) + ".xlsx")
+                    ws = wb.active
+                    money = ws.cell(row=1, column=2).value
+                    wb.close()
+                    embed = discord.Embed(title="KET", description="<@" + str(user.id) + ">님은 " + keundon(money) + "<:ket:753449741186105375>을 가지고 계십니다!", color=0xeff0f1)
+                    await ctx.send(embed=embed)
+                else:
+                    embed = discord.Embed(title="NO", description="유저가 ``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
+                    embed.set_thumbnail(
+                        url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                    await ctx.send(embed=embed)
+        else:
+            if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+                wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+                ws = wb.active
+                money = ws.cell(row=1, column=2).value
+                wb.close()
+                embed = discord.Embed(title="KET", description="<@" + str(ctx.author.id) + "> " + str(
+                    money) + "<:ket:753449741186105375>을 가지고 계십니다!", color=0xeff0f1)
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
+                embed.set_thumbnail(
+                    url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
 
 
     @commands.command(aliases=['프리스티지', '프레스티지'])
