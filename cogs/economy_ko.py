@@ -153,15 +153,15 @@ class economy_ko(commands.Cog):
                 if discrim < 0.02:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 11*val)
                     ws.cell(row=3, column=3).value = "0"
-                    embed = discord.Embed(title="도박", description= "<" + ctx.author.id + "> " + "축하합니다! 대박이 나서 12배를 획득 하셨어요! 🎉\n획득량:" + str(12*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+                    embed = discord.Embed(title="도박", description="<@" + str(ctx.author.id) + "> " + "축하합니다! 대박이 나서 12배를 획득 하셨어요! 🎉\n획득량:" + str(12*val) + " <:ket:753449741186105375>", color=0xeff0f1)
                 elif 0.02 < discrim < 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 2*val)
                     ws.cell(row=3, column=3).value = "0"
-                    embed = discord.Embed(title="도박", description= "<" + ctx.author.id + "> " + "축하합니다! 도박에 성공하셔서 3배를 획득 하셨어요! 🎉\n획득량:" + str(3*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+                    embed = discord.Embed(title="도박", description="<@" + str(ctx.author.id) + "> " + "축하합니다! 도박에 성공하셔서 3배를 획득 하셨어요! 🎉\n획득량:" + str(3*val) + " <:ket:753449741186105375>", color=0xeff0f1)
                 elif 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100 < discrim < 0.1 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/50:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + val)
                     ws.cell(row=3, column=3).value = "0"
-                    embed = discord.Embed(title="도박", description= "<" + ctx.author.id + "> " + "축하합니다! 도박에 성공하셔서 2배를 획득 하셨어요! 🎉\n획득량:" + str(2*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+                    embed = discord.Embed(title="도박", description="<@" + str(ctx.author.id) + "> " +  "축하합니다! 도박에 성공하셔서 2배를 획득 하셨어요! 🎉\n획득량:" + str(2*val) + " <:ket:753449741186105375>", color=0xeff0f1)
                 else:
                     emj = "<:dar:754345236574109716>"
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
