@@ -1,10 +1,10 @@
 # Keter
-Keter
-- ``Developer``
+Keter Discord Bot
+## Developer
 - Shio
 - Yeon
 
-- ``Services``
+## Services
 - RedTea
 - ych_aviation  
 
