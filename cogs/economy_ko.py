@@ -422,6 +422,7 @@ class economy_ko(commands.Cog):
     
     @commands.command(aliases=['회사정보'])
     async def 회사(self, ctx, name: str):
+        name = name.replace("_", " ")
         def keundon(value: int):
             value = int(value)
             if value < 0:
