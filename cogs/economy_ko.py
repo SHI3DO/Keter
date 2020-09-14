@@ -12,6 +12,7 @@ from discord.ext import commands
 from evs import default, permissions
 
 userlib = "./lib/economy/users/"
+stocklib = "./lib/economy/stocks/"
 
 
 class economy_ko(commands.Cog):
@@ -378,6 +379,82 @@ class economy_ko(commands.Cog):
                     embed.set_thumbnail(
                         url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                     await ctx.send(embed=embed)
+
+    @commands.command(aliases=['회사등록'])
+    @commands.check(permissions.is_owner)
+    async def 상장(self, ctx, name: str, stocks: int, price: int):
+        if (ctx.message.mentions.__len__() > 0):
+            if os.path.isfile(stocklib + name + ".xlsx"):
+                embed = discord.Embed(title="NO", description="이미 상장된 기업입니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            ws.cell(row=1, column=1).value = str(int(stocks))  # 최대주
+            ws.cell(row=1, column=2).value = "0"  # 매매된 주
+            ws.cell(row=1, column=3).value = "1"  # 최근 거래 위치
+            ws.cell(row=2, column=1).value = str(int(price))  # 초기가
+            ws.cell(row=2, column=100).value = "1000"  # 초기설정
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            time.sleep(1)
+            embed = discord.Embed(title="케테르 경제", description=name + "사 상장 완료!", color=0xeff0f1)
+            await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['회사정보'])
+    async def 회사(self, ctx, name: str):
+        def keundon(value: int):
+            value = int(value)
+            if value < 0:
+                return "변수는 음수값을 가질 수 없습니다."
+            elif 0 <= value < 10000:
+                return str(value)
+            elif 10000 <= value < 100000000:
+                return str(math.floor(value / 10000)) + "만 " + str(value - math.floor(value / 10000) * 10000)
+            elif 100000000 <= value < 1000000000000:
+                return str(math.floor(value / 100000000)) + "억 " + str(
+                    math.floor(value / 10000) - math.floor(value / 100000000) * 10000) + "만 " + str(
+                    value - math.floor(value / 10000) * 10000)
+            elif 1000000000000 <= value < 10000000000000000:
+                return str(math.floor(value / 1000000000000)) + "조 " + str(
+                    math.floor(value / 100000000) - math.floor(value / 1000000000000) * 10000) + "억 " + str(
+                    math.floor(value / 10000) - math.floor(value / 100000000) * 10000) + "만 " + str(
+                    value - math.floor(value / 10000) * 10000)
+            elif 10000000000000000 <= value < 100000000000000000000:
+                return str(math.floor(value / 10000000000000000)) + "경 " + str(
+                    math.floor(value / 1000000000000) - math.floor(value / 10000000000000000) * 10000) + "조 " + str(
+                    math.floor(value / 100000000) - math.floor(value / 1000000000000) * 10000) + "억 " + str(
+                    math.floor(value / 10000) - math.floor(value / 100000000) * 10000) + "만 " + str(
+                    value - math.floor(value / 10000) * 10000)
+            else:
+                return "변수의 크기가 너무 큽니다."
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+            ws = wb.active
+            stoks = ws.cell(row=1, column=1).value
+            last = ws.cell(row=1, column=3).value
+            price = ws.cell(row=2, column=int(last)).value
+            if last == "1":
+                prece = ws.cell(row=2, column=100).value
+            else:
+                prece = ws.cell(row=2, column=int(last)-1).value
+            wb.close()
+            siga = keundon(int(price)*int(stoks))
+            perc = round(int(price)*100/int(prece) - 100, 2)
+            if perc > 0:
+                icon = ":small_red_triangle:"
+            else:
+                icon = ":small_red_triangle_down:"
+            embed = discord.Embed(title=name, color=0xeff0f1)
+            embed.add_field(name="시가총액", value=siga + " <:ket:753449741186105375>")
+            embed.add_field(name="주가", value=keundon(price) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.check(permissions.is_owner)
