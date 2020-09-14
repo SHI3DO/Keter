@@ -228,7 +228,7 @@ class economy_ko(commands.Cog):
             ws = wb.active
             val = int(ws.cell(row=1, column=2).value)
             if val > 80000000000:
-                embed = discord.Embed(title="NO", description="전재산이 800억을 초과하여 올인을 사용하실 .", color=0xeff0f1)
+                embed = discord.Embed(title="NO", description="전재산이 800억을 초과하여 올인을 사용하실 수 없습니다.", color=0xeff0f1)
                 await ctx.send(embed=embed)
                 return None
             discrim = random.random()
