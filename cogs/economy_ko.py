@@ -29,12 +29,14 @@ class economy_ko(commands.Cog):
     #메시지당 돈
     @commands.Cog.listener()
     async def on_message(self,ctx):
-        if ctx.guild == "749595288280498188":
+        print("asdasdasdasd")
+        if ctx.guild.id == 749595288280498188:
+            print("sdfsdfsdf")
             if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
                 randomnum = random.randrange(1,3)
                 wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
                 ws = wb.active
-                suvmoney = ws.cell(row=1, column=2).value
+                suvmoney = int(ws.cell(row=1, column=2).value)
                 suvmoney = suvmoney + randomnum
                 ws.cell(row=1, column=2).value = str(suvmoney)
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
