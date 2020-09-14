@@ -278,7 +278,7 @@ class economy_ko(commands.Cog):
                         ws.cell(row=1, column=2).value = str(money)
                         wb.save(userlib + str(ctx.author.id) + ".xlsx")
                         wb.close()
-                        embed = discord.Embed(title="송금", description="<@" + str(ctx.author.id) + "> " + str(valu*92/100) + " <:ket:753449741186105375>" + "송금 완료(세율 8%)", color=0xeff0f1)
+                        embed = discord.Embed(title="송금", description="<@" + str(ctx.author.id) + "> " + str(round(valu*92/100)) + " <:ket:753449741186105375>" + "송금 완료(세율 8%)", color=0xeff0f1)
                         await ctx.send(embed=embed)
                     else:
                         embed = discord.Embed(title="NO", description="보유하신 잔액보다 큰 금액을 송금할 수는 없어요.", color=0xeff0f1)
