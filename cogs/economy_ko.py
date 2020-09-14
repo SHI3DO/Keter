@@ -220,6 +220,39 @@ class economy_ko(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
+            
+    @commands.command(aliases=['ㅇㅇ'])
+    async def 올인(self, ctx):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            val = int(ws.cell(row=1, column=2).value)
+            discrim = random.random()
+            if discrim < 0.02:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value)*12)
+                ws.cell(row=3, column=3).value = "0"
+                embed = discord.Embed(title="올인", description="<@" + str(ctx.author.id) + "> " + "축하합니다! 대박이 나서 12배를 획득 하셨어요! 🎉\n획득량:" + str(12*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+            elif 0.02 < discrim < 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value)*3)
+                ws.cell(row=3, column=3).value = "0"
+                embed = discord.Embed(title="올인", description="<@" + str(ctx.author.id) + "> " + "축하합니다! 올인에 성공하셔서 3배를 획득 하셨어요! 🎉\n획득량:" + str(3*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+            elif 0.05 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/100 < discrim < 0.1 + math.sqrt(int(ws.cell(row=3, column=3).value)*100)/50:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value)*2)
+                ws.cell(row=3, column=3).value = "0"
+                embed = discord.Embed(title="올인", description="<@" + str(ctx.author.id) + "> " +  "축하합니다! 올인에 성공하셔서 2배를 획득 하셨어요! 🎉\n획득량:" + str(2*val) + " <:ket:753449741186105375>", color=0xeff0f1)
+            else:
+                emj = "<:dar:754345236574109716>"
+                ws.cell(row=1, column=2).value = "0"
+                ws.cell(row=3, column=3).value = str(int(ws.cell(row=3, column=3).value) + 1)
+                embed = discord.Embed(title="도박", description="올인에 실패하여 전재산을 잃으셨습니다. " + emj, color=0xeff0f1)
+            wb.save(userlib + str(ctx.author.id) + ".xlsx")
+            wb.close()
+            await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="먼저 ``.참여``를 입력해서 케테르 경제에 참여해주세요!", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def 송금(self, ctx, mention:str, valu:int):
