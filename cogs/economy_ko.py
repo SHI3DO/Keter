@@ -388,7 +388,7 @@ class economy_ko(commands.Cog):
 
     @commands.command(aliases=['회사등록'])
     @commands.check(permissions.is_owner)
-    async def 상장(self, ctx, name: str, stocks: int, price: int):
+    async def 상장(self, ctx, name: str, stocks: int, price: int, sales: int, ratio: float):
         name = name.replace("_", " ")
         if os.path.isfile(stocklib + name + ".xlsx"):
             embed = discord.Embed(title="KMF", description="이미 상장된 기업입니다.", color=0xeff0f1)
@@ -400,6 +400,8 @@ class economy_ko(commands.Cog):
         ws.cell(row=1, column=1).value = str(int(stocks))  # 최대주
         ws.cell(row=1, column=2).value = "0"  # 매매된 주
         ws.cell(row=1, column=3).value = "1"  # 최근 거래 위치
+        ws.cell(row=1, column=4).value = str(int(sales))  # 매출
+        ws.cell(row=1, column=5).value = str(float(ratio))  # 수익률
         ws.cell(row=2, column=1).value = str(int(price))  # 초기가
         ws.cell(row=2, column=100).value = "1000"  # 초기설정
         wb.save(stocklib + name + ".xlsx")
@@ -454,6 +456,8 @@ class economy_ko(commands.Cog):
             ws = wb.active
             stoks = ws.cell(row=1, column=1).value
             last = ws.cell(row=1, column=3).value
+            sales = ws.cell(row=1, column=4).value
+            ratio = ws.cell(row=1, column=5).value
             price = ws.cell(row=2, column=int(last)).value
             if last == "1":
                 prece = ws.cell(row=2, column=100).value
@@ -469,12 +473,98 @@ class economy_ko(commands.Cog):
             embed = discord.Embed(title=name, color=0xeff0f1)
             embed.add_field(name="시가총액", value=siga + " <:ket:753449741186105375>")
             embed.add_field(name="주가", value=keundon(price) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
+            embed.add_field(name="매출", value=keundon(int(sales)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
+            embed.add_field(name="순이익", value=keundon(round(int(sales)*float(ratio)/100)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
+            embed.add_field(name="예상 배당금", value=keundon(round(int(sales)/stoks*float(ratio)/100)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['회사조작'])
+    async def 주식조작(self, ctx, company: str, item: str val: int):
+        '''item 항목 : 주식총수, 주가, 매출, 수익률\n수익률의 변수 val은 10이 1%입니다.'''
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+            ws = wb.active
+        else:
+            embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        if item == "주식총주":
+            if val <= ws.cell(row=1, column=2).value:
+                embed = discord.Embed(title="NO", description="총수는 매매된 주보다 적은 수로 변경할 수 없습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+            else:
+                ws.cell(row=1, column=1).value = str(val)
+                wb.save(stocklib + name + ".xlsx")
+                wb.close()
+                embed = discord.Embed(title="KMF", description="해당 사(社)의 주식총수를 변경하였습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+        if item == "주가":
+            last = ws.cell(row=1, column=3).value
+            if last == "100":
+                next = 1
+            else:
+                next = int(last) + 1
+            ws.cell(row=1, column=3).value = str(next)
+            ws.cell(row=2, column=next).value = str(val)
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 사(社)의 주가를 변경하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        if item == "매출":
+            ws.cell(row=1, column=4).value = str(val)
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 사(社)의 매출을 변경하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        if item == "수익률":
+            val = val/10
+            if val > 100:
+                embed = discord.Embed(title="NO", description="수익률은 100(%)을 넘길 수 없습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+            if val <= 0:
+                embed = discord.Embed(title="NO", description="수익률은 0(%)이하일 수 없습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+            ws.cell(row=1, column=5).value = str(val)
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 사(社)의 수익률을 변경하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        embed = discord.Embed(title="NO", description="잘못된 변수 : " + item, color=0xeff0f1)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+        await ctx.send(embed=embed)
+    
+    @commands.command(aliases=['상장사'])
+    async def 회사목록(self, ctx, plist: int):
+        corps = os.listdir(stocklib)
+        embed = discord.Embed(title="KMF", description="목록 " + str(plist), color=0xeff0f1)
+        for i in range(0 + 10*(plist - 1), 10 + 10*(plist - 1)):
+            try:
+                embed.add_field(text=str(i + 1) + ".", value=corps[i].replace(".xlsx",""))
+            except:
+                await ctx.send(embed=embed)
+                return None
+        await ctx.send(embed=embed)        
 
     @commands.command()
     @commands.check(permissions.is_owner)
