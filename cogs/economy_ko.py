@@ -227,6 +227,9 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             val = int(ws.cell(row=1, column=2).value)
+            if val > 80000000000:
+                embed = discord.Embed(title="NO", description="전재산이 800억을 초과하여 올인을 사용하실 .", color=0xeff0f1)
+                await ctx.send(embed=embed)
             discrim = random.random()
             if discrim < 0.02:
                 ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value)*12)
