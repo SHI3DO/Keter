@@ -561,7 +561,7 @@ class economy_ko(commands.Cog):
         embed = discord.Embed(title="KMF", description="목록 " + str(plist), color=0xeff0f1)
         for i in range(0 + 10*(plist - 1), 10 + 10*(plist - 1)):
             try:
-                embed.add_field(text=str(i + 1) + ".", value=corps[i].replace(".xlsx",""))
+                embed.add_field(name=str(i + 1), value=corps[i].replace(".xlsx",""))
             except:
                 await ctx.send(embed=embed)
                 return None
