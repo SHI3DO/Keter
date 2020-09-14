@@ -388,6 +388,7 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['회사등록'])
     @commands.check(permissions.is_owner)
     async def 상장(self, ctx, name: str, stocks: int, price: int):
+        name = name.replace("_", " ")
         if os.path.isfile(stocklib + name + ".xlsx"):
             embed = discord.Embed(title="NO", description="이미 상장된 기업입니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
