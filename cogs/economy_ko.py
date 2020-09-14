@@ -383,24 +383,23 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['회사등록'])
     @commands.check(permissions.is_owner)
     async def 상장(self, ctx, name: str, stocks: int, price: int):
-        if (ctx.message.mentions.__len__() > 0):
-            if os.path.isfile(stocklib + name + ".xlsx"):
-                embed = discord.Embed(title="NO", description="이미 상장된 기업입니다.", color=0xeff0f1)
-                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-                await ctx.send(embed=embed)
-                return None
-            wb = openpyxl.Workbook()
-            ws = wb.active
-            ws.cell(row=1, column=1).value = str(int(stocks))  # 최대주
-            ws.cell(row=1, column=2).value = "0"  # 매매된 주
-            ws.cell(row=1, column=3).value = "1"  # 최근 거래 위치
-            ws.cell(row=2, column=1).value = str(int(price))  # 초기가
-            ws.cell(row=2, column=100).value = "1000"  # 초기설정
-            wb.save(stocklib + name + ".xlsx")
-            wb.close()
-            time.sleep(1)
-            embed = discord.Embed(title="케테르 경제", description=name + "사 상장 완료!", color=0xeff0f1)
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            embed = discord.Embed(title="NO", description="이미 상장된 기업입니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
+            return None
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.cell(row=1, column=1).value = str(int(stocks))  # 최대주
+        ws.cell(row=1, column=2).value = "0"  # 매매된 주
+        ws.cell(row=1, column=3).value = "1"  # 최근 거래 위치
+        ws.cell(row=2, column=1).value = str(int(price))  # 초기가
+        ws.cell(row=2, column=100).value = "1000"  # 초기설정
+        wb.save(stocklib + name + ".xlsx")
+        wb.close()
+        time.sleep(1)
+        embed = discord.Embed(title="케테르 경제", description=name + "사 상장 완료!", color=0xeff0f1)
+        await ctx.send(embed=embed)
     
     @commands.command(aliases=['회사정보'])
     async def 회사(self, ctx, name: str):
