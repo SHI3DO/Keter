@@ -25,6 +25,11 @@ class economy_ko(commands.Cog):
             print("user folder exist")
         else:
             os.makedirs("./lib/economy/users")
+            
+        if os.path.isdir("./lib/economy/stocks"):
+            print("stocks folder exist")
+        else:
+            os.makedirs("./lib/economy/stocks")
 
 
     #메시지당 돈
