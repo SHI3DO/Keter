@@ -8,4 +8,5 @@ Keter Discord Bot
 - RedTea
 - ych_aviation  
 
-# Discord
+## Discord
+https://discord.gg/P7UVAdB
