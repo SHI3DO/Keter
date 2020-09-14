@@ -390,7 +390,7 @@ class economy_ko(commands.Cog):
     async def 상장(self, ctx, name: str, stocks: int, price: int):
         name = name.replace("_", " ")
         if os.path.isfile(stocklib + name + ".xlsx"):
-            embed = discord.Embed(title="NO", description="이미 상장된 기업입니다.", color=0xeff0f1)
+            embed = discord.Embed(title="KMF", description="이미 상장된 기업입니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
             return None
@@ -404,7 +404,20 @@ class economy_ko(commands.Cog):
         wb.save(stocklib + name + ".xlsx")
         wb.close()
         time.sleep(1)
-        embed = discord.Embed(title="케테르 경제", description=name + "사 상장 완료!", color=0xeff0f1)
+        embed = discord.Embed(title="KMF", description=name + "사 상장 완료!", color=0xeff0f1)
+        await ctx.send(embed=embed)
+        
+    @commands.command(aliases=['회사삭제'])
+    @commands.check(permissions.is_owner)
+    async def 상장폐지(self, ctx, name: str):
+        name = name.replace("_", " ")
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            os.remove(stocklib + name + ".xlsx")
+            embed = discord.Embed(title="KMF", description="해당 기업을 상장폐지 하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        embed = discord.Embed(title="KMF", description=name + "는 없는 회사명입니다.", color=0xeff0f1)
         await ctx.send(embed=embed)
     
     @commands.command(aliases=['회사정보'])
