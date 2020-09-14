@@ -180,10 +180,10 @@ class economy_ko(commands.Cog):
     async def 도박(self, ctx, val:int):
         if val <= 0:
             embed = discord.Embed(title="NO", description="0 이하로는 베팅할 수 없어요.", color=0xeff0f1)
-                return await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
         if val > 80000000000:
             embed = discord.Embed(title="NO", description="베팅금은 800억 을 초과할 수 없어요.", color=0xeff0f1)
-                return await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
