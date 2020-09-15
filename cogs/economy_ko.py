@@ -605,7 +605,6 @@ class economy_ko(commands.Cog):
                 for i in range(1, int(last) + 1):
                     prices.append(int(ws.cell(row=2, column=i).value))
             plt.figure(figsize=(39, 18))
-            prices = reversed(prices)
             if prices[0] < prices[99]:
                 plt.step(list(range(1, 101)), prices, 'r-')
             else:
