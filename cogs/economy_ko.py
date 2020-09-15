@@ -612,6 +612,8 @@ class economy_ko(commands.Cog):
             fig.set_title(name)
             fig.set_xlabel('Recently')
             fig.set_ylabel('Price')
+            fig.invert_yaxis()
+            fig.invert_xaxis()
             stk.savefig(str(ctx.author.id) + ".png", dpi=96)
             plt.clf()
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
