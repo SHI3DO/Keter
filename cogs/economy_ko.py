@@ -586,6 +586,43 @@ class economy_ko(commands.Cog):
                 return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
 
+    @commands.command(aliases=['주식그래프'])
+    async def 주식(self, ctx, name: str):
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+            ws = wb.active
+            last = ws.cell(row=1, column=3).value
+            if last == "100":
+                prices = []
+                for i in range(1, 101):
+                    prices.append(ws.cell(row=2, column=i).value)
+            else:
+                prices = []
+                for i in range(last + 1, 101):
+                    prices.append(ws.cell(row=2, column=i).value)
+                for i in range(1, last + 1):
+                    prices.append(ws.cell(row=2, column=i).value)
+            times = list(range(1, 101))
+            fig1 = plt.figure()
+            if prices[0] < price[99]:
+                plt.plot(days, money_spent, color='red')
+            else:
+                plt.plot(days, money_spent, color='blue')
+            plt.title(name)
+            plt.xlabel('최근 거래')
+            plt.ylabel('주가')
+            plt.figure(figsize=(39, 18))
+            plt.savefig(str(ctx.author.id) + ".png", facecolor='#eff0f1', bbox_inches='tight', dpi=200)
+            plt.close
+            await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
+            time.sleep(1)
+            os.remove(str(ctx.author.id) + '.png')
+        else:
+            embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾지 못하였습니다", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
     @commands.command()
     async def 그래프(self, ctx):
         # 입력 데이터
