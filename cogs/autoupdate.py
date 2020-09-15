@@ -69,10 +69,6 @@ class Autoupdate(commands.Cog):
             open('./evs/' + filename + ".py", 'wb').write(r.content)
         await ctx.send("Updated: "+filename+".py")
         """ Loads an extension. """
-        try:
-            self.bot.load_extension(f"cogs.{filename}")
-        except Exception as e:
-            return await ctx.send(default.traceback_maker(e))
         await ctx.send(f"Loaded evs **{filename}.py**")
 
 
