@@ -604,7 +604,9 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
             plt.figure(figsize=(39, 18))
-            plt.rc('font', 16)
+            plt.rc('font', 36)
+            plt.rc('xtick', 24)
+            plt.rc('ytick', 24)
             if prices[0] < prices[99]:
                 plt.plot(times, prices, 'r-', drawstyle='steps-post')
             else:
