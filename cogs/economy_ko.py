@@ -568,7 +568,7 @@ class economy_ko(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command()
-    async def 페이징(self, message):
+    async def 페이징(self, ctx):
         embed1=discord.Embed(title="Embed1", description="embed1")
         embed2=discord.Embed(title="Embed2", description="embed2")
         embed3=discord.Embed(title="Embed3", description="embed3")
