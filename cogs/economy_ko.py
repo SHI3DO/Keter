@@ -565,6 +565,14 @@ class economy_ko(commands.Cog):
             except IndexError:
                 return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
+        embed1 = discord.Embed(title="Embed1", description="embed1")
+        embed2 = discord.Embed(title="Embed2", description="embed2")
+        embed3 = discord.Embed(title="Embed3", description="embed3")
+        embeds = [embed1, embed2, embed3]
+
+        msg = await ctx.send(embed=embed1)
+        page = paginator(self, msg, embeds=embeds)
+        await page.start()
 
     @commands.command()
     @commands.check(permissions.is_owner)
