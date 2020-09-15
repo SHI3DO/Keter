@@ -613,7 +613,8 @@ class economy_ko(commands.Cog):
                 plt.plot(times, prices, color='blue')
             stk.savefig(str(ctx.author.id) + ".png", dpi=200)
             stk.clear()
-            plt.close(stk)           
+            plt.close(stk)   
+            plt.clear()
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             os.remove(str(ctx.author.id) + '.png')
         else:
