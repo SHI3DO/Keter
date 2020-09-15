@@ -598,9 +598,9 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
             else:
                 prices = []
-                for i in range(last + 1, 101):
+                for i in range(int(last) + 1, 101):
                     prices.append(ws.cell(row=2, column=i).value)
-                for i in range(1, last + 1):
+                for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
             fig1 = plt.figure()
