@@ -485,7 +485,7 @@ class economy_ko(commands.Cog):
     
     @commands.command(aliases=['회사조작'])
     @commands.check(permissions.is_owner)
-    async def 주식조작(self, ctx, company: str, item: str, val: int):
+    async def 주식조작(self, ctx, name: str, item: str, val: int):
         """ item 항목 : 주식총수, 주가, 매출, 수익률\n수익률의 변수 val은 10이 1%입니다. """
         if os.path.isfile(stocklib + name + ".xlsx"):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
