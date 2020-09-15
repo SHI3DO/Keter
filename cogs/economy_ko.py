@@ -558,14 +558,10 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['상장사'])
     async def 회사목록(self, ctx, plist: int):
         corps = os.listdir(stocklib)
-        embed = discord.Embed(title="KMF", description="목록 " + str(plist), color=0xeff0f1)
+        embed = discord.Embed(title="KMF", color=0xeff0f1)
         for i in range(0 + 10*(plist - 1), 10 + 10*(plist - 1)):
-            try:
-                embed.add_field(name=str(i + 1), value=corps[i].replace(".xlsx",""))
-            except:
-                await ctx.send(embed=embed)
-                return None
-        await ctx.send(embed=embed)        
+            embed.add_field(name=str(i + 1), value=corps[i].replace(".xlsx",""))
+        await ctx.send(embed=embed)
 
     @commands.command()
     @commands.check(permissions.is_owner)
