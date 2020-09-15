@@ -575,6 +575,15 @@ class economy_ko(commands.Cog):
             os.remove(userlib + file_list[i])
             await ctx.send(file_list[i] + "deleted")
 
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 상장초기화(self, ctx):
+        file_list = os.listdir(stocklib)
+        file_list = [file for file in file_list if file.endswith(".xlsx")]
+        for i in range(len(file_list)):
+            os.remove(stocklib + file_list[i])
+            await ctx.send(file_list[i] + "deleted")
+
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
