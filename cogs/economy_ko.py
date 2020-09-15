@@ -6,6 +6,8 @@ import asyncio
 import openpyxl
 import random
 import math
+import numpy as np
+import matplotlib.pyplot as plt
 
 from datetime import datetime
 from discord.ext import commands
@@ -565,6 +567,29 @@ class economy_ko(commands.Cog):
             except IndexError:
                 return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def 그래프(self, ctx):
+        x1 = np.linspace(0.0, 5.0)
+        x2 = np.linspace(0.0, 2.0)
+
+        y1 = np.cos(2 * np.pi * x1) * np.exp(-x1)
+        y2 = np.cos(2 * np.pi * x2)
+
+        plt.subplot(2, 1, 1)  # nrows=2, ncols=1, index=1
+        plt.plot(x1, y1, 'o-')
+        plt.title('A tale of 2 subplots')
+        plt.ylabel('Damped oscillation')
+
+        plt.subplot(2, 1, 2)  # nrows=2, ncols=1, index=2
+        plt.plot(x2, y2, '.-')
+        plt.xlabel('time (s)')
+        plt.ylabel('Undamped')
+
+        # plt.show()
+        plt.savefig('graph.png')
+        await ctx.send(file = discord.File("./graph.png"))
+        plt.clf()
         
     @commands.command()
     @commands.check(permissions.is_owner)
