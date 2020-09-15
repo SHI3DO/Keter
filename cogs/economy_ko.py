@@ -602,14 +602,14 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
                 for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
-            times = list(range(1, 101))
             plt.figure(figsize=(39, 18))
             if prices[0] < prices[99]:
-                plt.plot(times, prices, 'r-', drawstyle='steps-post')
+                plt.plot(prices, 'r-', drawstyle='steps-post')
             else:
-                plt.plot(times, prices, 'b-', drawstyle='steps-post')
+                plt.plot(prices, 'b-', drawstyle='steps-post')
             plt.title(name)
-            plt.xticks(fontsize=120)
+            plt.xticks(fontsize=144)
+            plt.yticks(fontsize=144)
             plt.xlabel('Recently')
             plt.ylabel('Price')
             plt.savefig(str(ctx.author.id) + ".png", dpi=96)
