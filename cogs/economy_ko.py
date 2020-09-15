@@ -604,7 +604,7 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
             fig1 = plt.figure()
-            if prices[0] < price[99]:
+            if prices[0] < prices[99]:
                 plt.plot(days, money_spent, color='red')
             else:
                 plt.plot(days, money_spent, color='blue')
