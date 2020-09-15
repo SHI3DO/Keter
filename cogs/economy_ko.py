@@ -9,7 +9,8 @@ import math
 
 from datetime import datetime
 from discord.ext import commands
-from evs import default, permissions, epaginator
+from evs import default, permissions
+from EZPaginator import Paginator
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
