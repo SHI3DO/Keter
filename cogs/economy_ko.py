@@ -560,7 +560,10 @@ class economy_ko(commands.Cog):
         corps = os.listdir(stocklib)
         embed = discord.Embed(title="KMF", color=0xeff0f1)
         for i in range(0 + 10*(plist - 1), 10 + 10*(plist - 1)):
-            embed.add_field(name=str(i + 1), value=corps[i].replace(".xlsx",""))
+            try:
+                embed.add_field(name=str(i + 1), value=corps[i].replace(".xlsx",""))
+            except IndexError:
+                return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
 
     @commands.command()
