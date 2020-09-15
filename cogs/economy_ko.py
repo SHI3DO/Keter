@@ -603,16 +603,15 @@ class economy_ko(commands.Cog):
                 for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
-            fig1 = plt.figure()
+            plt.figure(figsize=(39, 18))
+            plt.title(name)
+            plt.xlabel('최근 거래')
+            plt.ylabel('주가')
             if prices[0] < prices[99]:
                 plt.plot(times, prices, color='red')
             else:
                 plt.plot(times, prices, color='blue')
-            plt.title(name)
-            plt.xlabel('최근 거래')
-            plt.ylabel('주가')
-            plt.figure(figsize=(39, 18))
-            plt.savefig(str(ctx.author.id) + ".png", facecolor='#eff0f1', bbox_inches='tight', dpi=200)
+            plt.savefig(str(ctx.author.id) + ".png", dpi=200)
             plt.close
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             time.sleep(1)
