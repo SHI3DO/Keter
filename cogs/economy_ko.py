@@ -612,7 +612,8 @@ class economy_ko(commands.Cog):
             else:
                 plt.plot(times, prices, color='blue')
             stk.savefig(str(ctx.author.id) + ".png", dpi=200)
-            plt.close(stk)
+            stk.clear()
+            plt.close(stk)           
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             os.remove(str(ctx.author.id) + '.png')
         else:
@@ -620,55 +621,6 @@ class economy_ko(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
-
-    @commands.command()
-    async def 그래프(self, ctx):
-        # 입력 데이터
-
-        X = np.arange(3)
-
-        Y_A = np.arange(1, 4)
-
-        Y_B = np.arange(3, 0, step=-1)
-
-        # plot 입력
-
-        line1, = plt.plot(X, Y_A, 'k-', label='A', linewidth=1)
-
-        line2, = plt.plot(X, Y_B, 'r--', label='B', linewidth=1)
-
-        # X 및 Y 범위 설정
-
-        plt.xlim(X[0], X[-1])
-
-        plt.ylim(np.min(np.append(Y_A, Y_B)), np.max(np.append(Y_A, Y_B)))
-
-        # 그래프의 타이틀과 x, y축 라벨링
-
-        plt.title('title', pad=10)
-
-        plt.xlabel('X axis', labelpad=10)
-
-        plt.ylabel('Y axis', labelpad=10)
-
-        # 틱설정
-
-        plt.xticks(np.linspace(X[0], X[-1], 11))
-
-        plt.yticks(np.linspace(np.min(np.append(Y_A, Y_B)), np.max(np.append(Y_A, Y_B)), 11))
-
-        plt.minorticks_on()
-
-        plt.tick_params(axis='both', which='both', direction='in', pad=8, top=True, right=True)
-
-        # 레전드 및 그리드 설정
-
-        plt.legend(loc='upper right', fancybox=False, edgecolor='k', framealpha=1.0)
-
-        plt.grid(color='gray', dashes=(2, 2))
-        plt.savefig('graph.png')
-        await ctx.send(file=discord.File("./graph.png"))
-        plt.clf()
 
     @commands.command()
     @commands.check(permissions.is_owner)
