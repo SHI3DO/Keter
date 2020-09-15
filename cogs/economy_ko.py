@@ -408,7 +408,7 @@ class economy_ko(commands.Cog):
         ws.cell(row=1, column=5).value = str(float(ratio))  # 수익률
         ws.cell(row=2, column=1).value = str(int(price))  # 초기가
         for i in range(2, 100):
-            ws.cell(row=2, column=i).value = str(int(price))
+            ws.cell(row=2, column=i).value = str(int(price) - 100 + i)
         ws.cell(row=2, column=100).value = "1000"  # 초기설정
         wb.save(stocklib + name + ".xlsx")
         wb.close()
