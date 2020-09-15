@@ -9,7 +9,7 @@ import math
 
 from datetime import datetime
 from discord.ext import commands
-from evs import default, permissions, paginator
+from evs import default, permissions, epaginator
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
@@ -574,7 +574,7 @@ class economy_ko(commands.Cog):
         embeds = [embed1, embed2, embed3]
 
         msg = await ctx.send(embed=embed1)
-        page = paginator(self, msg, embeds=embeds)
+        page = epaginator(self, msg, embeds=embeds)
         await page.start()
         
     @commands.command()
