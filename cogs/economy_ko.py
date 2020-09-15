@@ -603,7 +603,7 @@ class economy_ko(commands.Cog):
                     prices.append(int(ws.cell(row=2, column=i).value))
             plt.figure(figsize=(39, 18))
             if prices[0] < prices[99]:
-                plt.step(list(range(1, 101)), prices, 'r-', linest)
+                plt.step(list(range(1, 101)), prices, 'r-')
             else:
                 plt.step(list(range(1, 101)), prices, 'b-')
             plt.title(name)
