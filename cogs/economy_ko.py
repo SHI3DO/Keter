@@ -497,7 +497,7 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['회사조작'])
     @commands.check(permissions.is_owner)
     async def 주식조작(self, ctx, name: str, item: str, val: int):
-        """ item 항목 : 주식총수, 주가, 매출, 수익률\n수익률의 변수 val은 10이 1%입니다. """
+        """ item 항목 : 주식총주, 주가, 매출, 수익률\n수익률의 변수 val은 10이 1%입니다. """
         if os.path.isfile(stocklib + name + ".xlsx"):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
@@ -508,7 +508,7 @@ class economy_ko(commands.Cog):
             await ctx.send(embed=embed)
             return None
         if item == "주식총주":
-            if val <= ws.cell(row=1, column=2).value:
+            if val <= int(ws.cell(row=1, column=2).value):
                 embed = discord.Embed(title="NO", description="총수는 매매된 주보다 적은 수로 변경할 수 없습니다.", color=0xeff0f1)
                 embed.set_thumbnail(
                     url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
