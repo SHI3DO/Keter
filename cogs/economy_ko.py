@@ -614,6 +614,8 @@ class economy_ko(commands.Cog):
             stk.savefig(str(ctx.author.id) + ".png", dpi=200)
             stk.clear()
             stk.close()
+            plt.clear()
+            plt.close()
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             os.remove(str(ctx.author.id) + '.png')
         else:
