@@ -574,8 +574,8 @@ class economy_ko(commands.Cog):
         embed3=discord.Embed(title="Embed3", description="embed3")
         embeds = [embed1, embed2, embed3]
 
-        msg = await message.channel.send(embed=embed1)
-        page = Paginator(self, msg, embeds=embeds)
+        msg = await ctx.send(embed=embed1)
+        page = Paginator(self, msg, embeds=embeds, use_more=True)
         await page.start()
         
     @commands.command()
