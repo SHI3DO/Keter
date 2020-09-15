@@ -569,13 +569,13 @@ class economy_ko(commands.Cog):
     
     @commands.command()
     async def 페이징(self, ctx):
-        embed1 = discord.Embed(title="Embed1", description="embed1")
-        embed2 = discord.Embed(title="Embed2", description="embed2")
-        embed3 = discord.Embed(title="Embed3", description="embed3")
+        embed1=discord.Embed(title="Embed1", description="embed1")
+        embed2=discord.Embed(title="Embed2", description="embed2")
+        embed3=discord.Embed(title="Embed3", description="embed3")
         embeds = [embed1, embed2, embed3]
 
-        msg = await ctx.send(embed=embed1)
-        page = epaginator(self, msg, embeds=embeds)
+        msg = await message.channel.send(embed=embed1)
+        page = Paginator(self, msg, embeds=embeds)
         await page.start()
         
     @commands.command()
