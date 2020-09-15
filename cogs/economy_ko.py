@@ -603,17 +603,17 @@ class economy_ko(commands.Cog):
                 for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
-            stk = plt.figure(figsize=(39, 18))
-            fig = stk.add_subplot(1,1,1)
+            plt.figure(figsize=(39, 18))
             if prices[0] < prices[99]:
                 plt.plot(times, prices, 'r-', drawstyle='steps-post')
             else:
                 plt.plot(times, prices, 'b-', drawstyle='steps-post')
-            fig.set_title(name)
-            fig.set_xlabel('Recently')
-            fig.set_ylabel('Price')
-            stk.savefig(str(ctx.author.id) + ".png", dpi=96)
+            plt.set_title(name)
+            plt.set_xlabel('Recently')
+            plt.set_ylabel('Price')
+            plt.savefig(str(ctx.author.id) + ".png", dpi=96)
             plt.clf()
+            plt.close()
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             os.remove(str(ctx.author.id) + '.png')
         else:
