@@ -7,6 +7,8 @@ import openpyxl
 import random
 import math
 import numpy as np
+import datetime
+import pandas_datareader.data as web
 import matplotlib.pyplot as plt
 
 from datetime import datetime
@@ -570,22 +572,9 @@ class economy_ko(commands.Cog):
 
     @commands.command()
     async def 그래프(self, ctx):
-        x = np.arange(1,10)
-        y1 = x*5
-        y2 = x*1
-        y3 = x*0.3
-        y4 = x*0.2
-
-        plt.figure(figsize=(20,5))
-        plt.subplot(2,2,1)
-        plt.plot(x,y1)
-        plt.subplot(2,2,2)
-        plt.plot(x,y2)
-        plt.subplot(2,2,3)
-        plt.plot(x,y3)
-        plt.subplot(2,2,4)
-        plt.plot(x,y4)
-
+        compcode = "005930"
+        stock = web.DataReader(compcode, "yahoo")
+        ptl.title = "Samsung Chart"
         # plt.show()
         plt.savefig('graph.png')
         await ctx.send(file = discord.File("./graph.png"))
