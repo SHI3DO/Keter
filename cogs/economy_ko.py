@@ -591,12 +591,15 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
             last = ws.cell(row=1, column=3).value
+            prices = []
             if last == "100":
-                prices = []
                 for i in range(1, 101):
                     prices.append(int(ws.cell(row=2, column=i).value))
+            elif last == "1":
+                for i in range(2, 101):
+                    prices.append(int(ws.cell(row=2, column=i).value))
+                prices.append(int(ws.cell(row=2, column=1).value))
             else:
-                prices = []
                 for i in range(int(last) + 1, 101):
                     prices.append(int(ws.cell(row=2, column=i).value))
                 for i in range(1, int(last) + 1):
@@ -611,6 +614,7 @@ class economy_ko(commands.Cog):
             plt.yticks(fontsize=32)
             plt.xlabel('Recently')
             plt.ylabel('Price')
+            plt.invert_xaxis()
             plt.savefig(str(ctx.author.id) + ".png", dpi=96)
             plt.clf()
             plt.close()
