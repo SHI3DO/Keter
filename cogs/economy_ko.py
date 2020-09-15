@@ -574,7 +574,7 @@ class economy_ko(commands.Cog):
     async def 그래프(self, ctx):
         compcode = "005930"
         stock = web.DataReader(compcode, "yahoo")
-        ptl.title = "Samsung Chart"
+        plt.title = "Samsung Chart"
         # plt.show()
         plt.savefig('graph.png')
         await ctx.send(file = discord.File("./graph.png"))
