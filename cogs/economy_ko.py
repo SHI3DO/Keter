@@ -605,9 +605,9 @@ class economy_ko(commands.Cog):
             times = list(range(1, 101))
             fig1 = plt.figure()
             if prices[0] < prices[99]:
-                plt.plot(days, money_spent, color='red')
+                plt.plot(times, prices, color='red')
             else:
-                plt.plot(days, money_spent, color='blue')
+                plt.plot(times, prices, color='blue')
             plt.title(name)
             plt.xlabel('최근 거래')
             plt.ylabel('주가')
