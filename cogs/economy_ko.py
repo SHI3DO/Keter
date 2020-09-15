@@ -605,7 +605,7 @@ class economy_ko(commands.Cog):
             if prices[0] < prices[99]:
                 plt.plot(list(range(1, 101)), prices, 'r-')
             else:
-                plt.plot(range(1, 101)), prices, 'b-')
+                plt.plot(list(range(1, 101)), prices, 'b-')
             plt.figure(figsize=(39, 18))
             plt.title(name)
             plt.xticks(fontsize=32)
