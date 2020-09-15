@@ -473,9 +473,9 @@ class economy_ko(commands.Cog):
             embed = discord.Embed(title=name, color=0xeff0f1)
             embed.add_field(name="시가총액", value=siga + " <:ket:753449741186105375>")
             embed.add_field(name="주가", value=keundon(price) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
-            embed.add_field(name="매출", value=keundon(int(sales)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
-            embed.add_field(name="순이익", value=keundon(round(int(sales)*float(ratio)/100)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
-            embed.add_field(name="예상 배당금", value=keundon(round(int(sales)/int(stoks)*float(ratio)/100)) + " <:ket:753449741186105375> (" + icon + str(abs(perc)) + "%)")
+            embed.add_field(name="매출", value=keundon(int(sales)) + " <:ket:753449741186105375>")
+            embed.add_field(name="순이익", value=keundon(round(int(sales)*float(ratio)/100)) + " <:ket:753449741186105375>")
+            embed.add_field(name="예상 배당금", value=keundon(round(int(sales)/int(stoks)*float(ratio)/100)) + " <:ket:753449741186105375>")
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
