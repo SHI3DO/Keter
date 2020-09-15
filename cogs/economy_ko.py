@@ -598,14 +598,14 @@ class economy_ko(commands.Cog):
             else:
                 prices = []
                 for i in range(int(last) + 1, 101):
-                    prices.append(ws.cell(row=2, column=i).value)
+                    prices.append(int(ws.cell(row=2, column=i).value))
                 for i in range(1, int(last) + 1):
-                    prices.append(ws.cell(row=2, column=i).value)
-            if prices[0] < prices[99]:
-                plt.plot(list(range(1, 101)), prices, 'r-')
-            else:
-                plt.plot(list(range(1, 101)), prices, 'b-')
+                    prices.append(int(ws.cell(row=2, column=i).value))
             plt.figure(figsize=(39, 18))
+            if prices[0] < prices[99]:
+                plt.step(list(range(1, 101)), prices, 'r-', linest)
+            else:
+                plt.step(list(range(1, 101)), prices, 'b-')
             plt.title(name)
             plt.xticks(fontsize=32)
             plt.yticks(fontsize=32)
