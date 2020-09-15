@@ -10,7 +10,6 @@ import math
 from datetime import datetime
 from discord.ext import commands
 from evs import default, permissions
-from EZPaginator import Paginator
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
@@ -566,17 +565,6 @@ class economy_ko(commands.Cog):
             except IndexError:
                 return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
-    
-    @commands.command()
-    async def 페이징(self, ctx):
-        embed1=discord.Embed(title="Embed1", description="embed1")
-        embed2=discord.Embed(title="Embed2", description="embed2")
-        embed3=discord.Embed(title="Embed3", description="embed3")
-        embeds = [embed1, embed2, embed3]
-
-        msg = await ctx.send(embed=embed1)
-        page = Paginator(self, msg, embeds=embeds, use_more=True)
-        await page.start()
         
     @commands.command()
     @commands.check(permissions.is_owner)
