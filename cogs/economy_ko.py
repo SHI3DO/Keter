@@ -570,21 +570,21 @@ class economy_ko(commands.Cog):
 
     @commands.command()
     async def 그래프(self, ctx):
-        x1 = np.linspace(0.0, 5.0)
-        x2 = np.linspace(0.0, 2.0)
+        x = np.arange(1,10)
+        y1 = x*5
+        y2 = x*1
+        y3 = x*0.3
+        y4 = x*0.2
 
-        y1 = np.cos(2 * np.pi * x1) * np.exp(-x1)
-        y2 = np.cos(2 * np.pi * x2)
-
-        plt.subplot(2, 1, 1)  # nrows=2, ncols=1, index=1
-        plt.plot(x1, y1, 'o-')
-        plt.title('A tale of 2 subplots')
-        plt.ylabel('Damped oscillation')
-
-        plt.subplot(2, 1, 2)  # nrows=2, ncols=1, index=2
-        plt.plot(x2, y2, '.-')
-        plt.xlabel('time (s)')
-        plt.ylabel('Undamped')
+        plt.figure(figsize=(20,5))
+        plt.subplot(2,2,1)
+        plt.plot(x,y1)
+        plt.subplot(2,2,2)
+        plt.plot(x,y2)
+        plt.subplot(2,2,3)
+        plt.plot(x,y3)
+        plt.subplot(2,2,4)
+        plt.plot(x,y4)
 
         # plt.show()
         plt.savefig('graph.png')
