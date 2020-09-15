@@ -614,7 +614,6 @@ class economy_ko(commands.Cog):
             plt.yticks(fontsize=32)
             plt.xlabel('Recently')
             plt.ylabel('Price')
-            plt.gca().invert_yaxis()
             plt.savefig(str(ctx.author.id) + ".png", dpi=96)
             plt.clf()
             plt.close()
