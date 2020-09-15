@@ -491,7 +491,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
         else:
-            embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
+            embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾지 못하였습니다", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
