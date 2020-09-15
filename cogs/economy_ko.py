@@ -614,7 +614,6 @@ class economy_ko(commands.Cog):
             stk.savefig(str(ctx.author.id) + ".png", dpi=200)
             plt.close(stk)
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
-            time.sleep(1)
             os.remove(str(ctx.author.id) + '.png')
         else:
             embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾지 못하였습니다", color=0xeff0f1)
