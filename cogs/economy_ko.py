@@ -9,7 +9,7 @@ import math
 
 from datetime import datetime
 from discord.ext import commands
-from evs import default, permissions
+from evs import default, permissions, paginator
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
