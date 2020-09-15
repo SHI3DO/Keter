@@ -603,7 +603,7 @@ class economy_ko(commands.Cog):
                 for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
-            plt.figure(figsize=(39, 18))
+            stk = plt.figure(figsize=(39, 18))
             plt.title(name)
             plt.xlabel('최근 거래')
             plt.ylabel('주가')
@@ -611,8 +611,8 @@ class economy_ko(commands.Cog):
                 plt.plot(times, prices, color='red')
             else:
                 plt.plot(times, prices, color='blue')
-            plt.savefig(str(ctx.author.id) + ".png", dpi=200)
-            plt.close
+            stk.savefig(str(ctx.author.id) + ".png", dpi=200)
+            plt.close(stk)
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             time.sleep(1)
             os.remove(str(ctx.author.id) + '.png')
