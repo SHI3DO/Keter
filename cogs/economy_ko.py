@@ -602,11 +602,11 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
                 for i in range(1, int(last) + 1):
                     prices.append(ws.cell(row=2, column=i).value)
-            plt.figure(figsize=(39, 18))
             if prices[0] < prices[99]:
-                plt.plot(prices, 'r-')
+                plt.plot(list(range(1, 101)), prices, 'r-')
             else:
-                plt.plot(prices, 'b-')
+                plt.plot(range(1, 101)), prices, 'b-')
+            plt.figure(figsize=(39, 18))
             plt.title(name)
             plt.xticks(fontsize=32)
             plt.yticks(fontsize=32)
