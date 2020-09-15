@@ -608,9 +608,9 @@ class economy_ko(commands.Cog):
                 plt.plot(times, prices, 'r-', drawstyle='steps-post')
             else:
                 plt.plot(times, prices, 'b-', drawstyle='steps-post')
-            plt.set_title(name)
-            plt.set_xlabel('Recently')
-            plt.set_ylabel('Price')
+            plt.title(name)
+            plt.xlabel('Recently')
+            plt.ylabel('Price')
             plt.savefig(str(ctx.author.id) + ".png", dpi=96)
             plt.clf()
             plt.close()
