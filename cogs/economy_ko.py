@@ -604,15 +604,16 @@ class economy_ko(commands.Cog):
                     prices.append(ws.cell(row=2, column=i).value)
             times = list(range(1, 101))
             stk = plt.figure(figsize=(39, 18))
-            plt.title(name)
-            plt.xlabel('최근 거래')
-            plt.ylabel('주가')
+            fig = stk.add_subplot(1,1,1)
             if prices[0] < prices[99]:
-                plt.plot(times, prices, color='red')
+                plt.plot(times, prices, 'r-', drawstyle='steps-post')
             else:
-                plt.plot(times, prices, color='blue')
-            stk.savefig(str(ctx.author.id) + ".png", dpi=200)
-            plt.close(stk)
+                plt.plot(times, prices, 'b-', drawstyle='steps-post')
+            fig.set_title(name)
+            fig.set_xlabel('Recently')
+            fig.set_ylabel('Price')
+            stk.savefig(str(ctx.author.id) + ".png", dpi=96)
+            plt.clf()
             await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
             os.remove(str(ctx.author.id) + '.png')
         else:
