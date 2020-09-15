@@ -407,9 +407,8 @@ class economy_ko(commands.Cog):
         ws.cell(row=1, column=4).value = str(int(sales))  # 매출
         ws.cell(row=1, column=5).value = str(float(ratio))  # 수익률
         ws.cell(row=2, column=1).value = str(int(price))  # 초기가
-        for i in range(2, 100):
-            ws.cell(row=2, column=i).value = str(int(price) - 99 + i)
-        ws.cell(row=2, column=100).value = "1000"  # 초기설정
+        for i in range(2, 101):
+            ws.cell(row=2, column=i).value = str(int(price)) # 초기설정
         wb.save(stocklib + name + ".xlsx")
         wb.close()
         time.sleep(1)
@@ -595,7 +594,7 @@ class economy_ko(commands.Cog):
             if last == "100":
                 prices = []
                 for i in range(1, 101):
-                    prices.append(ws.cell(row=2, column=i).value)
+                    prices.append(int(ws.cell(row=2, column=i).value))
             else:
                 prices = []
                 for i in range(int(last) + 1, 101):
