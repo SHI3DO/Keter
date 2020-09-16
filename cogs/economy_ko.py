@@ -625,6 +625,23 @@ class economy_ko(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
+    async def 테스트그래프(self, ctx):
+        x = np.linspace(-6, 6, 30)
+        y = np.linspace(-6, 6, 30)
+        x, y = np.meshgrid(x, y)
+        z = np.sin(np.sqrt(x**2 + y**2))
+
+        fig = plt.figure(figsize=(12, 6))
+        ax = plt.axes(projection='3d')
+        ax.contour3D(x, y, z, 20, cmap=plt.cm.rainbow)
+        plt.savefig(str(ctx.author.id) + ".png", dpi=96)
+        plt.title("ax.contour3D")
+        plt.clf()
+        plt.close()
+        await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
+        os.remove(str(ctx.author.id) + '.png')
+
+    @commands.command()
     @commands.check(permissions.is_owner)
     async def 전체초기화(self, ctx):
         file_list = os.listdir(userlib)
