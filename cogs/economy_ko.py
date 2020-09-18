@@ -65,7 +65,7 @@ class economy_ko(commands.Cog):
                     ws.cell(row=1, column=3).value = str(int(last) + 1)
                 wb.save(stocklib + file_list[i])
                 wb.close()
-                await asyncio.sleep(300)
+            await asyncio.sleep(300)
             
     # 메시지당 돈
     @commands.Cog.listener()
