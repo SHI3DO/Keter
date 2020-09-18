@@ -50,22 +50,6 @@ class economy_ko(commands.Cog):
             print("stocks folder exist")
         else:
             os.makedirs("./lib/economy/stocks")
-        while True:
-            file_list = os.listdir(stocklib)
-            file_list = [file for file in file_list if file.endswith(".xlsx")]
-            for i in range(len(file_list)):
-                wb = openpyxl.load_workbook(stocklib + file_list[i])
-                ws = wb.active
-                last = ws.cell(row=1, column=3).value
-                if last == "100":
-                    ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(0.994 + random.random()/100)))
-                    ws.cell(row=1, column=3).value = "1"
-                else:
-                    ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.994 + random.random()/100)))
-                    ws.cell(row=1, column=3).value = str(int(last) + 1)
-                wb.save(stocklib + file_list[i])
-                wb.close()
-            await asyncio.sleep(300)
             
     # 메시지당 돈
     @commands.Cog.listener()
