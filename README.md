@@ -6,7 +6,7 @@ Keter Discord Bot
 
 ## Services
 - RedTea
-- ych_aviation  
+- ych.bup  
 
 ## Documentation
 https://keter.netlify.app
