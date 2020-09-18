@@ -638,7 +638,7 @@ class economy_ko(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['내주식', '보유주식', '주식통장'])
-    async def 보유주(self, ctx, plist: int):
+    async def 보유주(self, ctx):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
