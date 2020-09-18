@@ -688,7 +688,7 @@ class economy_ko(commands.Cog):
                 return await ctx.send(embed=embed)
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + amount)
             if last == "100":
-                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1 + (amount**0.2)/100 + (random.random()-0.5)/60)))
+                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1 + (amount**0.2)/400 + (random.random()-0.5)/160)))
                 ws.cell(row=1, column=3).value = "1"
             else:
                 ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(1 + (amount**0.2)/100 + random.random()/20)))
