@@ -649,17 +649,17 @@ class economy_ko(commands.Cog):
                 embed = discord.Embed(title="NO", description="주식 거래 후 2시간동안은 추가 매매가 불가능 합니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 ub.close()
-                return = await ctx.send(embed=embed)
+                return await ctx.send(embed=embed)
             if block == 0:
                 embed = discord.Embed(title="NO", description="보유할 수 있는 주식의 종류를 넘었어요..", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 ub.close()
-                return = await ctx.send(embed=embed)
+                return await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             ub.close()
-            return = await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
         if os.path.isfile(stocklib + name + ".xlsx"):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
