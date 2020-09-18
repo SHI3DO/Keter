@@ -775,6 +775,24 @@ class economy_ko(commands.Cog):
             wb.save(stocklib + file_list[i])
             wb.close()
             await ctx.send(file_list[i] + " reseted")
+    
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 주가변동(self, ctx):
+        file_list = os.listdir(stocklib)
+        file_list = [file for file in file_list if file.endswith(".xlsx")]
+        for i in range(len(file_list)):
+            wb = openpyxl.load_workbook(stocklib + file_list[i])
+            ws = wb.active
+            last = ws.cell(row=1, column=3).value
+            if last == "100":
+                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(0.994 + random.random()/100)))
+                ws.cell(row=1, column=3).value = "1"
+            else:
+                ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.994 + random.random()/100)))
+                ws.cell(row=1, column=3).value = str(int(last) + 1)
+            wb.save(stocklib + file_list[i])
+            wb.close()
 
 def setup(bot):
     bot.add_cog(economy_ko(bot))
