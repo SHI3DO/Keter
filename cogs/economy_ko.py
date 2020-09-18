@@ -46,7 +46,7 @@ class economy_ko(commands.Cog):
                 else:
                     ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.994 + random.random()/100)))
                     ws.cell(row=1, column=3).value = str(int(last) + 1)
-                wb.save(stocklib + name + ".xlsx")
+                wb.save(stocklib + file_list[i])
                 wb.close()
             asyncio.sleep(300)
         
