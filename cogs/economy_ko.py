@@ -641,7 +641,7 @@ class economy_ko(commands.Cog):
     async def 주식구매(self, ctx, name: str, amount: int):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
-            ws = ub.active
+            ws = wb.active
             money = ws.cell(row=1, column=2).value
             inteli = ws.cell(row=5, column=4).value
             ti = ws.cell(row=1, column=5).value
