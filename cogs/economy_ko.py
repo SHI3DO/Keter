@@ -639,6 +639,10 @@ class economy_ko(commands.Cog):
 
     @commands.command(aliases=['매수'])
     async def 주식구매(self, ctx, name: str, amount: int):
+        if amount <= 0:
+            embed = discord.Embed(title="NO", description="매매 주는 0주 이하일 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
@@ -684,7 +688,7 @@ class economy_ko(commands.Cog):
                 return await ctx.send(embed=embed)
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + amount)
             if last == "100":
-                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1 + (amount**0.2)/100 + random.random()/20)))
+                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1 + (amount**0.2)/100 + (random.random()-0.5)/60)))
                 ws.cell(row=1, column=3).value = "1"
             else:
                 ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(1 + (amount**0.2)/100 + random.random()/20)))
