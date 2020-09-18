@@ -757,7 +757,7 @@ class economy_ko(commands.Cog):
             stocks = ws.cell(row=1, column=2).value = "0"
             wb.save(stocklib + file_list[i])
             wb.close()
-            await ctx.send(file_list[i] + "reseted")
+            await ctx.send(file_list[i] + " reseted")
 
 
 def setup(bot):
