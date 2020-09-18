@@ -703,7 +703,7 @@ class economy_ko(commands.Cog):
                 ws.cell(row=7, column=i).value = str(amount)
             else:
                 ws.cell(row=7, column=i).value = str(int(us.cell(row=7, column=i).value) + amount)
-            wb.save(userlib + name + ".xlsx")
+            wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 구매하였습니다.", color=0xeff0f1)
             embed.set_thumbnail(
