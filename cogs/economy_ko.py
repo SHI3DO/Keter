@@ -642,7 +642,7 @@ class economy_ko(commands.Cog):
         if amount <= 0:
             embed = discord.Embed(title="NO", description="매매 주는 0주 이하일 수 없습니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
