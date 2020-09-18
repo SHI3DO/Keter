@@ -357,11 +357,19 @@ class economy_ko(commands.Cog):
             ws = wb.active
             if int(ws.cell(row=1, column=3).value) <= 1000:
                 ws.cell(row=1, column=3).value = str(
-                    int(ws.cell(row=1, column=3).value) + math.ceil(int(ws.cell(row=1, column=2).value) / 1000000000))
+                    int(ws.cell(row=1, column=3).value) + math.floor(int(ws.cell(row=1, column=2).value) / 1000000000))
             else:
                 ws.cell(row=1, column=3).value = str(round(int(ws.cell(row=1, column=3).value) / 2) + math.ceil(
                     int(ws.cell(row=1, column=2).value) / 1000000000))
-            ws.cell(row=1, column=2).value = "8600000"
+            ws.cell(row=1, column=1).value = "Hello World"  #:)
+            ws.cell(row=1, column=2).value = "8600000"  # money
+            ws.cell(row=1, column=4).value = "-"  # rank
+            ws.cell(row=1, column=5).value = "0"  # timesleep
+            ws.cell(row=2, column=1).value = "None"  # status
+            ws.cell(row=2, column=2).value = "0"  # perfect
+            ws.cell(row=2, column=3).value = "0"  # great
+            ws.cell(row=2, column=4).value = "0"  # good
+            ws.cell(row=2, column=5).value = "0"  # bad
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
