@@ -9,7 +9,7 @@ Keter Discord Bot
 - ych_aviation  
 
 ## Documentation
-https://keter.netlify.app/#/economy
+https://keter.netlify.app
 
 ## Discord
 https://discord.gg/P7UVAdB
