@@ -637,6 +637,23 @@ class economy_ko(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
 
+    @commands.command(aliases=['내주식', '보유주식', '주식통장'])
+    async def 보유주(self, ctx, plist: int):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            inteli = ws.cell(row=5, column=4).value
+            embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + ">님의 주식통장", color=0xeff0f1)
+            for i in range(1, math.ceil(int(inteli))):
+                if ws.cell(row=6, column=i).value == None:
+                    pass
+                else:
+                    embed.add_field(name=ws.cell(row=6, column=i).value, value=ws.cell(row=7, column=i).value + "주")
+            wb.close()
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            
+
     @commands.command(aliases=['매수'])
     async def 주식구매(self, ctx, name: str, amount: int):
         if amount <= 0:
