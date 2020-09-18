@@ -686,12 +686,7 @@ class economy_ko(commands.Cog):
                 ub.close()
                 wb.close()
                 return await ctx.send(embed=embed)
-            us.cell(row=6, column=i).value = name
-            if start == True:
-                us.cell(row=7, column=i).value = str(amount)
-            else:
-                us.cell(row=7, column=i).value = str(int(us.cell(row=7, column=i).value) + amount)
-            us.cell(row=1, column=5).value = str(time.time())
+            ub.close()
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + amount)
             if last == "100":
                 ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=1, column=1).value)*(1 + (amount**0.2)/100 + random.random()/20)))
@@ -699,10 +694,18 @@ class economy_ko(commands.Cog):
             else:
                 ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=1, column=1).value)*(1 + (amount**0.2)/100 + random.random()/20)))
                 ws.cell(row=1, column=3).value = str(int(last) + 1)
-            ub.save(userlib + name + ".xlsx")
-            ub.close()
             wb.save(stocklib + name + ".xlsx")
             wb.close()
+            ub = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            us = ub.active
+            us.cell(row=6, column=i).value = name
+            us.cell(row=1, column=5).value = str(time.time())
+            if start == True:
+                us.cell(row=7, column=i).value = str(amount)
+            else:
+                us.cell(row=7, column=i).value = str(int(us.cell(row=7, column=i).value) + amount)
+            ub.save(userlib + name + ".xlsx")
+            ub.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 구매하였습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
