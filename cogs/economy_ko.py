@@ -638,7 +638,7 @@ class economy_ko(commands.Cog):
             inteli = us.cell(row=5, column=4).value
             ti = us.cell(row=1, column=5).value
             block = 0
-            for i in range(1, math.ceil(str(inteli))):
+            for i in range(1, math.ceil(int(inteli))):
                 if us.cell(row=6, column=i).value == name:
                     block = i
                     start = False
