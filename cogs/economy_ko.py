@@ -685,7 +685,7 @@ class economy_ko(commands.Cog):
                 us.cell(row=7, column=i).value = str(int(us.cell(row=7, column=i).value) + amount)
             us.cell(row=1, column=5).value = str(time.time())
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + amount)
-            ws.cell(row=1, column=1).value = str(round(int(ws.cell(row=1, column=1).value)*(1 + (amount**0.2)/100)))
+            ws.cell(row=1, column=1).value = str(round(int(ws.cell(row=1, column=1).value)*(1 + (amount**0.2)/100 + random.random()/20)))
             ub.save(userlib + name + ".xlsx")
             ub.close()
             wb.save(stocklib + name + ".xlsx")
