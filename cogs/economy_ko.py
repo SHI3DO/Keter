@@ -361,6 +361,9 @@ class economy_ko(commands.Cog):
             ws.cell(row=2, column=3).value = "0"  # great
             ws.cell(row=2, column=4).value = "0"  # good
             ws.cell(row=2, column=5).value = "0"  # bad
+            for i in range(0, 100):
+                ws.cell(row=6, column=i).value = None  # stocks
+                ws.cell(row=7, column=i).value = None  # stocks
             wb.save(userlib + file_list[i])
             wb.close()
         embed = discord.Embed(title="Admin", description="초기화 완료", color=0xeff0f1)
