@@ -662,12 +662,13 @@ class economy_ko(commands.Cog):
             stocks = ws.cell(row=1, column=1).value
             sold = ws.cell(row=1, column=2).value
             last = ws.cell(row=1, column=3).value
+            price = int(ws.cell(row=2, column=int(last)).value)
             if int(stocks) - int(sold) < amount:
                 embed = discord.Embed(title="NO", description="구매하려는 주가 남지 않았습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 wb.close()
                 return await ctx.send(embed=embed)
-            if int(money) < int(ws.cell(row=2, column=int(last)).value)*amount:
+            if int(money) < price*amount:
                 embed = discord.Embed(title="NO", description="돈이 부족합니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 wb.close()
@@ -684,6 +685,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             ws.cell(row=6, column=i).value = name
+            ws.cell(row=1, column=2).value -= price*amount
             ws.cell(row=1, column=5).value = str(time.time())
             if start == True:
                 ws.cell(row=7, column=i).value = str(amount)
