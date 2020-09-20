@@ -361,7 +361,7 @@ class economy_ko(commands.Cog):
             ws.cell(row=2, column=3).value = "0"  # great
             ws.cell(row=2, column=4).value = "0"  # good
             ws.cell(row=2, column=5).value = "0"  # bad
-            for i in range(0, 100):
+            for i in range(1, 101):
                 ws.cell(row=6, column=i).value = None  # stocks
                 ws.cell(row=7, column=i).value = None  # stocks
             wb.save(userlib + file_list[i])
