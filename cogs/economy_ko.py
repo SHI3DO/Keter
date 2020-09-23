@@ -843,7 +843,7 @@ class economy_ko(commands.Cog):
     @commands.check(permissions.is_owner)
     async def 변동픽스(self, ctx):
         if os.path.isfile(stocklib + "is_started.ccf"):
-            os.remove(stocklib + "is_started.cff")
+            os.remove(stocklib + "is_started.ccf")
             await ctx.send("캐시를 제거하였습니다.")
         else:
             await ctx.send("캐시파일이 없습니다")
