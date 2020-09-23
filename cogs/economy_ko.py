@@ -836,7 +836,7 @@ class economy_ko(commands.Cog):
                 await ctx.send("last cycle reseted")
                 os.remove(stocklib + "is_started.ccf")
             else:
-                await ctx.send(str(cycles + 1) + "cycle reseted")
+                await ctx.send(str(cycles) + "cycle reseted")
             await asyncio.sleep(300)
 
     @commands.command()
