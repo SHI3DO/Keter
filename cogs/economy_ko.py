@@ -809,6 +809,40 @@ class economy_ko(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
+    async def 주가변동(self, ctx, cycle :int):
+        if os.path.isfile(stocklib + "is_started.ccf"):
+            return ctx.send("이미 실행중입니다.")
+        else:
+            f = open(stocklib + "is_started.ccf", "w")
+            f.close()
+        file_list = os.listdir(stocklib)
+        file_list = [file for file in file_list if file.endswith(".xlsx")]
+        cycles = 0
+        while cycles < cycle:
+            cycles += 1
+            for i in range(len(file_list)):
+                wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+                ws = wb.active
+                last = ws.cell(row=1, column=3).value
+                price = int(ws.cell(row=2, column=int(last)).value)
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - amount)
+                if last == "100":
+                    ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(0.99 + (random.random()-0.5)/100)))
+                    ws.cell(row=1, column=3).value = "1"
+                else:
+                    ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.99 + (random.random()-0.5)/100)))
+                    ws.cell(row=1, column=3).value = str(int(last) + 1)
+                wb.save(stocklib + name + ".xlsx")
+                wb.close()
+            if cycles == cycle:
+                await ctx.send("last cycle reseted")
+                os.remove(stocklib + "is_started.cff")
+            else:
+                await ctx.send(str(cycles + 1) + "cycle reseted")
+            await asyncio.sleep(300)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
     async def 할양초기화(self, ctx):
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
