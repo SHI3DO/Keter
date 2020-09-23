@@ -22,7 +22,6 @@ discord==1.0.1
 discord.py==1.4.1  
 docopt==0.6.2  
 et-xmlfile==1.0.1  
-EZPaginator==1.2.3  
 ffmpeg==1.4  
 filelock==3.0.12  
 gast==0.3.3  
@@ -48,14 +47,14 @@ numpy==1.18.4
 oauthlib==3.1.0  
 openpyxl==3.0.3  
 opt-einsum==3.3.0  
-pandas==1.0.3  
+pandas==1.0.3   
 partial==1.0  
 Pillow==7.1.2  
 proglog==0.1.9  
 protobuf==3.12.2  
 psutil==5.7.2  
 pyasn1==0.4.8  
-pyasn1-modules==0.2.8 
+pyasn1-modules==0.2.8  
 pycparser==2.20  
 PyNaCl==1.3.0  
 pyparsing==2.4.7  
