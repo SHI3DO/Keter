@@ -821,18 +821,16 @@ class economy_ko(commands.Cog):
         while cycles < cycle:
             cycles += 1
             for i in range(len(file_list)):
-                wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+                wb = openpyxl.load_workbook(stocklib + file_list[i])
                 ws = wb.active
                 last = ws.cell(row=1, column=3).value
-                price = int(ws.cell(row=2, column=int(last)).value)
-                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - amount)
                 if last == "100":
                     ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(0.99 + (random.random()-0.5)/100)))
                     ws.cell(row=1, column=3).value = "1"
                 else:
                     ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.99 + (random.random()-0.5)/100)))
                     ws.cell(row=1, column=3).value = str(int(last) + 1)
-                wb.save(stocklib + name + ".xlsx")
+                wb.save(stocklib + file_list[i])
                 wb.close()
             if cycles == cycle:
                 await ctx.send("last cycle reseted")
