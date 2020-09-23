@@ -834,7 +834,7 @@ class economy_ko(commands.Cog):
                 wb.close()
             if cycles == cycle:
                 await ctx.send("last cycle reseted")
-                os.remove(stocklib + "is_started.cff")
+                os.remove(stocklib + "is_started.ccf")
             else:
                 await ctx.send(str(cycles + 1) + "cycle reseted")
             await asyncio.sleep(300)
