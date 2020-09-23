@@ -820,6 +820,8 @@ class economy_ko(commands.Cog):
         cycles = 0
         while cycles < cycle:
             cycles += 1
+            if not os.path.isfile(stocklib + "is_started.ccf"):
+                return await ctx.send(str(cycles) + "cycle stopped")
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
                 ws = wb.active
@@ -852,6 +854,8 @@ class economy_ko(commands.Cog):
         cycles = 0
         while cycles < cycle:
             cycles += 1
+            if not os.path.isfile(stocklib + "is_started.ccf"):
+                return await ctx.send(str(cycles) + "cycle stopped")
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
                 ws = wb.active
@@ -884,6 +888,8 @@ class economy_ko(commands.Cog):
         cycles = 0
         while cycles < cycle:
             cycles += 1
+            if not os.path.isfile(stocklib + "is_started.ccf"):
+                return await ctx.send(str(cycles) + "cycle stopped")
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
                 ws = wb.active
