@@ -811,10 +811,10 @@ class economy_ko(commands.Cog):
     @commands.check(permissions.is_owner)
     async def 주가변동(self, ctx, cycle :int):
         if os.path.isfile(stocklib + "is_started.ccf"):
-            return ctx.send("이미 실행중입니다.")
-        else:
-            f = open(stocklib + "is_started.ccf", "w")
-            f.close()
+            return await ctx.send("이미 실행중입니다.")
+        await ctx.send("코드를 실행합니다.")
+        f = open(stocklib + "is_started.ccf", "w")
+        f.close()
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
         cycles = 0
@@ -838,6 +838,15 @@ class economy_ko(commands.Cog):
             else:
                 await ctx.send(str(cycles + 1) + "cycle reseted")
             await asyncio.sleep(300)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 변동픽스(self, ctx):
+        if os.path.isfile(stocklib + "is_started.ccf"):
+            os.remove(stocklib + "is_started.cff")
+            await ctx.send("캐시를 제거하였습니다.")
+        else:
+            await ctx.send("캐시파일이 없습니다")
 
     @commands.command()
     @commands.check(permissions.is_owner)
