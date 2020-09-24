@@ -947,7 +947,10 @@ class economy_ko(commands.Cog):
                 inteli = ws.cell(row=5, column=4).value
                 for j in range(1, math.ceil(int(inteli))):
                     name = ws.cell(row=6, column=j).value
-                    amount = int(ws.cell(row=7, column=j).value)
+                    try:
+                        amount = int(ws.cell(row=7, column=j).value)
+                    except:
+                        continue
                     sb = openpyxl.load_workbook(stocklib + name + ".xlsx")
                     ss = sb.active
                     percap = int(ss.cell(row=1, column=4).value) / int(ss.cell(row=1, column=1).value)
