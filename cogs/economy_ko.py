@@ -927,7 +927,7 @@ class economy_ko(commands.Cog):
         f = open(stocklib + "is_divided.ccf", "w")
         f.close()
         cycles = True
-        While cycles == True:
+        while cycles == True:
             cycles = os.path.isfile(stocklib + "is_divided.ccf")
             file_list = os.listdir(stocklib)
             file_list = [file for file in file_list if file.endswith(".xlsx")]
