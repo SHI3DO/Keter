@@ -920,6 +920,56 @@ class economy_ko(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
+    async def 배당시작(self, ctx):
+        if os.path.isfile(stocklib + "is_divided.ccf"):
+            return await ctx.send("이미 실행중입니다.")
+        await ctx.send("코드를 실행합니다.")
+        f = open(stocklib + "is_divided.ccf", "w")
+        f.close()
+        cycles = True
+        While cycles is True:
+            cycles = os.path.isfile(stocklib + "is_divided.ccf")
+            file_list = os.listdir(stocklib)
+            file_list = [file for file in file_list if file.endswith(".xlsx")]
+            for i in range(len(file_list)):
+                wb = openpyxl.load_workbook(stocklib + file_list[i])
+                ws = wb.active
+                ws.cell(row=1, column=4).value = str(int(ws.cell(row=1, column=4).value) * (1 + (random.random() - 0.48)/32))
+                wb.save(stocklib + file_list[i])
+                wb.close()
+            await ctx.send("all the stocks have been reseted")
+            file_list = os.listdir(userlib)
+            file_list = [file for file in file_list if file.endswith(".xlsx")]
+            for i in range(len(file_list)):
+                wb = openpyxl.load_workbook(userlib + file_list[i])
+                ws = wb.active
+                money = int(ws.cell(row=1, column=2).value)
+                inteli = ws.cell(row=5, column=4).value
+                for j in range(1, math.ceil(int(inteli))):
+                    name = ws.cell(row=6, column=j).value
+                    amount = int(ws.cell(row=7, column=j).value)
+                    sb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+                    ss = sb.active
+                    percap = int(ss.cell(row=1, column=4).value) / int(ss.cell(row=1, column=1).value)
+                    money += amount*percap
+                    sb.close()
+                ws.cell(row=1, column=2).value = str(money)
+                wb.save(userlib + file_list[i])
+                wb.close()
+            await ctx.send("all the user got the dividend")
+            await asyncio.sleep(86400)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 배당픽스(self, ctx):
+        if os.path.isfile(stocklib + "is_divided.ccf"):
+            os.remove(stocklib + "is_divided.ccf")
+            await ctx.send("캐시를 제거하였습니다.")
+        else:
+            await ctx.send("캐시파일이 없습니다")
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
     async def 할양초기화(self, ctx):
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
