@@ -934,7 +934,7 @@ class economy_ko(commands.Cog):
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
                 ws = wb.active
-                ws.cell(row=1, column=4).value = str(int(ws.cell(row=1, column=4).value) * (1 + (random.random() - 0.48)/32))
+                ws.cell(row=1, column=4).value = str(round(float(ws.cell(row=1, column=4).value) * (1 + (random.random() - 0.48)/32)))
                 wb.save(stocklib + file_list[i])
                 wb.close()
             await ctx.send("all the stocks have been reseted")
