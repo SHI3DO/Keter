@@ -956,7 +956,7 @@ class economy_ko(commands.Cog):
                     percap = int(ss.cell(row=1, column=4).value) / int(ss.cell(row=1, column=1).value)
                     money += amount*percap
                     sb.close()
-                ws.cell(row=1, column=2).value = str(money)
+                ws.cell(row=1, column=2).value = str(round(money))
                 wb.save(userlib + file_list[i])
                 wb.close()
             await ctx.send("all the user got the dividend")
