@@ -943,7 +943,7 @@ class economy_ko(commands.Cog):
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(userlib + file_list[i])
                 ws = wb.active
-                money = int(ws.cell(row=1, column=2).value)
+                money = float(ws.cell(row=1, column=2).value)
                 inteli = ws.cell(row=5, column=4).value
                 for j in range(1, math.ceil(int(inteli))):
                     name = ws.cell(row=6, column=j).value
