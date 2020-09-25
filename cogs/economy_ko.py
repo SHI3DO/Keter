@@ -18,7 +18,7 @@ userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
 
 def keundon(value: int):
-    value = int(value)
+    value = int(round(value))
     if value < 0:
         return "변수는 음수값을 가질 수 없습니다."
     elif 0 <= value < 10000:
