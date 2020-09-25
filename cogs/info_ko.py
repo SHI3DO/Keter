@@ -55,7 +55,7 @@ class Information_ko(commands.Cog):
             value=', '.join([str(self.bot.get_user(x)) for x in self.config.owners]),
             inline=True)
         embed.add_field(name="라이브러리", value="discord.py", inline=True)
-        embed.add_field(name="유저", value= str(len(ctx.bot.guilds)*avgmembers) + "users", inline=True)
+        embed.add_field(name="유저", value= str(len(ctx.bot.guilds)*avgmembers) + " users", inline=True)
         embed.add_field(name="커맨드 로드", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="램", value=f"{ramUsage:.2f} MB", inline=True)
 
