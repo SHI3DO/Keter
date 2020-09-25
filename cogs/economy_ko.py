@@ -183,7 +183,7 @@ class economy_ko(commands.Cog):
                 ws = wb.active
                 money = ws.cell(row=1, column=2).value
                 wb.close()
-                kundon = keundon(money)
+                kundon = keundon(round(money))
                 embed = discord.Embed(title="KET", description="<@" + str(
                     ctx.author.id) + "> " + kundon + "<:ket:753449741186105375>을 가지고 계십니다!", color=0xeff0f1)
                 await ctx.send(embed=embed)
