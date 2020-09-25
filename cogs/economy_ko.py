@@ -18,7 +18,7 @@ userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
 
 def keundon(value: int):
-    value = int(round(value))
+    value = int(value)
     if value < 0:
         return "변수는 음수값을 가질 수 없습니다."
     elif 0 <= value < 10000:
@@ -168,7 +168,7 @@ class economy_ko(commands.Cog):
                     ws = wb.active
                     money = ws.cell(row=1, column=2).value
                     wb.close()
-                    kundon = keundon(money)
+                    kundon = keundon(round(money))
                     embed = discord.Embed(title="KET", description="<@" + str(
                         user.id) + ">님은 " + kundon + "<:ket:753449741186105375>을 가지고 계십니다!", color=0xeff0f1)
                     await ctx.send(embed=embed)
