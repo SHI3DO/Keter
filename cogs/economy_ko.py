@@ -722,7 +722,7 @@ class economy_ko(commands.Cog):
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 return await ctx.send(embed=embed)
             if float(ti) > (time.time() - 360):
-                next = float(ti) + 1800 - round(time.time())
+                next = float(ti) + 360 - round(time.time())
                 embed = discord.Embed(title="NO", description="주식 거래 후 6분 동안은 추가 매매가 불가능 합니다.", color=0xeff0f1)
                 if next > 59:
                     embed.set_footer(text="다음 주식 거래 허가까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
