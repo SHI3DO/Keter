@@ -767,7 +767,7 @@ class economy_ko(commands.Cog):
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
-            embed.add_field(name="판매가", value=keundon(str(amount*price)) + " <:ket:753449741186105375> (세율 6% : " + keundon(str(amount*price*0.06)) + " <:ket:753449741186105375>)")
+            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
