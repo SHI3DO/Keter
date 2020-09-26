@@ -757,7 +757,7 @@ class economy_ko(commands.Cog):
             if amount == int(ws.cell(row=7, column=block).value):
                 ws.cell(row=6, column=block).value = None
                 ws.cell(row=7, column=block).value = None
-                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + price*amount)
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
                 ws.cell(row=1, column=5).value = str(time.time())
             else:
                 ws.cell(row=6, column=block).value = name
@@ -891,7 +891,7 @@ class economy_ko(commands.Cog):
             if amount == int(ws.cell(row=7, column=block).value):
                 ws.cell(row=6, column=block).value = None
                 ws.cell(row=7, column=block).value = None
-                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + price*amount)
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
                 ws.cell(row=1, column=5).value = str(time.time())
             else:
                 ws.cell(row=6, column=block).value = name
