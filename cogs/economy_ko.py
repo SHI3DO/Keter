@@ -99,6 +99,7 @@ class economy_ko(commands.Cog):
                 ws.cell(row=1, column=3).value = "0"  # pres
                 ws.cell(row=1, column=4).value = "-"  # rank
                 ws.cell(row=1, column=5).value = "0"  # timesleep
+                ws.cell(row=1, column=6).value = "0"  # gamblesleep
                 ws.cell(row=2, column=1).value = "None"  # status
                 ws.cell(row=2, column=2).value = "0"  # perfect
                 ws.cell(row=2, column=3).value = "0"  # great
@@ -223,8 +224,40 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             money = ws.cell(row=1, column=2).value
+            ti = ws.cell(row=1, column=6).value
+            if float(ti) > (time.time() - 60):
+                next = float(ti) + 60 - round(time.time())
+                embed = discord.Embed(title="NO", description="현재 **" + ctx.author.name + "**님은 현재 도박이 불가능 합니다.", color=0xeff0f1)
+                if next > 59:
+                    embed.set_footer(text="다음 도박 가능까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
+                else:
+                    embed.set_footer(text="다음 도박 가능까지 " + str(round(next)) + "초")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
             if int(money) > val:
                 discrim = random.random()
+                enjail = random.random()
+                if enjail < 0.0001:
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                    ws.cell(row=3, column=3).value = "0"
+                    ws.cell(row=1, column=5).value = str(time.time() + 259200)
+                    ws.cell(row=1, column=6).value = str(time.time() + 259200)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 72시간", color=0xeff0f1)
+                    return await ctx.send(embed=embed)
+                if enjail < 0.0005:
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                    ws.cell(row=3, column=3).value = "0"
+                    ws.cell(row=1, column=5).value = str(time.time() + 86400)
+                    ws.cell(row=1, column=6).value = str(time.time() + 86400)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 24시간", color=0xeff0f1)
+                    return await ctx.send(embed=embed)
+                if enjail < 0.001:
+                    ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                    ws.cell(row=3, column=3).value = "0"
+                    ws.cell(row=1, column=5).value = str(time.time() + 21600)
+                    ws.cell(row=1, column=6).value = str(time.time() + 21600)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 6시간", color=0xeff0f1)
+                    return await ctx.send(embed=embed)
                 if discrim < 0.02:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 11 * val)
                     ws.cell(row=3, column=3).value = "0"
@@ -250,6 +283,7 @@ class economy_ko(commands.Cog):
                     ws.cell(row=3, column=3).value = str(int(ws.cell(row=3, column=3).value) + 1)
                     embed = discord.Embed(title="도박", description="<@" + str(
                         ctx.author.id) + "> " + "도박에 실패하여 돈을 잃으셨습니다. " + emj, color=0xeff0f1)
+                ws.cell(row=1, column=6).value = str(time.time())
                 wb.save(userlib + str(ctx.author.id) + ".xlsx")
                 wb.close()
                 await ctx.send(embed=embed)
@@ -356,6 +390,7 @@ class economy_ko(commands.Cog):
             ws.cell(row=1, column=2).value = "8600000"  # money
             ws.cell(row=1, column=4).value = "-"  # rank
             ws.cell(row=1, column=5).value = "0"  # timesleep
+            ws.cell(row=1, column=6).value = "0"  # gamblesleep
             ws.cell(row=2, column=1).value = "None"  # status
             ws.cell(row=2, column=2).value = "0"  # perfect
             ws.cell(row=2, column=3).value = "0"  # great
