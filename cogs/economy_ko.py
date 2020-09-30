@@ -227,7 +227,7 @@ class economy_ko(commands.Cog):
             ti = ws.cell(row=1, column=6).value
             if float(ti) > (time.time() - 60):
                 next = float(ti) + 60 - round(time.time())
-                embed = discord.Embed(title="NO", description="현재 **" + ctx.author.name + "**님은 현재 도박이 불가능 합니다.", color=0xeff0f1)
+                embed = discord.Embed(title="NO", description="현재 **" + ctx.author.name + "**님은 도박이 불가능 합니다.", color=0xeff0f1)
                 if next > 59:
                     embed.set_footer(text="다음 도박 가능까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
                 else:
@@ -242,21 +242,21 @@ class economy_ko(commands.Cog):
                     ws.cell(row=3, column=3).value = "0"
                     ws.cell(row=1, column=5).value = str(time.time() + 259200)
                     ws.cell(row=1, column=6).value = str(time.time() + 259200)
-                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 72시간", color=0xeff0f1)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 72시간", color=0xeff0f1)
                     return await ctx.send(embed=embed)
                 if enjail < 0.0005:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
                     ws.cell(row=3, column=3).value = "0"
                     ws.cell(row=1, column=5).value = str(time.time() + 86400)
                     ws.cell(row=1, column=6).value = str(time.time() + 86400)
-                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 24시간", color=0xeff0f1)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 24시간", color=0xeff0f1)
                     return await ctx.send(embed=embed)
                 if enjail < 0.001:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
                     ws.cell(row=3, column=3).value = "0"
                     ws.cell(row=1, column=5).value = str(time.time() + 21600)
                     ws.cell(row=1, column=6).value = str(time.time() + 21600)
-                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> " + "당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 6시간", color=0xeff0f1)
+                    embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 6시간", color=0xeff0f1)
                     return await ctx.send(embed=embed)
                 if discrim < 0.02:
                     ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + 11 * val)
@@ -302,11 +302,43 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             val = int(ws.cell(row=1, column=2).value)
+            ti = ws.cell(row=1, column=6).value
+            if float(ti) > (time.time() - 60):
+                next = float(ti) + 60 - round(time.time())
+                embed = discord.Embed(title="NO", description="현재 **" + ctx.author.name + "**님은 도박이 불가능 합니다.", color=0xeff0f1)
+                if next > 59:
+                    embed.set_footer(text="다음 도박 가능까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
+                else:
+                    embed.set_footer(text="다음 도박 가능까지 " + str(round(next)) + "초")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
             if val > 80000000000:
                 embed = discord.Embed(title="NO", description="전재산이 800억을 초과하여 올인을 사용하실 수 없습니다.", color=0xeff0f1)
                 await ctx.send(embed=embed)
                 return None
             discrim = random.random()
+            enjail = random.random()
+            if enjail < 0.0001:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                ws.cell(row=3, column=3).value = "0"
+                ws.cell(row=1, column=5).value = str(time.time() + 259200)
+                ws.cell(row=1, column=6).value = str(time.time() + 259200)
+                embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 72시간", color=0xeff0f1)
+                return await ctx.send(embed=embed)
+            if enjail < 0.0005:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                ws.cell(row=3, column=3).value = "0"
+                ws.cell(row=1, column=5).value = str(time.time() + 86400)
+                ws.cell(row=1, column=6).value = str(time.time() + 86400)
+                embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 24시간", color=0xeff0f1)
+                return await ctx.send(embed=embed)
+            if enjail < 0.001:
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - val)
+                ws.cell(row=3, column=3).value = "0"
+                ws.cell(row=1, column=5).value = str(time.time() + 21600)
+                ws.cell(row=1, column=6).value = str(time.time() + 21600)
+                embed = discord.Embed(title="KMF", description="<@" + str(ctx.author.id) + "> 당신은 불법 도박죄로 기소되었습니다. 최종판결은 다음과 같습니다 : 징역 6시간", color=0xeff0f1)
+                return await ctx.send(embed=embed)
             if discrim < 0.02:
                 ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) * 12)
                 ws.cell(row=3, column=3).value = "0"
