@@ -615,7 +615,8 @@ class economy_ko(commands.Cog):
                 if ws.cell(row=6, column=i).value == None:
                     pass
                 else:
-                    embed.add_field(name=ws.cell(row=6, column=i).value, value=ws.cell(row=7, column=i).value + "주")
+                    started = ws.cell(row=8, column=i).value
+                    embed.add_field(name=ws.cell(row=6, column=i).value, value=ws.cell(row=7, column=i).value + "주\n최근 구매가 : " + started + " <:ket:753449741186105375>")
             wb.close()
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
@@ -687,6 +688,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             ws.cell(row=6, column=block).value = name
+            ws.cell(row=8, column=block).value = str(price)
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - price*amount)
             ws.cell(row=1, column=5).value = str(time.time())
             if start == True:
@@ -717,6 +719,10 @@ class economy_ko(commands.Cog):
                 if ws.cell(row=6, column=i).value == name:
                     block = i
                     start = False
+            if block == 0:
+                embed = discord.Embed(title="NO", description="해당 이름의 주식을 보유하고 계시지 않아요..", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
             if amount > int(ws.cell(row=7, column=block).value):
                 embed = discord.Embed(title="NO", description="매각하려는 주만큼을 보유하고 계시지 않습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
@@ -728,10 +734,6 @@ class economy_ko(commands.Cog):
                     embed.set_footer(text="다음 주식 거래 허가까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
                 else:
                     embed.set_footer(text="다음 주식 거래 허가까지 " + str(round(next)) + "초")
-                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-                return await ctx.send(embed=embed)
-            if block == 0:
-                embed = discord.Embed(title="NO", description="해당 이름의 주식을 보유하고 계시지 않아요..", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
                 return await ctx.send(embed=embed)
         else:
@@ -757,6 +759,7 @@ class economy_ko(commands.Cog):
             if amount == int(ws.cell(row=7, column=block).value):
                 ws.cell(row=6, column=block).value = None
                 ws.cell(row=7, column=block).value = None
+                ws.cell(row=8, column=block).value = None
                 ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
                 ws.cell(row=1, column=5).value = str(time.time())
             else:
@@ -765,6 +768,152 @@ class economy_ko(commands.Cog):
                 ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
                 ws.cell(row=1, column=5).value = str(time.time())
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
+            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
+    @commands.command(aliases=['최매수'])
+    async def 최대주식구매(self, ctx, name: str):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            assets = int(ws.cell(row=1, column=2).value)
+            wb.close()
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            money = ws.cell(row=1, column=2).value
+            inteli = ws.cell(row=5, column=4).value
+            ti = ws.cell(row=1, column=5).value
+            wb.close()
+            block = 0
+            for i in range(1, math.ceil(int(inteli))):
+                if ws.cell(row=6, column=i).value == name:
+                    block = i
+                    start = False
+                elif ws.cell(row=6, column=i).value == None:
+                    block = i
+                    start = True
+            if float(ti) > (time.time() - 360):
+                next = float(ti) + 360 - round(time.time())
+                embed = discord.Embed(title="NO", description="주식 거래 후 6분 동안은 추가 매매가 불가능 합니다.", color=0xeff0f1)
+                if next > 59:
+                    embed.set_footer(text="다음 주식 거래 허가까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
+                else:
+                    embed.set_footer(text="다음 주식 거래 허가까지 " + str(round(next)) + "초")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
+            if block == 0:
+                embed = discord.Embed(title="NO", description="보유할 수 있는 주식의 종류를 넘었어요..", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            return await ctx.send(embed=embed)
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+            ws = wb.active
+            stocks = ws.cell(row=1, column=1).value
+            sold = ws.cell(row=1, column=2).value
+            last = ws.cell(row=1, column=3).value
+            price = int(ws.cell(row=2, column=int(last)).value)
+            amount = math.floor(assets/price)
+            if amount <= 0:
+                embed = discord.Embed(title="NO", description="매매 주는 0주 이하일 수 없습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
+            if int(stocks) - int(sold) < amount:
+                embed = discord.Embed(title="NO", description="구매하려는 주가 남지 않았습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                wb.close()
+                return await ctx.send(embed=embed)
+            if int(money) < price*amount:
+                embed = discord.Embed(title="NO", description="돈이 부족합니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                wb.close()
+                return await ctx.send(embed=embed)
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + amount)
+            if last == "100":
+                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(0.995 + (amount**0.2)/100 + (random.random()-0.5)/800)))
+                ws.cell(row=1, column=3).value = "1"
+            else:
+                ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(0.995 + (amount**0.2)/100 + random.random()/800)))
+                ws.cell(row=1, column=3).value = str(int(last) + 1)
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            ws.cell(row=6, column=block).value = name
+            ws.cell(row=8, column=block).value = str(price)
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - price*amount)
+            ws.cell(row=1, column=5).value = str(time.time())
+            if start == True:
+                ws.cell(row=7, column=block).value = str(amount)
+            else:
+                ws.cell(row=7, column=block).value = str(int(ws.cell(row=7, column=block).value) + amount)
+            wb.save(userlib + str(ctx.author.id) + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 구매하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+
+    @commands.command(aliases=['전매각'])
+    async def 일괄주식판매(self, ctx, name: str):
+        if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            inteli = ws.cell(row=5, column=4).value
+            ti = ws.cell(row=1, column=5).value
+            wb.close()
+            block = 0
+            for i in range(1, math.ceil(int(inteli))):
+                if ws.cell(row=6, column=i).value == name:
+                    block = i
+                    start = False
+            if block == 0:
+                embed = discord.Embed(title="NO", description="해당 이름의 주식을 보유하고 계시지 않아요..", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
+            if float(ti) > (time.time() - 360):
+                next = float(ti) + 360 - round(time.time())
+                embed = discord.Embed(title="NO", description="주식 거래 후 6분 동안은 추가 매매가 불가능 합니다.", color=0xeff0f1)
+                if next > 59:
+                    embed.set_footer(text="다음 주식 거래 허가까지 " + str(math.floor(next/60)) + "분 " + str(round((round(next)/60 - math.floor(next/60))*60)) + "초")
+                else:
+                    embed.set_footer(text="다음 주식 거래 허가까지 " + str(round(next)) + "초")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                return await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="NO", description="``케테르 경제``에 참여하지 않았어요..", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            return await ctx.send(embed=embed)
+        if os.path.isfile(stocklib + name + ".xlsx"):
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            amount = ws.cell(row=7, column=block).value
+            ws.cell(row=6, column=block).value = None
+            ws.cell(row=7, column=block).value = None
+            ws.cell(row=8, column=block).value = None
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
+            ws.cell(row=1, column=5).value = str(time.time())
+            wb.save(userlib + str(ctx.author.id) + ".xlsx")
+            wb.close()
+            wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
+            ws = wb.active
+            last = ws.cell(row=1, column=3).value
+            price = int(ws.cell(row=2, column=int(last)).value)
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - amount)
+            if last == "100":
+                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1.01 - (amount**0.2)/100 + (random.random()-0.5)/800)))
+                ws.cell(row=1, column=3).value = "1"
+            else:
+                ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(1.01 - (amount**0.2)/100 + random.random()/800)))
+                ws.cell(row=1, column=3).value = str(int(last) + 1)
+            wb.save(stocklib + name + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
             embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
@@ -830,6 +979,7 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             ws.cell(row=6, column=block).value = name
+            ws.cell(row=8, column=block).value = str(price)
             ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - price*amount)
             ws.cell(row=1, column=5).value = str(time.time())
             if start == True:
