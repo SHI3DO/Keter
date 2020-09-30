@@ -9,7 +9,7 @@ class Shindan_ko(commands.Cog):
 
     # Commands
     @commands.command(name="진단")
-    async def _say(self, ctx, *, content:str):
+    async def _say(self, ctx):
             await ctx.send("준비중")
 
 def setup(bot):
