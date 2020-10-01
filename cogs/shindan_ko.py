@@ -14,10 +14,17 @@ from datetime import datetime
 from discord.ext import commands
 from evs import default, permissions
 
+shindanlib = "./lib/shindan/"
+
 class Shindan_ko(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
+        #폴더생성
+        if os.path.isdir("./lib/shindan"):
+            print("shindan folder exist")
+        else:
+            os.makedirs("./lib/shindan")
 
     # Commands
     @commands.command(name="진단")
