@@ -16,7 +16,7 @@ from evs import default, permissions
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
-cachelib = "./lib/economy/cache/"
+cachelib = "./lib/cache/"
 
 def keundon(value: int):
     value = int(value)
