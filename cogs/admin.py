@@ -8,7 +8,7 @@ import sys
 from discord.ext import commands
 from evs import permissions, default, http, dataIO
 
-cachelib = "./lib/economy/cache/"
+cachelib = "./lib/cache/"
 
 
 class Admin(commands.Cog):
@@ -190,10 +190,10 @@ class Admin(commands.Cog):
     @commands.check(permissions.is_owner)
     async def change_version(self, ctx, ver: str):
         """ Change current version. """
-        if os.path.isdir("./lib/economy/cache"):
+        if os.path.isdir("./lib/cache"):
             pass
         else:
-            os.makedirs("./lib/economy/cache")
+            os.makedirs("./lib/cache")
         f = open(cachelib + "version.ccf", "w")
         f.write(ver)
         f.close
