@@ -190,6 +190,10 @@ class Admin(commands.Cog):
     @commands.check(permissions.is_owner)
     async def change_version(self, ctx, ver: str):
         """ Change current version. """
+        if os.path.isdir("./lib/economy/cache"):
+            pass
+        else:
+            os.makedirs("./lib/economy/cache")
         f = open(cachelib + "version.ccf", "w")
         f.write(ver)
         f.close
