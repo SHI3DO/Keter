@@ -12,9 +12,9 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
-
-
-cachelib = "./lib/economy/cache/"
+        
+        
+    cachelib = "./lib/economy/cache/"
 
 
     @commands.command()
