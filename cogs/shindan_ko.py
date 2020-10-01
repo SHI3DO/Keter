@@ -1,7 +1,18 @@
 import discord
+import time
+import psutil
+import os
 import asyncio
+import openpyxl
+import random
+import math
+import numpy as np
+import datetime
+import matplotlib.pyplot as plt
+
+from datetime import datetime
 from discord.ext import commands
-from evs import default
+from evs import default, permissions
 
 class Shindan_ko(commands.Cog):
     def __init__(self, bot):
