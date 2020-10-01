@@ -15,4 +15,4 @@ https://keter.netlify.app
 https://discord.gg/P7UVAdB
 
 ## Invite
-(Link)[https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot]
+[Link](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)
