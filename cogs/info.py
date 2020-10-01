@@ -45,6 +45,9 @@ class Information(commands.Cog):
     @commands.command(aliases=['info', 'stats', 'status'])
     async def about(self, ctx):
         """ About the bot """
+        f = open("./lib/economy/cache/version.ccf", "r")
+        version = f.read()
+        f.close
         ramUsage = self.process.memory_full_info().rss / 1024**2
         avgmembers = round(len(self.bot.users) / len(self.bot.guilds))
 
@@ -60,7 +63,7 @@ class Information(commands.Cog):
         embed.add_field(name="Commands loaded", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
-        await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **{self.config.version}**", embed=embed)
+        await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
 
 
 def setup(bot):
