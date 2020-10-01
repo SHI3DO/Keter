@@ -44,7 +44,7 @@ class Information_ja(commands.Cog):
     @commands.command(aliases=['常態'])
     async def 情報(self, ctx):
         """ About the bot """
-        f = open("./lib/economy/cache/version.ccf", "r")
+        f = open("./lib/cache/version.ccf", "r")
         version = f.read()
         f.close
         ramUsage = self.process.memory_full_info().rss / 1024**2
