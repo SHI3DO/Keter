@@ -19,6 +19,7 @@ class Shindan_ko(commands.Cog):
         try:
             await msg.add_reaction("✅")
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
+            await ctx.send(str + "에 대한 진단")
 
 
         except asyncio.TimeoutError:
