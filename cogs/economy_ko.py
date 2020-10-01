@@ -962,12 +962,6 @@ class economy_ko(commands.Cog):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             amount = ws.cell(row=7, column=block).value
-            ws.cell(row=6, column=block).value = None
-            ws.cell(row=7, column=block).value = None
-            ws.cell(row=8, column=block).value = None
-            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
-            ws.cell(row=1, column=5).value = str(time.time())
-            wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
@@ -981,6 +975,15 @@ class economy_ko(commands.Cog):
                 ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=2, column=int(last)).value)*(1.01 - (amount**0.2)/100 + random.random()/800)))
                 ws.cell(row=1, column=3).value = str(int(last) + 1)
             wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
+            ws = wb.active
+            ws.cell(row=6, column=block).value = None
+            ws.cell(row=7, column=block).value = None
+            ws.cell(row=8, column=block).value = None
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
+            ws.cell(row=1, column=5).value = str(time.time())
+            wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
             embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
