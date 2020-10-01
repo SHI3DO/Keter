@@ -8,14 +8,13 @@ import sys
 from discord.ext import commands
 from evs import permissions, default, http, dataIO
 
+cachelib = "./lib/economy/cache/"
+
+
 class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
-        
-        
-    cachelib = "./lib/economy/cache/"
-
 
     @commands.command()
     async def amiadmin(self, ctx):
