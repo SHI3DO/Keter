@@ -23,7 +23,6 @@ class Shindan_ko(commands.Cog):
     @commands.command(name="진단")
     async def _say(self, ctx, *, content:str):
             embed = discord.Embed(title="진단메이커", description=content + "에 대한 진단을 만드시겠습니까?", color=0xeff0f1)
-            await ctx.send(embed=embed)
             msg = await ctx.send(embed=embed)
             def reaction_check_(m):
                 if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) == "✅":
@@ -34,6 +33,8 @@ class Shindan_ko(commands.Cog):
                 await msg.add_reaction("✅")
                 await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
                 await ctx.send(content + "에 대한 진단")
+                
+                
 
 
             except asyncio.TimeoutError:
