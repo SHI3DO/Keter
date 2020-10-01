@@ -14,6 +14,9 @@ class Admin(commands.Cog):
         self.config = default.get("config.json")
 
 
+cachelib = "./lib/economy/cache/"
+
+
     @commands.command()
     async def amiadmin(self, ctx):
         """ Are you an admin? """
@@ -183,6 +186,15 @@ class Admin(commands.Cog):
             await ctx.send(err)
         except TypeError:
             await ctx.send("You need to either provide an image URL or upload one with the command")
+
+    @change.command(name="version")
+    @commands.check(permissions.is_owner)
+    async def change_version(self, ctx, ver: str):
+        """ Change current version. """
+        f = open(cachelib + "version.ccf", "w")
+        f.write(ver)
+        f.close
+        await ctx.send("We are now in version **" + ver + "**")
 
 def setup(bot):
     bot.add_cog(Admin(bot))
