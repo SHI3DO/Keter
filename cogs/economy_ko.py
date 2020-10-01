@@ -16,6 +16,7 @@ from evs import default, permissions
 
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
+cachelib = "./lib/economy/cache/"
 
 def keundon(value: int):
     value = int(value)
@@ -1164,10 +1165,10 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 주가변동(self, ctx, cycle :int):
-        if os.path.isfile(stocklib + "is_started.ccf"):
+        if os.path.isfile(cachelib + "is_started.ccf"):
             return await ctx.send("이미 실행중입니다.")
         await ctx.send("코드를 실행합니다.")
-        f = open(stocklib + "is_started.ccf", "w")
+        f = open(cachelib + "is_started.ccf", "w")
         f.close()
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
@@ -1190,7 +1191,7 @@ class economy_ko(commands.Cog):
                 wb.close()
             if cycles == cycle:
                 await ctx.send("last cycle reseted")
-                os.remove(stocklib + "is_started.ccf")
+                os.remove(cachelib + "is_started.ccf")
             else:
                 await ctx.send(str(cycles) + "cycle reseted")
             await asyncio.sleep(300)
@@ -1198,17 +1199,17 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 불황변동(self, ctx, cycle :int):
-        if os.path.isfile(stocklib + "is_started.ccf"):
+        if os.path.isfile(cachelib + "is_started.ccf"):
             return await ctx.send("이미 실행중입니다.")
         await ctx.send("코드를 실행합니다.")
-        f = open(stocklib + "is_started.ccf", "w")
+        f = open(cachelib + "is_started.ccf", "w")
         f.close()
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
         cycles = 0
         while cycles < cycle:
             cycles += 1
-            if not os.path.isfile(stocklib + "is_started.ccf"):
+            if not os.path.isfile(cachelib + "is_started.ccf"):
                 return await ctx.send(str(cycles) + "cycle stopped")
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
@@ -1224,7 +1225,7 @@ class economy_ko(commands.Cog):
                 wb.close()
             if cycles == cycle:
                 await ctx.send("last cycle reseted")
-                os.remove(stocklib + "is_started.ccf")
+                os.remove(cachelib + "is_started.ccf")
             else:
                 await ctx.send(str(cycles) + "cycle reseted")
             await asyncio.sleep(300)
@@ -1232,17 +1233,17 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 호황변동(self, ctx, cycle :int):
-        if os.path.isfile(stocklib + "is_started.ccf"):
+        if os.path.isfile(cachelib + "is_started.ccf"):
             return await ctx.send("이미 실행중입니다.")
         await ctx.send("코드를 실행합니다.")
-        f = open(stocklib + "is_started.ccf", "w")
+        f = open(cachelib + "is_started.ccf", "w")
         f.close()
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
         cycles = 0
         while cycles < cycle:
             cycles += 1
-            if not os.path.isfile(stocklib + "is_started.ccf"):
+            if not os.path.isfile(cachelib + "is_started.ccf"):
                 return await ctx.send(str(cycles) + "cycle stopped")
             for i in range(len(file_list)):
                 wb = openpyxl.load_workbook(stocklib + file_list[i])
@@ -1258,7 +1259,7 @@ class economy_ko(commands.Cog):
                 wb.close()
             if cycles == cycle:
                 await ctx.send("last cycle reseted")
-                os.remove(stocklib + "is_started.ccf")
+                os.remove(cachelib + "is_started.ccf")
             else:
                 await ctx.send(str(cycles) + "cycle reseted")
             await asyncio.sleep(300)
@@ -1266,8 +1267,8 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 변동픽스(self, ctx):
-        if os.path.isfile(stocklib + "is_started.ccf"):
-            os.remove(stocklib + "is_started.ccf")
+        if os.path.isfile(cachelib + "is_started.ccf"):
+            os.remove(cachelib + "is_started.ccf")
             await ctx.send("캐시를 제거하였습니다.")
         else:
             await ctx.send("캐시파일이 없습니다")
@@ -1278,11 +1279,11 @@ class economy_ko(commands.Cog):
         if os.path.isfile(stocklib + "is_divided.ccf"):
             return await ctx.send("이미 실행중입니다.")
         await ctx.send("코드를 실행합니다.")
-        f = open(stocklib + "is_divided.ccf", "w")
+        f = open(cachelib + "is_divided.ccf", "w")
         f.close()
         cycles = True
         while cycles == True:
-            cycles = os.path.isfile(stocklib + "is_divided.ccf")
+            cycles = os.path.isfile(cachelib + "is_divided.ccf")
             file_list = os.listdir(stocklib)
             file_list = [file for file in file_list if file.endswith(".xlsx")]
             for i in range(len(file_list)):
@@ -1319,8 +1320,8 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 배당픽스(self, ctx):
-        if os.path.isfile(stocklib + "is_divided.ccf"):
-            os.remove(stocklib + "is_divided.ccf")
+        if os.path.isfile(cachelib + "is_divided.ccf"):
+            os.remove(cachelib + "is_divided.ccf")
             await ctx.send("캐시를 제거하였습니다.")
         else:
             await ctx.send("캐시파일이 없습니다")
