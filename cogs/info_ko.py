@@ -44,7 +44,7 @@ class Information_ko(commands.Cog):
     @commands.command(aliases=['상태'])
     async def 정보(self, ctx):
         """ About the bot """
-        f = open("./lib/economy/cache/version.ccf", "r")
+        f = open("./lib/cache/version.ccf", "r")
         version = f.read()
         f.close
         ramUsage = self.process.memory_full_info().rss / 1024**2
