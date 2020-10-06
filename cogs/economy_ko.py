@@ -504,10 +504,9 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 업종(self, ctx):
-        embed = discord.Embed(title="KMF", description="업종코드와 ", color=0xeff0f1)
+        embed = discord.Embed(title="KMF", description="업종코드와 내용", color=0xeff0f1)
         embed.set_thumbnail(
             url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-        await ctx.send(embed=embed)
         for i in range(0, len(categories)):
             embed.add_field(name="code : " + str(i), value=categories[i])
         await ctx.send(embed=embed)
