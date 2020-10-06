@@ -501,6 +501,17 @@ class economy_ko(commands.Cog):
         embed = discord.Embed(title="KMF", description=name + "는 없는 회사명입니다.", color=0xeff0f1)
         await ctx.send(embed=embed)
 
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 업종(self, ctx):
+        embed = discord.Embed(title="KMF", description="업종코드와 ", color=0xeff0f1)
+        embed.set_thumbnail(
+            url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+        await ctx.send(embed=embed)
+        for i in range(0, len(categories)):
+            embed.add_field(name="code : " + str(i), value=categories[i])
+        await ctx.send(embed=embed)
+
     @commands.command(aliases=['회사정보'])
     async def 회사(self, ctx, name: str):
         name = name.replace("_", " ")
