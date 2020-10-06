@@ -17,7 +17,7 @@ from evs import default, permissions
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
 cachelib = "./lib/cache/"
-categories = ["농업", "목축업", "광업", "제조업", "인프라설계업", "운송업", "언론", "금융", "방위산업", "교육", "의료", "중공업", "전자산업", "대행업", "게임", "복합"]
+categories = ["농업", "목축업", "광업", "제조업", "인프라설계업", "운송업", "언론", "금융", "방위산업", "교육", "의료", "중공업", "전자산업", "대행업", "게임", "IT", "복합"]
 
 def keundon(value: int):
     value = int(value)
