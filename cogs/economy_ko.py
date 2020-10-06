@@ -991,13 +991,13 @@ class economy_ko(commands.Cog):
         if os.path.isfile(stocklib + name + ".xlsx"):
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
-            amount = ws.cell(row=7, column=block).value
+            amount = int(ws.cell(row=7, column=block).value)
             wb.close()
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
             last = ws.cell(row=1, column=3).value
             price = int(ws.cell(row=2, column=int(last)).value)
-            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - int(amount))
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) - amount)
             if last == "100":
                 ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=2, column=100).value)*(1.01 - (amount**0.2)/100 + (random.random()-0.5)/800)))
                 ws.cell(row=1, column=3).value = "1"
