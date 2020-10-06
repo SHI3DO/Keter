@@ -17,6 +17,7 @@ from evs import default, permissions
 userlib = "./lib/economy/users/"
 stocklib = "./lib/economy/stocks/"
 cachelib = "./lib/cache/"
+categories = ["농업", "목축업", "광업", "제조업", "인프라설계업", "운송업", "언론", "금융", "방위산업", "교육", "의료", "중공업", "전자산업", "대행업", "복합"]
 
 def keundon(value: int):
     value = int(value)
@@ -461,7 +462,7 @@ class economy_ko(commands.Cog):
 
     @commands.command(aliases=['회사등록'])
     @commands.check(permissions.is_owner)
-    async def 상장(self, ctx, name: str, stocks: int, price: int, sales: int, ratio: float):
+    async def 상장(self, ctx, name: str, stocks: int, price: int, sales: int, ratio: float, business: int):
         name = name.replace("_", " ")
         if os.path.isfile(stocklib + name + ".xlsx"):
             embed = discord.Embed(title="KMF", description="이미 상장된 기업입니다.", color=0xeff0f1)
@@ -476,6 +477,7 @@ class economy_ko(commands.Cog):
         ws.cell(row=1, column=3).value = "1"  # 최근 거래 위치
         ws.cell(row=1, column=4).value = str(int(sales))  # 매출
         ws.cell(row=1, column=5).value = str(float(ratio))  # 수익률
+        ws.cell(row=1, column=6).value = str(int(business))  # 업종
         ws.cell(row=2, column=1).value = str(int(price))  # 초기가
         for i in range(2, 101):
             ws.cell(row=2, column=i).value = str(int(price)) # 초기설정
@@ -510,6 +512,7 @@ class economy_ko(commands.Cog):
             last = ws.cell(row=1, column=3).value
             sales = ws.cell(row=1, column=4).value
             ratio = ws.cell(row=1, column=5).value
+            business = ws.cell(row=1, column=6).value
             price = ws.cell(row=2, column=int(last)).value
             if last == "1":
                 prece = ws.cell(row=2, column=100).value
@@ -533,6 +536,7 @@ class economy_ko(commands.Cog):
                             value=keundon(round(int(sales) * float(ratio) / 100)) + " <:ket:753449741186105375>", inline=True)
             embed.add_field(name="예상 배당금", value=keundon(
                 round(int(sales) / int(stoks) * float(ratio) / 100)) + " <:ket:753449741186105375>", inline=True)
+            embed.add_field(name="업종", value=categories[int(business)], inline=True)
             await ctx.send(embed=embed)
         else:
             embed = discord.Embed(title="NO", description="해당 이름의 회사를 찾기 못하였습니다", color=0xeff0f1)
@@ -543,7 +547,7 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['회사조작'])
     @commands.check(permissions.is_owner)
     async def 주식조작(self, ctx, name: str, item: str, val: int):
-        """ item 항목 : 주식총주, 주가, 매출, 수익률\n수익률의 변수 val은 10이 1%입니다. """
+        """ item 항목 : 주식총주, 주가, 매출, 수익률, 업종\n수익률의 변수 val은 10이 1%입니다. """
         if os.path.isfile(stocklib + name + ".xlsx"):
             wb = openpyxl.load_workbook(stocklib + name + ".xlsx")
             ws = wb.active
@@ -611,6 +615,21 @@ class economy_ko(commands.Cog):
             wb.save(stocklib + name + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 사(社)의 수익률을 변경하였습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await ctx.send(embed=embed)
+            return None
+        if item == "업종":
+            if val > len(categories) - 1 or val < 0:
+                embed = discord.Embed(title="NO", description="변수가 잘못 설정되었습니다.", color=0xeff0f1)
+                embed.set_thumbnail(
+                    url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+                await ctx.send(embed=embed)
+                return None
+            ws.cell(row=1, column=6).value = str(val)
+            wb.save(stocklib + name + ".xlsx")
+            wb.close()
+            embed = discord.Embed(title="KMF", description="해당 사(社)의 업종을 변경하였습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
