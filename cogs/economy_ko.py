@@ -862,12 +862,12 @@ class economy_ko(commands.Cog):
             else:
                 ws.cell(row=6, column=block).value = name
                 ws.cell(row=7, column=block).value = str(int(ws.cell(row=7, column=block).value) - amount)
-                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.96))
                 ws.cell(row=1, column=5).value = str(time.time())
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
-            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
+            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 4% : " + keundon(round(amount*price*0.04)) + " <:ket:753449741186105375>)")
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
@@ -1011,12 +1011,12 @@ class economy_ko(commands.Cog):
             ws.cell(row=6, column=block).value = None
             ws.cell(row=7, column=block).value = None
             ws.cell(row=8, column=block).value = None
-            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
+            ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.96))
             ws.cell(row=1, column=5).value = str(time.time())
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
-            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
+            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 4% : " + keundon(round(amount*price*0.04)) + " <:ket:753449741186105375>)")
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
@@ -1146,12 +1146,12 @@ class economy_ko(commands.Cog):
             else:
                 ws.cell(row=6, column=block).value = name
                 ws.cell(row=7, column=block).value = str(int(ws.cell(row=7, column=block).value) - amount)
-                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.94))
+                ws.cell(row=1, column=2).value = str(int(ws.cell(row=1, column=2).value) + round(price*amount*0.96))
                 ws.cell(row=1, column=5).value = str(time.time())
             wb.save(userlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             embed = discord.Embed(title="KMF", description="해당 주를 " + str(amount) + "주 만큼 매각하였습니다.", color=0xeff0f1)
-            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 6% : " + keundon(round(amount*price*0.06)) + " <:ket:753449741186105375>)")
+            embed.add_field(name="판매가", value=keundon(amount*price) + " <:ket:753449741186105375> (세율 4% : " + keundon(round(amount*price*0.04)) + " <:ket:753449741186105375>)")
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await ctx.send(embed=embed)
@@ -1292,6 +1292,13 @@ class economy_ko(commands.Cog):
             else:
                 await ctx.send(str(cycles) + "cycle reseted")
             await asyncio.sleep(300)
+    
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def AI변동(self, ctx, cycle :int):
+        if os.path.isfile(cachelib + "is_started.ccf"):
+            return await ctx.send("이미 실행중입니다.")
+        await ctx.send("추가 예정입니다.")
 
     @commands.command()
     @commands.check(permissions.is_owner)
