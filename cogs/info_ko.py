@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 from datetime import datetime
 from discord.ext import commands
-from evs import default
+from evs import default, permissions
 
 
 cachelib = "./lib/cache/"
