@@ -17,18 +17,18 @@ class Information_ko(commands.Cog):
         self.bot = bot
         self.config = default.get("config.json")
         self.process = psutil.Process(os.getpid())
-        
-         if os.path.isfile(cachelib + "usage.xlsx"):
-                pass
-            else:
-                wb = openpyxl.Workbook()
-                ws = wb.active
-                ws.cell(row=1, column=1).value = "1"
-                for i in range(1, 101):
-                    ws.cell(row=2, column=i).value = "0"
-                    ws.cell(row=3, column=i).value = "0"
-                wb.save(cachelib + "usage.xlsx")
-                wb.close()
+        #
+        if os.path.isfile(cachelib + "usage.xlsx"):
+            print("cache file exist")
+        else:
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            ws.cell(row=1, column=1).value = "1"
+            for i in range(1, 101):
+                ws.cell(row=2, column=i).value = "0"
+                ws.cell(row=3, column=i).value = "0"
+            wb.save(cachelib + "usage.xlsx")
+            wb.close()
 
     @commands.command()
     async def 핑(self, ctx):
