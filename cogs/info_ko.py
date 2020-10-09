@@ -145,7 +145,6 @@ class Information_ko(commands.Cog):
             for i in range(1, int(last) + 1):
                 rams.append(float(ws.cell(row=2, column=i).value))
                 cpus.append(float(ws.cell(row=2, column=i).value))
-        ax.plot(label='Sales', *args_plot,**config_plot)
         plt.figure(figsize=(39, 18))
         plt.xticks(fontsize=32)
         plt.yticks(fontsize=32)
