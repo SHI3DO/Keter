@@ -2,16 +2,33 @@ import time
 import discord
 import psutil
 import os
+import matplotlib.pyplot as plt
 
 from datetime import datetime
 from discord.ext import commands
 from evs import default
+
+
+cachelib = "./lib/cache/"
+
 
 class Information_ko(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
         self.process = psutil.Process(os.getpid())
+        
+         if os.path.isfile(cachelib + "usage.xlsx"):
+                pass
+            else:
+                wb = openpyxl.Workbook()
+                ws = wb.active
+                ws.cell(row=1, column=1).value = "1"
+                for i in range(1, 101):
+                    ws.cell(row=2, column=i).value = "0"
+                    ws.cell(row=3, column=i).value = "0"
+                wb.save(cachelib + "usage.xlsx")
+                wb.close()
 
     @commands.command()
     async def 핑(self, ctx):
@@ -64,6 +81,86 @@ class Information_ko(commands.Cog):
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
 
+    @commands.command(aliases=['상태기록'])
+    @commands.check(permissions.is_owner)
+    async def 정보기록(self, ctx):
+        """ Write the status of system """
+        if os.path.isfile(cachelib + "usagecheck.ccf"):
+            return await ctx.send("이미 실행중입니다.")
+        await ctx.send("코드를 실행합니다.")
+        f = open(cachelib + "usagecheck.ccf","w")
+        f.close
+        while True:
+            if not os.path.isfile(cachelib + "usagecheck.ccf","w"):
+                return await ctx.send("The cache file went wrong.")
+            wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
+            ws = wb.active
+            rampercent = psutil.virtual_memory().available/(self.process.memory_full_info().rss + psutil.virtual_memory().available)
+            cpupercent = p.cpu_percent()
+            last = ws.cell(row=1, column=1).value
+            if last == "100":
+                ws.cell(row=2, column=1).value = str(rampercent)
+                ws.cell(row=3, column=int(last) + 1).value = str(rampercent)
+                ws.cell(row=1, column=1).value = "1"
+            else:
+                ws.cell(row=2, column=int(last) + 1).value = str(rampercent)
+                ws.cell(row=3, column=int(last) + 1).value = str(rampercent)
+                ws.cell(row=1, column=1).value = str(int(last) + 1)
+            wb.save(cachelib + "usage.xlsx")
+            wb.close()
+            await asyncio.sleep(60)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 기록중지(self, ctx):
+        if os.path.isfile(cachelib + "usagecheck.ccf"):
+            os.remove(cachelib + "usagecheck.ccf")
+            return await ctx.send("캐시가 삭제되었습니다.")
+        await ctx.send("캐시가 없습니다.")
+    
+    @commands.command(aliases=['상태그래프'])
+    @commands.check(permissions.is_owner)
+    async def 정보그래프(self, ctx, name: str):
+        wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
+        ws = wb.active
+        last = ws.cell(row=1, column=1).value
+        rams = []
+        cpus = []
+        if last == "100":
+            for i in range(1, 101):
+                rams.append(int(ws.cell(row=2, column=i).value))
+                cpus.append(int(ws.cell(row=2, column=i).value))
+        elif last == "1":
+            for i in range(2, 101):
+                rams.append(int(ws.cell(row=2, column=i).value))
+                cpus.append(int(ws.cell(row=2, column=i).value))
+            rams.append(int(ws.cell(row=2, column=1).value))
+            cpus.append(int(ws.cell(row=2, column=1).value))
+        else:
+            for i in range(int(last) + 1, 101):
+                rams.append(int(ws.cell(row=2, column=i).value))
+                cpus.append(int(ws.cell(row=2, column=i).value))
+            for i in range(1, int(last) + 1):
+                rams.append(int(ws.cell(row=2, column=i).value))
+                cpus.append(int(ws.cell(row=2, column=i).value))
+        plt.figure(figsize=(39, 18))
+        ax1 = plt.subplot(1, 2, 1)
+        ax1.ylim(0, 100)
+        ax1.plot(list(range(1, 101)), cpus, 'b-')
+        ax2 = plt.subplot(1, 2, 2)
+        ax2.ylim(0, 100)
+        ax2.plot(list(range(1, 101)), rams, 'b-')
+        ax1.xticks(fontsize=32)
+        plt.yticks(fontsize=32)
+        ax1.xlabel('Usage (%)', fontsize=44)
+        ax1.ylabel('CPU', fontsize=44)
+        ax2.ylabel('RAM', fontsize=44)
+        plt.savefig(str(ctx.author.id) + ".png", dpi=192)
+        plt.clf()
+        plt.close()
+        wb.close()
+        await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
+        os.remove(str(ctx.author.id) + '.png')
 
 def setup(bot):
     bot.add_cog(Information_ko(bot))
