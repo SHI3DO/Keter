@@ -130,21 +130,21 @@ class Information_ko(commands.Cog):
         cpus = []
         if last == "100":
             for i in range(1, 101):
-                rams.append(float(ws.cell(row=2, column=i).value))
-                cpus.append(float(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=2, column=i).value)*100)
         elif last == "1":
             for i in range(2, 101):
-                rams.append(float(ws.cell(row=2, column=i).value))
-                cpus.append(float(ws.cell(row=2, column=i).value))
-            rams.append(float(ws.cell(row=2, column=1).value))
-            cpus.append(float(ws.cell(row=2, column=1).value))
+                rams.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=2, column=i).value)*100)
+            rams.append(float(ws.cell(row=2, column=1).value)*100)
+            cpus.append(float(ws.cell(row=2, column=1).value)*100)
         else:
             for i in range(int(last) + 1, 101):
-                rams.append(float(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value)*100)
                 cpus.append(float(ws.cell(row=2, column=i).value))
             for i in range(1, int(last) + 1):
-                rams.append(float(ws.cell(row=2, column=i).value))
-                cpus.append(float(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=2, column=i).value)*100)
         plt.figure(figsize=(39, 18))
         plt.xticks(fontsize=32)
         plt.yticks(fontsize=32)
