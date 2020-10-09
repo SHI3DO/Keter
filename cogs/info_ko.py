@@ -122,7 +122,7 @@ class Information_ko(commands.Cog):
     
     @commands.command(aliases=['상태그래프'])
     @commands.check(permissions.is_owner)
-    async def 정보그래프(self, ctx, name: str):
+    async def 정보그래프(self, ctx):
         wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
         ws = wb.active
         last = ws.cell(row=1, column=1).value
