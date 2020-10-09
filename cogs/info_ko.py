@@ -152,8 +152,6 @@ class Information_ko(commands.Cog):
         ax2 = plt.subplot(1, 2, 2)
         ax2.set_ylim(0, 100)
         ax2.plot(list(range(1, 101)), rams, 'b-')
-        ax1.xticks(fontsize=32)
-        plt.yticks(fontsize=32)
         ax1.set_xlabel('Usage (%)', fontsize=44)
         ax1.set_ylabel('CPU')
         ax2.set_ylabel('RAM')
