@@ -92,7 +92,7 @@ class Information_ko(commands.Cog):
         f = open(cachelib + "usagecheck.ccf","w")
         f.close
         while True:
-            if not os.path.isfile(cachelib + "usagecheck.ccf","w"):
+            if not os.path.isfile(cachelib + "usagecheck.ccf"):
                 return await ctx.send("The cache file went wrong.")
             wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
             ws = wb.active
