@@ -17,7 +17,7 @@ class Information_ko(commands.Cog):
         self.bot = bot
         self.config = default.get("config.json")
         self.process = psutil.Process(os.getpid())
-        #
+        #파일생성
         if os.path.isfile(cachelib + "usage.xlsx"):
             print("cache file exist")
         else:
