@@ -4,6 +4,7 @@ import psutil
 import os
 import matplotlib.pyplot as plt
 import openpyxl
+import asyncio
 
 from datetime import datetime
 from discord.ext import commands
