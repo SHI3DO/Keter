@@ -130,21 +130,21 @@ class Information_ko(commands.Cog):
         cpus = []
         if last == "100":
             for i in range(1, 101):
-                rams.append(int(ws.cell(row=2, column=i).value))
-                cpus.append(int(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value))
+                cpus.append(float(ws.cell(row=2, column=i).value))
         elif last == "1":
             for i in range(2, 101):
-                rams.append(int(ws.cell(row=2, column=i).value))
-                cpus.append(int(ws.cell(row=2, column=i).value))
-            rams.append(int(ws.cell(row=2, column=1).value))
-            cpus.append(int(ws.cell(row=2, column=1).value))
+                rams.append(float(ws.cell(row=2, column=i).value))
+                cpus.append(float(ws.cell(row=2, column=i).value))
+            rams.append(float(ws.cell(row=2, column=1).value))
+            cpus.append(float(ws.cell(row=2, column=1).value))
         else:
             for i in range(int(last) + 1, 101):
-                rams.append(int(ws.cell(row=2, column=i).value))
-                cpus.append(int(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value))
+                cpus.append(float(ws.cell(row=2, column=i).value))
             for i in range(1, int(last) + 1):
-                rams.append(int(ws.cell(row=2, column=i).value))
-                cpus.append(int(ws.cell(row=2, column=i).value))
+                rams.append(float(ws.cell(row=2, column=i).value))
+                cpus.append(float(ws.cell(row=2, column=i).value))
         plt.figure(figsize=(39, 18))
         ax1 = plt.subplot(1, 2, 1)
         ax1.ylim(0, 100)
