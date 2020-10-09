@@ -110,7 +110,7 @@ class Information_ko(commands.Cog):
                 ws.cell(row=1, column=1).value = str(int(last) + 1)
             wb.save(cachelib + "usage.xlsx")
             wb.close()
-            await asyncio.sleep(60)
+            await asyncio.sleep(8)
 
     @commands.command()
     @commands.check(permissions.is_owner)
