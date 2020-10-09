@@ -3,6 +3,7 @@ import discord
 import psutil
 import os
 import matplotlib.pyplot as plt
+import openpyxl
 
 from datetime import datetime
 from discord.ext import commands
