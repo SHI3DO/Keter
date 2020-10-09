@@ -97,7 +97,7 @@ class Information_ko(commands.Cog):
             wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
             ws = wb.active
             rampercent = psutil.virtual_memory().available/(self.process.memory_full_info().rss + psutil.virtual_memory().available)
-            cpupercent = p.cpu_percent()
+            cpupercent = self.process.cpu_percent()
             last = ws.cell(row=1, column=1).value
             if last == "100":
                 ws.cell(row=2, column=1).value = str(rampercent)
