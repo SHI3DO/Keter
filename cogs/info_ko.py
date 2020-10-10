@@ -92,21 +92,22 @@ class Information_ko(commands.Cog):
         await ctx.send("코드를 실행합니다.")
         f = open(cachelib + "usagecheck.ccf","w")
         f.close
-        while os.path.isfile(cachelib + "usagecheck.ccf") == True:
+        check == True
+        while check == True:
             if not os.path.isfile(cachelib + "usagecheck.ccf"):
                 return await ctx.send("The cache file went wrong.")
             wb = openpyxl.load_workbook(cachelib + "usage.xlsx")
             ws = wb.active
-            rampercent = psutil.virtual_memory().available/(self.process.memory_full_info().rss + psutil.virtual_memory().available)
+            rampercent = self.process.memory_full_info().rss/(self.process.memory_full_info().rss + psutil.virtual_memory().available)
             cpupercent = self.process.cpu_percent()
             last = ws.cell(row=1, column=1).value
             if last == "100":
                 ws.cell(row=2, column=1).value = str(rampercent)
-                ws.cell(row=3, column=int(last) + 1).value = str(rampercent)
+                ws.cell(row=3, column=int(last) + 1).value = str(cpupercent)
                 ws.cell(row=1, column=1).value = "1"
             else:
                 ws.cell(row=2, column=int(last) + 1).value = str(rampercent)
-                ws.cell(row=3, column=int(last) + 1).value = str(rampercent)
+                ws.cell(row=3, column=int(last) + 1).value = str(cpupercent)
                 ws.cell(row=1, column=1).value = str(int(last) + 1)
             wb.save(cachelib + "usage.xlsx")
             wb.close()
