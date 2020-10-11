@@ -152,7 +152,7 @@ class Information_ko(commands.Cog):
         plt.yticks(fontsize=32)
         ax1 = plt.subplot(1, 2, 1)
         ax1.set_ylim(0, 100)
-        ax1.plot(list(range(1, 101)), cpus, color='blue', linewidth=2)
+        ax1.fill_between(list(range(1,101)), cpus, facecolor='blue', color='blue', alpha=0.5)
         ax2 = plt.subplot(1, 2, 2)
         ax2.set_ylim(0, 100)
         ax2.plot(list(range(1, 101)), rams, color='green', linewidth=2)
