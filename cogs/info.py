@@ -65,9 +65,5 @@ class Information(commands.Cog):
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
 
-    @commands.command()
-    async def test(ctx):
-        await ctx.send('Hello')
-
 def setup(bot):
     bot.add_cog(Information(bot))
