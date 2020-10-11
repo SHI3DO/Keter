@@ -155,7 +155,7 @@ class Information_ko(commands.Cog):
         ax1.fill_between(list(range(1,101)), cpus, facecolor='blue', color='blue', alpha=0.5)
         ax2 = plt.subplot(1, 2, 2)
         ax2.set_ylim(0, 100)
-        ax2.plot(list(range(1, 101)), rams, color='green', linewidth=2)
+        ax2.fill_between(list(range(1,101)), rams, facecolor='green', color='green', alpha=0.5)
         ax1.set_xlabel('CPU')
         ax2.set_xlabel('RAM')
         ax1.set_ylabel('Usage (%)', fontsize=44)
