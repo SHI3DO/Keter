@@ -32,7 +32,7 @@ class Userinfo(commands.Cog):
                 embed.set_thumbnail(url=user.avatar_url)
                 await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="**"ctx.author.name + "**'s Profile", description="",
+            embed = discord.Embed(title="**"+ ctx.author.name + "**'s Profile", description="",
                                   color=0xeff0f1)
             embed.add_field(name="**Username**",
                             value=ctx.author.display_name,
