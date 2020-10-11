@@ -80,7 +80,7 @@ class Information(commands.Cog):
         embed.add_field(name='Voice Channels',value=str(channel__count))
         embed.add_field(name='Server ID',value=server.id)
         embed.add_field(name='Verification Level',value=str(server.verification_level))
-        embed.add_field(name='Created At',value=server.created_at.__format__('%A, %d. %B %Y  %H:%M:%S'))
+        embed.add_field(name='Created At',value=server.created_at.__format__('%A, %B %d %Y, %H:%M:%S (utc +0)'))
         embed.set_thumbnail(url=server.icon_url)
         embed.set_author(name=ctx.author.name,icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
