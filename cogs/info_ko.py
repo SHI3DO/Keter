@@ -91,7 +91,7 @@ class Information_ko(commands.Cog):
             return await ctx.send("이미 실행중입니다.")
         await ctx.send("코드를 실행합니다.")
         f = open(cachelib + "usagecheck.ccf","w")
-        f.close
+        f.close()
         check = True
         while check == True:
             if not os.path.isfile(cachelib + "usagecheck.ccf"):
@@ -112,7 +112,7 @@ class Information_ko(commands.Cog):
                 ws.cell(row=1, column=1).value = str(int(last) + 1)
             wb.save(cachelib + "usage.xlsx")
             wb.close()
-            await asyncio.sleep(8)
+            await asyncio.sleep(1)
 
     @commands.command()
     @commands.check(permissions.is_owner)
@@ -133,20 +133,20 @@ class Information_ko(commands.Cog):
         if last == "100":
             for i in range(1, 101):
                 rams.append(float(ws.cell(row=2, column=i).value)*100)
-                cpus.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=3, column=i).value)*100)
         elif last == "1":
             for i in range(2, 101):
                 rams.append(float(ws.cell(row=2, column=i).value)*100)
-                cpus.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=3, column=i).value)*100)
             rams.append(float(ws.cell(row=2, column=1).value)*100)
-            cpus.append(float(ws.cell(row=2, column=1).value)*100)
+            cpus.append(float(ws.cell(row=3, column=1).value)*100)
         else:
             for i in range(int(last) + 1, 101):
                 rams.append(float(ws.cell(row=2, column=i).value)*100)
-                cpus.append(float(ws.cell(row=2, column=i).value))
+                cpus.append(float(ws.cell(row=3, column=i).value))
             for i in range(1, int(last) + 1):
                 rams.append(float(ws.cell(row=2, column=i).value)*100)
-                cpus.append(float(ws.cell(row=2, column=i).value)*100)
+                cpus.append(float(ws.cell(row=3, column=i).value)*100)
         plt.figure(figsize=(39, 18))
         plt.xticks(fontsize=32)
         plt.yticks(fontsize=32)
