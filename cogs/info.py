@@ -66,6 +66,7 @@ class Information(commands.Cog):
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
     @commands.command()
     async def serverinfo(self, ctx):
+        """ Show server info """
         server = ctx.message.guild
         channel_count = len([x for x in server.channels if type(x) == discord.channel.TextChannel])
         channel__count = len([x for x in server.channels if type(x) == discord.channel.VoiceChannel])
