@@ -169,5 +169,28 @@ class Information_ko(commands.Cog):
         await ctx.send(file=discord.File("./" + str(ctx.author.id) + ".png"))
         os.remove(str(ctx.author.id) + '.png')
 
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 서버정보(self, ctx):
+        server = ctx.message.guild
+        channel_count = len([x for x in server.channels if type(x) == discord.channel.TextChannel])
+        channel__count = len([x for x in server.channels if type(x) == discord.channel.VoiceChannel])
+        embed = discord.Embed(title='서버 정보',description='',color=0xEFF0F1)
+        embed.add_field(name='이름',value=server.name)
+        embed.add_field(name='주인',value=server.owner,inline=True)
+        embed.add_field(name='유저',value=server.member_count)
+        embed.add_field(name='나라',value=server.region)
+        embed.add_field(name='역할',value=str(len(server.roles)))
+        embed.add_field(name='이모지',value=str(len(server.emojis)))
+        embed.add_field(name='채팅 채널',value=str(channel_count))
+        embed.add_field(name='음성 채널',value=str(channel__count))
+        embed.add_field(name='서버 ID',value=server.id)
+        embed.add_field(name='검증 수준',value=str(server.verification_level))
+        embed.add_field(name='생성 일시',value=server.created_at.__format__('%A, %B %d %Y, %H:%M:%S'))
+        embed.set_thumbnail(url=server.icon_url)
+        embed.set_author(name=ctx.author.name,icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(Information_ko(bot))
