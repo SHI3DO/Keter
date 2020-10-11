@@ -41,7 +41,7 @@ class city_ko(commands.Cog):
     # Commands
     @commands.command()
     async def nnn(self, ctx):
-        ctx.send("wow")
+        await ctx.send("wow")
     
 
 def setup(bot):
