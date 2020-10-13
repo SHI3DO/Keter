@@ -64,7 +64,7 @@ class Information(commands.Cog):
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
-    @commands.command()
+    @commands.command(aliases=['svinfo'])
     async def serverinfo(self, ctx):
         """ Show server info """
         server = ctx.message.guild
