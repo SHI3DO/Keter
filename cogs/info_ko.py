@@ -189,7 +189,7 @@ class Information_ko(commands.Cog):
         embed.add_field(name='인증 단계',value=str(server.verification_level))
         embed.add_field(name='생성일',value=server.created_at.__format__('%A, %B %d %Y, %H:%M:%S'))
         embed.set_thumbnail(url=server.icon_url)
-        embed.set_author(name=ctx.author.name,icon_url=ctx.author.avatar_url)
+        embed.set_author(name=server.name,icon_url=server.icon_url)
         await ctx.send(embed=embed)
 
 def setup(bot):
