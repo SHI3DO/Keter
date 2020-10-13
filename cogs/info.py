@@ -64,6 +64,7 @@ class Information(commands.Cog):
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
+    
     @commands.command(aliases=['svinfo'])
     async def serverinfo(self, ctx):
         """ Show server info """
@@ -83,7 +84,7 @@ class Information(commands.Cog):
         embed.add_field(name='Verification Level',value=str(server.verification_level))
         embed.add_field(name='Created At',value=server.created_at.__format__('%A, %B %d %Y, %H:%M:%S'))
         embed.set_thumbnail(url=server.icon_url)
-        embed.set_author(name=ctx.author.name,icon_url=ctx.author.avatar_url)
+        embed.set_author(name=server.name,icon_url=server.icon_url)
         await ctx.send(embed=embed)
 def setup(bot):
     bot.add_cog(Information(bot))
