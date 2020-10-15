@@ -24,7 +24,7 @@ class Rainbow(commands.Cog):
                 print("detected role")
                 await ctx.send("detected role")
                 cycle = 0
-                while not ctx.is_closed():
+                while not bot.is_closed():
                     if cycle < 1791:
                         cycle += 1
                     else:
