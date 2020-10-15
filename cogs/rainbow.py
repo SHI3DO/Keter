@@ -1,10 +1,6 @@
-import time
-import aiohttp
+import asyncio
 import discord
-import importlib
 import os
-import sys
-
 from discord.ext import commands
 from evs import permissions, default, http, dataIO
 
