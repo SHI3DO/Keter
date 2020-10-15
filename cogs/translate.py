@@ -15,8 +15,12 @@ import requests
 import unicodedata
 import json
 
-client_id = "DNhDO1bwMnDP5zXytQeM"
-client_secret = "EBBsshaVW4"
+from evs import default
+from evs.data import Bot, HelpFormat
+config = default.get("config.json")
+
+client_id = config.translation_client_id
+client_secret = config.translation_client_secret
 
 class Translate(commands.Cog):
 
