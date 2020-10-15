@@ -45,7 +45,7 @@ class Rainbow(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def rainbow(self, ctx, role:str):
+    async def rainbow(self, ctx, role: str, speed: int):
         for r in ctx.guild.roles:
             if r.name == role:
                 print("detected role")
@@ -53,7 +53,7 @@ class Rainbow(commands.Cog):
                 cycle = -1
                 while True:
                     if cycle < 1536:
-                        cycle += 1
+                        cycle += speed
                     else:
                         cycle = 0
                     try:
