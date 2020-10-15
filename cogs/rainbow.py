@@ -44,11 +44,11 @@ class Rainbow(commands.Cog):
                         green = 1024 - cycle
                         blue = 255
                     elif 1280 <= cycle < 1536:
-                        red = 0
-                        green = 1024 - cycle
+                        red = cycle - 1536
+                        green = 0
                         blue = 255
                     else:
-                        red = cycle - 1536
+                        red = 255
                         green = 0
                         blue = 1736 - cycle
                     colour = 65536*red + 256*green + blue
