@@ -21,10 +21,11 @@ class Rainbow(commands.Cog):
     async def rainbow(self, ctx, role:str):
         for r in ctx.guild.roles:
             if r.name == role:
-                print("detected role")
-                await ctx.send("detected role")
+                print("detected role"); await ctx.send("detected role")
                 cycle = 0
-                while not bot.is_closed():
+                f = open(f"./lib/cache/{str(ctx.guild.id)}.ccf", "w")
+                f.close()
+                while os.path.isfile(f"./lib/cache/{str(ctx.guild.id)}.ccf"):
                     if cycle < 1791:
                         cycle += 1
                     else:
@@ -59,8 +60,15 @@ class Rainbow(commands.Cog):
                     except Exception:
                         return await ctx.send("For some reason, I can no longer change the role ;-;")
                     await asyncio.sleep(0.04)
-        return await ctx.send(f"role with the name {role} not found")
-        print(f"role with the name {role} not found")
+        await ctx.send(f"role with the name {role} not found"); return print(f"role with the name {role} not found")
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def static_halt(self, ctx):
+        try:
+            os.remove(f"./lib/cache/{str(ctx.guild.id)}.ccf")
+        else:
+            return await ctx.send("Error has been occured while processing the command")
 
 def setup(bot):
     bot.add_cog(Rainbow(bot))
