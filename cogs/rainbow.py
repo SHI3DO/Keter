@@ -69,7 +69,7 @@ class Rainbow(commands.Cog):
     async def static_halt(self, ctx):
         try:
             os.remove(f"./lib/cache/{str(ctx.guild.id)}.ccf")
-        else:
+        except:
             return await ctx.send("Error has been occured while processing the command")
 
 def setup(bot):
