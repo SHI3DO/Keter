@@ -32,7 +32,7 @@ class Rainbow(commands.Cog):
                         green = cycle
                         blue = 0
                     elif 256 <= cycle < 512:
-                        red = 512 - cycle
+                        red = 511 - cycle
                         green = 255
                         blue = 0
                     elif 512 <= cycle < 768:
@@ -41,7 +41,7 @@ class Rainbow(commands.Cog):
                         blue = cycle - 512
                     elif 768 <= cycle < 1024:
                         red = 0
-                        green = 1024 - cycle
+                        green = 1023 - cycle
                         blue = 255
                     elif 1280 <= cycle < 1536:
                         red = cycle - 1536
@@ -50,7 +50,7 @@ class Rainbow(commands.Cog):
                     else:
                         red = 255
                         green = 0
-                        blue = 1736 - cycle
+                        blue = 1735 - cycle
                     colour = 65536*red + 256*green + blue
                     try:
                         await r.edit(color=discord.Colour(colour))
