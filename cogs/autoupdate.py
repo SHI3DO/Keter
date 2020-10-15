@@ -56,27 +56,23 @@ class Autoupdate(commands.Cog):
                 name = file[:-3]
                 link = "https://raw.githubusercontent.com/Shio7/Keter/master/cogs/" + name + ".py"
                 r = requests.get(link, allow_redirects=True)
-                if os.path.isfile('./cogs/' + filename + ".py"):
+                if os.path.isfile('./cogs/' + name + ".py"):
                     try:
-                        self.bot.unload_extension(f"cogs.{filename}")
+                        self.bot.unload_extension(f"cogs.{name}")
                     except Exception as e:
                         return await ctx.send(default.traceback_maker(e))
-                    await ctx.send(f"Unloaded extension **{filename}.py**")
-                    os.remove('./cogs/' + filename + ".py")
-                    open('./cogs/' + filename + ".py", 'wb').write(r.content)
+                    await ctx.send(f"Unloaded extension **{name}.py**")
+                    os.remove('./cogs/' + name + ".py")
+                    open('./cogs/' + name + ".py", 'wb').write(r.content)
                 else:
-                    open('./cogs/' + filename + ".py", 'wb').write(r.content)
-                await ctx.send("Updated: "+filename+".py")
+                    open('./cogs/' + name + ".py", 'wb').write(r.content)
+                await ctx.send("Updated: "+name+".py")
 
                 try:
-                    self.bot.load_extension(f"cogs.{filename}")
+                    self.bot.load_extension(f"cogs.{name}")
                 except Exception as e:
                     return await ctx.send(default.traceback_maker(e))
-                await ctx.send(f"Loaded extension **{filename}.py**")
-
-
-
-                
+                await ctx.send(f"Loaded extension **{name}.py**")       
             
 def setup(bot):
     bot.add_cog(Autoupdate(bot))
