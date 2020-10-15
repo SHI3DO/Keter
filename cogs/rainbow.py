@@ -21,7 +21,8 @@ class Rainbow(commands.Cog):
     async def rainbow(self, ctx, role:str):
         for r in ctx.guild.roles:
             if r.name == role:
-                print("detected role"); await ctx.send("detected role")
+                print("detected role")
+                await ctx.send("detected role")
                 cycle = 0
                 f = open(f"./lib/cache/{str(ctx.guild.id)}.ccf", "w")
                 f.close()
@@ -60,7 +61,8 @@ class Rainbow(commands.Cog):
                     except Exception:
                         return await ctx.send("For some reason, I can no longer change the role ;-;")
                     await asyncio.sleep(0.04)
-        await ctx.send(f"role with the name {role} not found"); return print(f"role with the name {role} not found")
+        await ctx.send(f"role with the name {role} not found")
+        return print(f"role with the name {role} not found")
 
     @commands.command()
     @commands.check(permissions.is_owner)
