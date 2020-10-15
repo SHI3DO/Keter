@@ -51,9 +51,9 @@ class Rainbow(commands.Cog):
                 print("detected role")
                 await ctx.send("detected role")
                 cycle = -1
-                f = open(f"./lib/cache/{str(ctx.guild.id)}.ccf", "w")
+                f = open(cachelib + str(ctx.guild.id) + ".ccf", "w")
                 f.close()
-                while os.path.isfile(f"./lib/cache/{str(ctx.guild.id)}.ccf"):
+                while os.path.isfile(cachelib + str(ctx.guild.id) + ".ccf"):
                     if cycle < 1536:
                         cycle += 1
                     else:
@@ -70,7 +70,7 @@ class Rainbow(commands.Cog):
     @commands.check(permissions.is_owner)
     async def static_halt(self, ctx):
         try:
-            os.remove(f"./lib/cache/{str(ctx.guild.id)}.ccf")
+            os.remove(cachelib + str(ctx.guild.id) + ".ccf")
             await ctx.send("Stopped all the rainbow roles in this server")
         except:
             return await ctx.send("Error has been occured while processing the command")
