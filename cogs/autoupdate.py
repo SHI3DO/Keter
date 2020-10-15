@@ -48,7 +48,7 @@ class Autoupdate(commands.Cog):
             
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def allupdate(self, ctx, filename: str):
+    async def allupdate(self, ctx):
         await ctx.trigger_typing()
         await ctx.send("Updating source code...")
         for file in os.listdir("cogs"):
