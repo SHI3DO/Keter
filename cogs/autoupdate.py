@@ -46,5 +46,37 @@ class Autoupdate(commands.Cog):
         else:
             await ctx.send(f"Can't find **{filename}.py**")
             
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def allupdate(self, ctx, filename: str):
+        await ctx.trigger_typing()
+        await ctx.send("Updating source code...")
+        for file in os.listdir("cogs"):
+            if file.endswith(".py"):
+                name = file[:-3]
+                link = "https://raw.githubusercontent.com/Shio7/Keter/master/cogs/" + name + ".py"
+                r = requests.get(link, allow_redirects=True)
+                if os.path.isfile('./cogs/' + filename + ".py"):
+                    try:
+                        self.bot.unload_extension(f"cogs.{filename}")
+                    except Exception as e:
+                        return await ctx.send(default.traceback_maker(e))
+                    await ctx.send(f"Unloaded extension **{filename}.py**")
+                    os.remove('./cogs/' + filename + ".py")
+                    open('./cogs/' + filename + ".py", 'wb').write(r.content)
+                else:
+                    open('./cogs/' + filename + ".py", 'wb').write(r.content)
+                await ctx.send("Updated: "+filename+".py")
+
+                try:
+                    self.bot.load_extension(f"cogs.{filename}")
+                except Exception as e:
+                    return await ctx.send(default.traceback_maker(e))
+                await ctx.send(f"Loaded extension **{filename}.py**")
+
+
+
+                
+            
 def setup(bot):
     bot.add_cog(Autoupdate(bot))
