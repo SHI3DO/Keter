@@ -23,7 +23,7 @@ class Information(commands.Cog):
         ping = (time.monotonic() - before) * 1000
         await message.edit(content=f"🏓 WS: {before_ws}ms  |  REST: {int(ping)}ms")
 
-    @commands.command(aliases=['joinme', 'join', 'botinvite'])
+    @commands.command(aliases=['joinme', 'botinvite'])
     async def invite(self, ctx):
         """ Invite me to your server """
         embed = discord.Embed(title="Invite", description=f"**{ctx.author.name}**, use this URL to invite me\n[link](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)", color=0xeff0f1)
