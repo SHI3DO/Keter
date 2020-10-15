@@ -57,7 +57,7 @@ class Rainbow(commands.Cog):
                         blue = 1736 - cycle
                     colour = 65536*red + 256*green + blue
                     try:
-                        await role.edit(color=colour)
+                        await role.edit(color=discord.Colour(colour))
                     except Exception:
                         return await ctx.send("For some reason, I can no longer change the role ;-;")
                     await asyncio.sleep(0.04)
