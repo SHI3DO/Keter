@@ -72,7 +72,8 @@ class Autoupdate(commands.Cog):
                     self.bot.load_extension(f"cogs.{name}")
                 except Exception as e:
                     return await ctx.send(default.traceback_maker(e))
-                await ctx.send(f"Loaded extension **{name}.py**")       
+                await ctx.send(f"Loaded extension **{name}.py**") 
+        await ctx.send("All modules updated")      
             
 def setup(bot):
     bot.add_cog(Autoupdate(bot))
