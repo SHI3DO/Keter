@@ -1,6 +1,9 @@
 import discord
 from discord.ext import commands
 import wolframalpha
+from evs import default
+from evs.data import Bot, HelpFormat
+config = default.get("config.json")
 
 class Answer(commands.Cog):
 
@@ -11,7 +14,7 @@ class Answer(commands.Cog):
     @commands.command(name = 'answer')
     async def _answer(self, ctx, *, content:str):
         await ctx.trigger_typing()
-        app_id = "VPR9G7-54PV53JYTK"
+        app_id = config.wolframapi_token
         client = wolframalpha.Client(app_id)
         try:
             res = client.query(content)
