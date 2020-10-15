@@ -71,6 +71,7 @@ class Rainbow(commands.Cog):
     async def static_halt(self, ctx):
         try:
             os.remove(f"./lib/cache/{str(ctx.guild.id)}.ccf")
+            await ctx.send("Stopped all the rainbow roles in this server")
         except:
             return await ctx.send("Error has been occured while processing the command")
 
