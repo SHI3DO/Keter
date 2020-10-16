@@ -17,8 +17,7 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, err):
         if isinstance(err, errors.MissingRequiredArgument) or isinstance(err, errors.BadArgument):
-            helper = str(ctx.invoked_subcommand) if ctx.invoked_subcommand else str(ctx.command)
-            await ctx.send_help(helper)
+            await ctx.send_help("Yikes")
 
         elif isinstance(err, errors.CommandInvokeError):
             error = default.traceback_maker(err.original)
