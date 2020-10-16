@@ -71,7 +71,7 @@ class Rainbow(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def rainbow(self, ctx):
+    async def statics_role(self, ctx):
         try:
             os.remove(cachelib + str(ctx.guild.id) + ".ccf")
             await ctx.send("The cache has been deleted")
