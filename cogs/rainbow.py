@@ -65,7 +65,7 @@ class Rainbow(commands.Cog):
                         await r.edit(color=discord.Colour(colour[cycle]))
                     except Exception:
                         return await ctx.send("For some reason, I can no longer change the role ;-;")
-                    await asyncio.sleep(15)
+                    await asyncio.sleep(3)
         await ctx.send(f"role with the name {role} not found")
         return print(f"role with the name {role} not found")
 
