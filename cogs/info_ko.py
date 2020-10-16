@@ -50,7 +50,7 @@ class Information_ko(commands.Cog):
     @commands.command()
     async def 소스코드(self, ctx):
         """ Check out my source code <3 """
-        await ctx.send(f"**{ctx.bot.user}** 이 소스 코드로 돌아갑니다:\nhttps://github.com/Shio7/Keter \n 문서 레포지토리: https://keter.netlify.app")
+        await ctx.send(f"**{ctx.bot.user}** 이 소스 코드로 돌아갑니다:\nhttps://github.com/Shio7/Keter \n 문서 레포지토리: https://github.com/Shio7/Keter-docs")
         
 
     @commands.command(aliases=['지원 서버', '문의 서버'])
