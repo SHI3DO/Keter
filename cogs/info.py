@@ -50,6 +50,7 @@ class Information(commands.Cog):
         f.close
         ramUsage = self.process.memory_full_info().rss / 1024**2
         avgmembers = round(len(self.bot.users) / len(self.bot.guilds))
+        avguilds = round(len(self.bot.guilds) / len(self.bot.guilds))
 
         embed = discord.Embed(colour=0xeff0f1)
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
@@ -60,6 +61,7 @@ class Information(commands.Cog):
             inline=True)
         embed.add_field(name="Library", value="discord.py", inline=True)
         embed.add_field(name="Users", value= str(len(ctx.bot.guilds)*avgmembers) + " users", inline=True)
+        embed.add_field(name="Guilds", value= str(len(ctx.bot.guilds)*avguilds) + " guilds", inline=True)
         embed.add_field(name="Commands loaded", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
 
