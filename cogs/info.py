@@ -61,9 +61,9 @@ class Information(commands.Cog):
             inline=True)
         embed.add_field(name="Library", value="discord.py", inline=True)
         embed.add_field(name="Users", value= str(len(ctx.bot.guilds)*avgmembers) + " users", inline=True)
-        embed.add_field(name="Guilds", value= str(len(ctx.bot.guilds)*avguilds) + " guilds", inline=True)
         embed.add_field(name="Commands loaded", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="RAM", value=f"{ramUsage:.2f} MB", inline=True)
+        embed.add_field(name="Guilds", value= str(len(ctx.bot.guilds)*avguilds) + " guilds", inline=True)
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **" + version + "**", embed=embed)
     
