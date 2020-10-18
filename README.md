@@ -6,7 +6,7 @@ Keter Discord Bot
 
 ## Services
 - RedTea
-- ych.bup  
+- Chansook02
 
 ## Documentation
 https://keter.netlify.app
