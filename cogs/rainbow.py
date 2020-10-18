@@ -58,7 +58,7 @@ class Rainbow(commands.Cog):
                     if not os.path.isfile(cachelib + str(ctx.guild.id) + ".ccf"):
                         return await ctx.send(f"{r.name}'s change has been stopped")
                     if cycle < 1536:
-                        cycle += 1
+                        cycle += 10
                     else:
                         cycle = 0
                     try:
