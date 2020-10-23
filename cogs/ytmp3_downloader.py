@@ -35,7 +35,7 @@ class ytmusic_downloader(commands.Cog):
         await ctx.send("Converted Successfully")
         await ctx.send("http://keter.cf/mp3/" + name + ".mp3")
         await ctx.send("파일은 1분 후에 삭제됩니다.")
-        time.sleep(60)
+        await asyncio.sleep(60)
         os.remove(downloaddir + "/"+ name + ".mp3")
 
 def setup(client):
