@@ -94,7 +94,8 @@ class Shindan_ko(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["진단승락", "진단허가"])
-    async def shinacs(self, ctx, *, position: int):
+    @commands.check(permissions.is_owner)
+    async def shinacs(self, ctx, position: int):
         if position < 1:
             return await ctx.send("**position** 변수는 자연수여야 합니다.")
         f = open("./lib/cache/shindan_request.ccf", "r")
@@ -103,7 +104,7 @@ class Shindan_ko(commands.Cog):
         f.close()
         f = open("./lib/cache/shindan_requestid.ccf", "r")
         allreqid = f.read()
-        reqid = allreq.split("/")
+        reqid = allreqid.split("/")
         f.close()
         embed = discord.Embed(title="진단메이커", description=reqs[position - 1] + "에 대한 진단을 만드시겠습니까?", color=0xeff0f1)
         msg = await ctx.send(embed=embed)
@@ -147,7 +148,8 @@ class Shindan_ko(commands.Cog):
             await msg.edit(content=embed)
 
     @commands.command(aliases=["진단거절"])
-    async def shinrfs(self, ctx, *, position: int):
+    @commands.check(permissions.is_owner)
+    async def shinrfs(self, ctx, position: int):
         if position < 1:
             return await ctx.send("**position** 변수는 자연수여야 합니다.")
         f = open("./lib/cache/shindan_request.ccf", "r")
@@ -191,6 +193,13 @@ class Shindan_ko(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await msg.edit(content=embed)
 
+    @commands.command(aliases=["진단초기화"])
+    @commands.check(permissions.is_owner)
+    async def shinrst(self, ctx):
+        f = open("./lib/cache/shindan_request.ccf", "w")
+        f.close()
+        f = open("./lib/cache/shindan_requestid.ccf", "w")
+        f.close()
 
 def setup(bot):
     bot.add_cog(Shindan_ko(bot))
