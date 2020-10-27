@@ -222,7 +222,7 @@ class Shindan_ko(commands.Cog):
         if os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
             ws = wb.active
-            if ws.cell(row=2, column=position).value == str(ctx.author.id):
+            if ws.cell(row=1, column=1).value == str(ctx.author.id):
                 pass
             else:
                 return await ctx.send("해당 진단을 수정할 수 없습니다.")
