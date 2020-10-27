@@ -220,7 +220,12 @@ class Shindan_ko(commands.Cog):
     @commands.command(aliases=["진단수정"])
     async def shincng(self, ctx, *, shindan: str):
         if os.path.isfile(shindanlib + f"{shindan}.xlsx"):
-            pass
+            wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+            ws = wb.active
+            if ws.cell(row=2, column=position).value == str(ctx.author.id):
+                pass
+            else:
+                return await ctx.send("해당 진단을 수정할 수 없습니다.")
         else:
             return await ctx.send("해당 이름의 진단을 찾지 못했습니다.")
         embed = discord.Embed(title="진단메이커", description="진단의 내용을 수정하시겠습니까?", color=0xeff0f1)
@@ -341,7 +346,7 @@ class Shindan_ko(commands.Cog):
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 return await ctx.send(embed=embed)
-        
+
         wb.close()
 
 def setup(bot):
