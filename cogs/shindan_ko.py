@@ -200,6 +200,7 @@ class Shindan_ko(commands.Cog):
         f.close()
         f = open("./lib/cache/shindan_requestid.ccf", "w")
         f.close()
+        await msg.edit("진단요청을 초기화하였습니다.")
 
 def setup(bot):
     bot.add_cog(Shindan_ko(bot))
