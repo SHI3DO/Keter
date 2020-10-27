@@ -90,7 +90,7 @@ class Shindan_ko(commands.Cog):
             try:
                 embed.add_field(name=f"{str(i)} : {reqs[i]}", value=f"requester : {reqid[i]}", inline=False)
             except:
-                return await ctx.send(embed=embed)
+                pass
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["진단승락", "진단허가"])
@@ -130,7 +130,53 @@ class Shindan_ko(commands.Cog):
             wb.save(shindanlib + f"{reqs[position - 1]}.xlsx")
             wb.close()
             time.sleep(1)
+            await msg.delete()
             await ctx.send(reqs[position - 1] + "에 대한 진단을 생성하였습니다.")
+
+        except asyncio.TimeoutError:
+            await msg.delete()
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            await ctx.send(embed=embed)
+
+        except discord.Forbidden:
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await msg.edit(content=embed)
+
+    @commands.command(aliases=["진단거절"])
+    async def shinrfs(self, ctx, *, position: int):
+        if position < 1:
+            return await ctx.send("**position** 변수는 자연수여야 합니다.")
+        f = open("./lib/cache/shindan_request.ccf", "r")
+        allreq = f.read()
+        reqs = allreq.split("/")
+        f.close()
+        f = open("./lib/cache/shindan_requestid.ccf", "r")
+        allreqid = f.read()
+        reqid = allreq.split("/")
+        f.close()
+        embed = discord.Embed(title="진단메이커", description=reqs[position - 1] + "에 대한 진단요청을 거절하시겠습니까?", color=0xeff0f1)
+        msg = await ctx.send(embed=embed)
+
+        def reaction_check_(m):
+            if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) == "✅":
+                return True
+            return False
+
+        try:
+            await msg.add_reaction("✅")
+            await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
+            f = open("./lib/cache/shindan_request.ccf", "w")
+            f.write(allreq.replace(f"{reqs[position - 1]}/",""))
+            f.close()
+            f = open("./lib/cache/shindan_requestid.ccf", "w")
+            f.write(allreqid.replace(f"{reqid[position - 1]}/",""))
+            f.close()
+            await msg.delete()
+            await ctx.send(reqs[position - 1] + "에 대한 진단요청을 거절하였습니다.")
 
         except asyncio.TimeoutError:
             await msg.delete()
