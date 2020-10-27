@@ -88,7 +88,7 @@ class Shindan_ko(commands.Cog):
         embed = discord.Embed(title="진단메이커", description=f"현재 총 {str(len(reqs))}개의 진단 생성 요청이 있습니다.", color=0xeff0f1)
         for i in range(0, 20):
             try:
-                embed.add_field(name=f"{str(i)} : {reqs[i]}", value=f"requester : {reqid[i]}")
+                embed.add_field(name=f"{str(i)} : {reqs[i]}", value=f"requester : {reqid[i]}", inline=False)
             except:
                 return await ctx.send(embed=embed)
         await ctx.send(embed=embed)
