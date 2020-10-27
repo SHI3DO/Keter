@@ -79,9 +79,11 @@ class Shindan_ko(commands.Cog):
     async def shinreq(self, ctx):
         f = open("./lib/cache/shindan_request.ccf", "r")
         reqs = f.read().split("/")
+        del reqs[-1]
         f.close()
         f = open("./lib/cache/shindan_requestid.ccf", "r")
         reqid = f.read().split("/")
+        del reqid[-1]
         f.close()
         embed = discord.Embed(title="진단메이커", description=f"현재 총 {str(len(reqs))}개의 진단 생성 요청이 있습니다.", color=0xeff0f1)
         for i in range(0, 20):
