@@ -233,7 +233,6 @@ class Shindan_ko(commands.Cog):
 
         def reactions_check_(m):
             if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) in ["ℹ", "🔤", "🆕"]:
-                order = m.emoji
                 return True
             return False
 
@@ -266,7 +265,7 @@ class Shindan_ko(commands.Cog):
             return await msg.edit(content=embed)
 
         try:
-            await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reactions_check_)
+            order = await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reactions_check_)
 
         except TimeoutError:
             await msg.delete()
@@ -276,6 +275,7 @@ class Shindan_ko(commands.Cog):
 
         wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
         ws = wb.active
+        order = order.emoji
 
         if order == "ℹ":
             msg.delete()
