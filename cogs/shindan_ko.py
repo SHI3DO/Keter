@@ -275,7 +275,6 @@ class Shindan_ko(commands.Cog):
 
         wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
         ws = wb.active
-        order = order.emoji
 
         if order == "ℹ":
             msg.delete()
@@ -342,6 +341,8 @@ class Shindan_ko(commands.Cog):
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 return await ctx.send(embed=embed)
+        
+        wb.close()
 
 def setup(bot):
     bot.add_cog(Shindan_ko(bot))
