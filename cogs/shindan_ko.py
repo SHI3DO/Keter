@@ -366,7 +366,10 @@ class Shindan_ko(commands.Cog):
             authorid = ws.cell(row=1, column=1).value
             cases = 1
             for i in range(3, 20):
-                cases = cases * int(ws.cell(row=2, column=i).value)
+                try:
+                    cases = cases * int(ws.cell(row=2, column=i).value)
+                except:
+                    pass
             embed = discord.Embed(title="진단메이커", description=f"{shindan}의 정보", color=0xeff0f1)
             embed.add_field(name="제작자", value=authorid)
             embed.add_field(name="경우의 수", value=cases)
