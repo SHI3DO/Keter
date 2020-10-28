@@ -10,11 +10,18 @@ from datetime import datetime
 from discord.ext import commands
 from evs import default, permissions
 
+covidlib = "./lib/covid/users/"
+
 class covid19(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = default.get("config.json")
         self.process = psutil.Process(os.getpid())
+        # 폴더생성
+        if os.path.isdir("./lib/covid/users"):
+            print("covid folder exist")
+        else:
+            os.makedirs("./lib/covid/users")
 
     # 참여
     @commands.command()
