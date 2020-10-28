@@ -39,7 +39,7 @@ class covid19(commands.Cog):
         try:
             await msg.add_reaction("✅")
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
-            if os.path.isfile(userlib + str(ctx.author.id) + ".txt"):
+            if os.path.isfile(covidlib + str(ctx.author.id) + ".txt"):
                 embed = discord.Embed(title="약복용알리미", description="이미 참여하셨습니다.", color=0xeff0f1)
                 await ctx.send(embed=embed)
             else:
@@ -50,7 +50,7 @@ class covid19(commands.Cog):
                     url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 await ctx.send(embed=embed)
 
-                f = open(userlib + str(ctx.author.id) + ".txt", 'w')
+                f = open(covidlib + str(ctx.author.id) + ".txt", 'w')
                 f.write("0")
                 f.close()
                 embed = discord.Embed(title="약복용알리미",
