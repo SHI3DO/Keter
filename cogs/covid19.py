@@ -10,7 +10,6 @@ from discord.ext import commands
 from evs import default, permissions
 
 covidlib = "./lib/covid/users/"
-now = datetime.now()
 
 class covid19(commands.Cog):
     def __init__(self, bot):
@@ -84,11 +83,11 @@ class covid19(commands.Cog):
             wb.save(covidlib + str(ctx.author.id) + ".xlsx")
             wb.close()
             await ctx.send("완료")
+            now = datetime.now()
             await ctx.send(str(now.year) + "년" + str(now.month) + "월" + str(now.day) +"일" + str(now.hour) + "시" + str(now.minute) + "분")
         else:
             embed = discord.Embed(title="약복용알리미", description="`약복용알리미`를 이용하여 먼저 참여해주세요.", color=0xeff0f1)
             await ctx.send(embed=embed)
 
-        
 def setup(bot):
     bot.add_cog(covid19(bot))
