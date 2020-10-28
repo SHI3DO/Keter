@@ -84,7 +84,7 @@ class covid19(commands.Cog):
             wb.close()
             await ctx.send("완료")
             now = datetime.now()
-            await ctx.send(str(now.year) + "년" + str(now.month) + "월" + str(now.day) +"일" + str(now.hour) + "시" + str(now.minute) + "분")
+            await ctx.send(str(now.year) + "년" + str(now.month) + "월" + str(now.day) +"일" + str(now.hour) + "시" + str(now.minute) + "분" + str(now.second) + "초")
         else:
             embed = discord.Embed(title="약복용알리미", description="`약복용알리미`를 이용하여 먼저 참여해주세요.", color=0xeff0f1)
             await ctx.send(embed=embed)
