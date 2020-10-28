@@ -1,14 +1,8 @@
 import discord
-import time
+from discord.ext import commands
+from evs import default
 import psutil
 import os
-import asyncio
-import openpyxl
-import random
-import math
-import numpy as np
-import datetime
-import matplotlib.pyplot as plt
 
 class covid19(commands.Cog):
     def __init__(self, bot):
