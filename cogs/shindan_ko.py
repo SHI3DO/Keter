@@ -225,6 +225,7 @@ class Shindan_ko(commands.Cog):
             if ws.cell(row=1, column=1).value == str(ctx.author.id):
                 pass
             else:
+                wb.close()
                 return await ctx.send("해당 진단을 수정할 수 없습니다.")
         else:
             return await ctx.send("해당 이름의 진단을 찾지 못했습니다.")
@@ -309,6 +310,10 @@ class Shindan_ko(commands.Cog):
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
                 if position > 16:
+                    embed = discord.Embed(title="진단메이커", description="변수는 최대 16개까지만 지원합니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                if position < 1:
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
@@ -334,10 +339,14 @@ class Shindan_ko(commands.Cog):
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
                 if position > 16:
+                    embed = discord.Embed(title="진단메이커", description="변수는 최대 16개까지만 지원합니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                if position < 1:
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
-                ws.cell(row=2, column=position).value = str(int(ws.cell(row=2, column=position).value) + 1)
+                ws.cell(row=2, column=position + 2).value = str(int(ws.cell(row=2, column=position + 2).value) + 1)
                 ws.cell(row=position, column=int(ws.cell(row=2, column=position).value) + 1).value = newval.content.replace(str(position) + " ", "")
                 await newctx.add_reaction("👍")
 
@@ -348,6 +357,26 @@ class Shindan_ko(commands.Cog):
                 return await ctx.send(embed=embed)
 
         wb.close()
+
+    @commands.command(aliases=["진단정보"])
+    async def shininf(self, ctx,  *, shindan: str):
+        if os.path.isfile(shindanlib + f"{shindan}.xlsx"):
+            wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+            ws = wb.active
+            authorid = ws.cell(row=1, column=1).value
+            cases = 1
+            for i in range(3, 20):
+                cases = cases * int(ws.cell(row=2, column=i).value)
+            embed = discord.Embed(title="진단메이커", description=f"{shindan}의 정보", color=0xeff0f1)
+            embed.add_field(name="제작자", value=authorid)
+            embed.add_field(name="경우의 수", value=cases)
+            wb.close()
+            return await ctx.send(embed=embed)
+        await msg.delete()
+        embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+        return await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Shindan_ko(bot))
