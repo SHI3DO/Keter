@@ -136,7 +136,7 @@ class Shindan_ko(commands.Cog):
             f.close()
             wb = openpyxl.Workbook()
             ws = wb.active
-            ws.cell(row=1, column=1).value = reqid[position - 1]  #author
+            ws.cell(row=1, column=1).value = str(reqid[position - 1])  #author
             ws.cell(row=1, column=2).value = "진단 <변수1>"  #form
             ws.cell(row=1, column=3).value = "변수1" #vals name
             ws.cell(row=2, column=3).value = "1" #vals count
@@ -391,6 +391,7 @@ class Shindan_ko(commands.Cog):
         ws = wb.active
         authorid = str(ws.cell(row=1, column=1).value)
         wb.close()
+        
         if not authorid == str(ctx.author.id):
             embed = discord.Embed(title="진단메이커", description="해당 진단을 삭제할 수 없습니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -409,7 +410,47 @@ class Shindan_ko(commands.Cog):
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
             await msg.delete()
             os.remove(shindanlib + shindan + ".xlsx")
-            await ctx.send(reqs[position - 1] + "에 대한 진단요청을 거절하였습니다.")
+            await ctx.send(shindan + "에 대한 진단을 삭제하였습니다.")
+
+        except asyncio.TimeoutError:
+            await msg.delete()
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            await ctx.send(embed=embed)
+
+        except discord.Forbidden:
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await msg.edit(content=embed)
+
+    @commands.command(aliases=["관리자진단삭제", "관진삭"])
+    @commands.check(permissions.is_owner)
+    async def shindel(self, ctx, shindan: str):
+        if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
+            embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+        wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+        ws = wb.active
+        authorid = str(ws.cell(row=1, column=1).value)
+        wb.close()
+
+        embed = discord.Embed(title="진단메이커", description=reqs[position - 1] + "에 대한 진단을 삭제하시겠습니까?\n 해당 진단은 영구적으로 삭제될 것입니다.", color=0xeff0f1)
+        msg = await ctx.send(embed=embed)
+
+        def reaction_check_(m):
+            if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) == "✅":
+                return True
+            return False
+
+        try:
+            await msg.add_reaction("✅")
+            await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
+            await msg.delete()
+            os.remove(shindanlib + shindan + ".xlsx")
+            await ctx.send(shindan + "에 대한 진단을 삭제처리하였습니다.")
 
         except asyncio.TimeoutError:
             await msg.delete()
