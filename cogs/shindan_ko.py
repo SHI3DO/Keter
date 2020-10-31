@@ -367,7 +367,10 @@ class Shindan_ko(commands.Cog):
             cases = 1
             for i in range(3, 20):
                 try:
-                    cases = cases * int(ws.cell(row=2, column=i).value)
+                    if int(ws.cell(row=2, column=i).value) == 0:
+                        pass
+                    else:
+                        cases = cases * int(ws.cell(row=2, column=i).value)
                 except:
                     pass
             embed = discord.Embed(title="진단메이커", description=f"{shindan}의 정보", color=0xeff0f1)
