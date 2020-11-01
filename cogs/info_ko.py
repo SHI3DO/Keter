@@ -68,7 +68,6 @@ class Information_ko(commands.Cog):
         version = f.read()
         f.close
         ramUsage = self.process.memory_full_info().rss / 1024**2
-        avgmembers = round(len(self.bot.users) / len(self.bot.guilds))
         avguilds = round(len(self.bot.guilds) / len(self.bot.guilds))
 
         embed = discord.Embed(colour=0xeff0f1)
@@ -79,7 +78,7 @@ class Information_ko(commands.Cog):
             value=', '.join([str(self.bot.get_user(x)) for x in self.config.owners]),
             inline=True)
         embed.add_field(name="라이브러리", value="discord.py", inline=True)
-        embed.add_field(name="유저", value= str(len(ctx.bot.guilds)*avgmembers) + " users", inline=True)
+        embed.add_field(name="유저", value= str(len(self.bot.users)) + " users", inline=True)
         embed.add_field(name="커맨드 로드", value=len([x.name for x in self.bot.commands]), inline=True)
         embed.add_field(name="램", value=f"{ramUsage:.2f} MB", inline=True)
         embed.add_field(name='서버', value= str(len(ctx.bot.guilds)*avguilds) + " guilds", inline=True)
