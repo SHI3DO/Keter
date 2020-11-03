@@ -1,10 +1,8 @@
 # Keter
 Keter Discord Bot
-## Developer
+## Team
 - Shio
 - Yeon
-
-## Services
 - RedTea
 - ych.bup
 
