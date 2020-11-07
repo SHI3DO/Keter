@@ -488,8 +488,8 @@ class Shindan_ko(commands.Cog):
             if not ws.cell(row=2, column=i).value == "0":
                 count = ws.cell(row=2, column=i).value
                 val = ws.cell(row=i, column=seed % int(count) + 1).value
-                await ctx.send(val)
-                forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
+                if val != None:
+                    forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
                 
         wb.close()
         embed = discord.Embed(title=shindan, description=forming, color=0xeff0f1)
