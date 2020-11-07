@@ -350,7 +350,7 @@ class Shindan_ko(commands.Cog):
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
                 ws.cell(row=2, column=position + 2).value = str(int(ws.cell(row=2, column=position + 2).value) + 1)
-                ws.cell(row=position, column=int(ws.cell(row=2, column=position).value) + 1).value = newval.content.replace(str(position) + " ", "")
+                ws.cell(row=position + 2, column=int(ws.cell(row=2, column=position + 2).value) + 1).value = newval.content.replace(str(position) + " ", "")
                 await newctx.add_reaction("👍")
 
             except TimeoutError:
