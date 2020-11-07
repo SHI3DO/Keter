@@ -487,7 +487,7 @@ class Shindan_ko(commands.Cog):
         for i in range(3, 19):
             if not ws.cell(row=2, column=i).value == "0":
                 count = ws.cell(row=2, column=i).value
-                sid = (seed / int(count) - round(seed / int(count))) * int(count) + 1
+                sid = round((seed / int(count) - round(seed / int(count))) * int(count) + 1)
                 val = ws.cell(row=i, column=sid).value
                 if val != None:
                     forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
