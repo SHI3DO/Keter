@@ -245,7 +245,7 @@ class Shindan_ko(commands.Cog):
             return False
 
         def check_(m):
-            if m.user_id == ctx.author.id:
+            if m.author.id == ctx.author.id:
                 return True
             return False
 
@@ -287,7 +287,7 @@ class Shindan_ko(commands.Cog):
         if order == "ℹ":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="바꿀 내용을 말해주세요.", color=0xeff0f1)
-            await msg.channel.send(content=embed)
+            await msg.channel.send(embed=embed)
             try:
                 newctx = await self.bot.wait_for('message', timeout=120.0, check=check_)
                 ws.cell(row=1, column=1).value = newctx.content
