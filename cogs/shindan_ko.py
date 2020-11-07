@@ -140,8 +140,9 @@ class Shindan_ko(commands.Cog):
             ws.cell(row=1, column=2).value = "진단 <변수1>"  #form
             ws.cell(row=1, column=3).value = "변수1" #vals name
             ws.cell(row=2, column=3).value = "1" #vals count
-            for i in range(4, 17):
-                ws.cell(row=2, column=3).value = "0"
+            for i in range(4, 19):
+                ws.cell(row=1, column=i).value = f"변수{str(i)}"
+                ws.cell(row=2, column=i).value = "0"
             ws.cell(row=3, column=1).value = "데이터를 추가해주세요" #vals
             wb.save(shindanlib + f"{reqs[position - 1]}.xlsx")
             wb.close()
@@ -222,7 +223,7 @@ class Shindan_ko(commands.Cog):
         if os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
             ws = wb.active
-            if ws.cell(row=1, column=1).value == str(ctx.author.id):
+            if ws.cell(row=1, column=2).value == str(ctx.author.id):
                 pass
             else:
                 wb.close()
@@ -319,7 +320,7 @@ class Shindan_ko(commands.Cog):
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
-                ws.cell(row=1, column=position).value = newval.content.replace(str(position) + " ", "")
+                ws.cell(row=1, column=position + 2).value = newval.content.replace(str(position) + " ", "")
                 await newctx.add_reaction("👍")
 
             except TimeoutError:
@@ -357,7 +358,9 @@ class Shindan_ko(commands.Cog):
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 return await ctx.send(embed=embed)
-
+            
+        
+        wb.save(shindanlib + f"{shindan}.xlsx")
         wb.close()
 
     @commands.command(aliases=["진단정보"])
@@ -469,6 +472,29 @@ class Shindan_ko(commands.Cog):
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
             await msg.edit(content=embed)
+
+    @commands.command(aliases=["진단받기"])
+    @commands.check(permissions.is_owner)
+    async def 진단(self, ctx, shindan: str):
+        if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
+            embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+        wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+        ws = wb.active
+        forming = ws.cell(row=1, column=2).value
+        seed = ctx.author.id + math.floor(time.time()/86400)
+        for i in range(3, 19):
+            if ws.cell(row=2, column=i).value == "0":
+                pass
+            else:
+                count = ws.cell(row=2, column=i).value
+                val = ws.cell(row=i, column=seed % i + 1).value
+                forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
+                
+        wb.close()
+        embed = discord.Embed(title=shindan, description=forming, color=0xeff0f1)
+        await ctx.send(embed=embed)
 
 
 def setup(bot):
