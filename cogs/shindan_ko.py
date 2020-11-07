@@ -239,7 +239,7 @@ class Shindan_ko(commands.Cog):
 
         def reactions_check_(m):
             if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) in ["ℹ", "🔤", "🆕"]:
-                global
+                global order
                 order = m.emoji; print(order)
                 return True
             return False
