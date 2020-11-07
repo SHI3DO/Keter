@@ -143,7 +143,6 @@ class Shindan_ko(commands.Cog):
             for i in range(4, 19):
                 ws.cell(row=1, column=i).value = f"변수{str(i-2)}"
                 ws.cell(row=2, column=i).value = "0"
-            ws.cell(row=3, column=1).value = "데이터를 추가해주세요" #vals
             wb.save(shindanlib + f"{reqs[position - 1]}.xlsx")
             wb.close()
             time.sleep(1)
@@ -321,7 +320,7 @@ class Shindan_ko(commands.Cog):
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
                 ws.cell(row=1, column=position + 2).value = newval.content.replace(str(position) + " ", "")
-                await newctx.add_reaction("👍")
+                await newval.add_reaction("👍")
 
             except TimeoutError:
                 await msg.delete()
@@ -489,8 +488,7 @@ class Shindan_ko(commands.Cog):
                 count = ws.cell(row=2, column=i).value
                 sid = round((seed / int(count) - round(seed / int(count))) * int(count) + 1)
                 val = ws.cell(row=i, column=sid).value
-                if val != None:
-                    forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
+                forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
                 
         wb.close()
         embed = discord.Embed(title=shindan, description=forming, color=0xeff0f1)
