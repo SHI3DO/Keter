@@ -141,7 +141,7 @@ class Shindan_ko(commands.Cog):
             ws.cell(row=1, column=3).value = "변수1" #vals name
             ws.cell(row=2, column=3).value = "1" #vals count
             for i in range(4, 19):
-                ws.cell(row=1, column=i).value = f"변수{str(i)}"
+                ws.cell(row=1, column=i).value = f"변수{str(i-2)}"
                 ws.cell(row=2, column=i).value = "0"
             ws.cell(row=3, column=1).value = "데이터를 추가해주세요" #vals
             wb.save(shindanlib + f"{reqs[position - 1]}.xlsx")
