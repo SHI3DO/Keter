@@ -287,7 +287,7 @@ class Shindan_ko(commands.Cog):
         if order == "ℹ":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="바꿀 내용을 말해주세요.", color=0xeff0f1)
-            await msg.send(content=embed)
+            await msg.channel.send(content=embed)
             try:
                 newctx = await self.bot.wait_for('message', timeout=120.0, check=check_)
                 ws.cell(row=1, column=1).value = newctx.content
@@ -302,7 +302,7 @@ class Shindan_ko(commands.Cog):
         if order == "🔤":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="바꿀 변수의 이름를 말해주세요.", color=0xeff0f1)
-            await msg.send(content=embed)
+            await msg.channel.send(content=embed)
             try:
                 newval = await self.bot.wait_for('message', timeout=60.0, check=check_)
                 try:
@@ -331,7 +331,7 @@ class Shindan_ko(commands.Cog):
         if order == "🆕":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="추가할 데이터를 말해주세요.", color=0xeff0f1)
-            await msg.send(content=embed)
+            await msg.channel.send(content=embed)
             try:
                 newval = await self.bot.wait_for('message', timeout=60.0, check=check_)
                 try:
