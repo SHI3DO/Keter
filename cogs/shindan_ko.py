@@ -351,7 +351,7 @@ class Shindan_ko(commands.Cog):
                     return await ctx.send(embed=embed)
                 ws.cell(row=2, column=position + 2).value = str(int(ws.cell(row=2, column=position + 2).value) + 1)
                 ws.cell(row=position + 2, column=int(ws.cell(row=2, column=position + 2).value) + 1).value = newval.content.replace(str(position) + " ", "")
-                await newctx.add_reaction("👍")
+                await newval.add_reaction("👍")
 
             except TimeoutError:
                 await msg.delete()
