@@ -223,7 +223,7 @@ class Shindan_ko(commands.Cog):
         if os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
             ws = wb.active
-            if ws.cell(row=1, column=2).value == str(ctx.author.id):
+            if ws.cell(row=1, column=1).value == str(ctx.author.id):
                 pass
             else:
                 wb.close()
@@ -291,7 +291,7 @@ class Shindan_ko(commands.Cog):
             await msg.channel.send(embed=embed)
             try:
                 newctx = await self.bot.wait_for('message', timeout=120.0, check=check_)
-                ws.cell(row=1, column=1).value = newctx.content
+                ws.cell(row=1, column=2).value = newctx.content
                 await newctx.add_reaction("👍")
 
             except TimeoutError:
