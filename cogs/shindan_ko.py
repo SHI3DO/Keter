@@ -485,11 +485,10 @@ class Shindan_ko(commands.Cog):
         forming = ws.cell(row=1, column=2).value
         seed = ctx.author.id + math.floor(time.time()/86400)
         for i in range(3, 19):
-            if ws.cell(row=2, column=i).value == "0":
-                pass
-            else:
+            if not ws.cell(row=2, column=i).value == "0":
                 count = ws.cell(row=2, column=i).value
                 val = ws.cell(row=i, column=seed % int(count) + 1).value
+                await ctx.send(val)
                 forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
                 
         wb.close()
