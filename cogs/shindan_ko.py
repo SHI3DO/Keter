@@ -489,7 +489,7 @@ class Shindan_ko(commands.Cog):
                 pass
             else:
                 count = ws.cell(row=2, column=i).value
-                val = ws.cell(row=i, column=seed % count + 1).value
+                val = ws.cell(row=i, column=seed % int(count) + 1).value
                 forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
                 
         wb.close()
