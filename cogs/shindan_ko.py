@@ -303,11 +303,11 @@ class Shindan_ko(commands.Cog):
         if order == "🔤":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="바꿀 변수의 이름를 말해주세요.", color=0xeff0f1)
-            await msg.channel.send(content=embed)
+            await msg.channel.send(embed=embed)
             try:
                 newval = await self.bot.wait_for('message', timeout=60.0, check=check_)
                 try:
-                    position = int(newval.split(" ")[0])
+                    position = int(newval.content.split(" ")[0])
                 except:
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -332,11 +332,11 @@ class Shindan_ko(commands.Cog):
         if order == "🆕":
             msg.delete()
             embed = discord.Embed(title="진단메이커", description="추가할 데이터를 말해주세요.", color=0xeff0f1)
-            await msg.channel.send(content=embed)
+            await msg.channel.send(embed=embed)
             try:
                 newval = await self.bot.wait_for('message', timeout=60.0, check=check_)
                 try:
-                    position = int(newval.split(" ")[0])
+                    position = int(newval.content.split(" ")[0])
                 except:
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
