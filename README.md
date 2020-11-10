@@ -7,10 +7,10 @@ Keter Discord Bot
 - ych.bup
 
 ## Documentation
-https://keter.netlify.app
+https://shio7.github.io/KeterDocs
 
 ## Discord
-https://discord.gg/P7UVAdB
+https://discord.io/SHYOfficial
 
 ## Invite
 [Link](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)
