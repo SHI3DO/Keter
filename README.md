@@ -7,8 +7,7 @@ Keter Discord Bot
 - ych.bup
 
 ## Documentation
-https://shio7.github.io/KeterDocs
-
+https://shio7.github.io/KeterManual
 ## Discord
 https://discord.io/SHYOfficial
 
