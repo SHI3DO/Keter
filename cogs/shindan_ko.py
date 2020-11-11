@@ -137,10 +137,8 @@ class Shindan_ko(commands.Cog):
             wb = openpyxl.Workbook()
             ws = wb.active
             ws.cell(row=1, column=1).value = str(reqid[position - 1])  #author
-            ws.cell(row=1, column=2).value = "진단 <변수1>"  #form
-            ws.cell(row=1, column=3).value = "변수1" #vals name
-            ws.cell(row=2, column=3).value = "1" #vals count
-            for i in range(4, 19):
+            ws.cell(row=1, column=2).value = "진단 <변수의 이름>을 이용하여 변수를 호출하세요!!"  #form
+            for i in range(3, 19):
                 ws.cell(row=1, column=i).value = f"변수{str(i-2)}"
                 ws.cell(row=2, column=i).value = "0"
             wb.save(shindanlib + f"{reqs[position - 1]}.xlsx")
@@ -486,7 +484,7 @@ class Shindan_ko(commands.Cog):
         for i in range(3, 19):
             if not ws.cell(row=2, column=i).value == "0":
                 count = ws.cell(row=2, column=i).value
-                sid = round((seed / int(count) - round(seed / int(count))) * int(count) + 1)
+                sid = (seed % int(count) + 1
                 val = ws.cell(row=i, column=sid).value
                 forming = forming.replace(f"<{ws.cell(row=1, column=i).value}>", val)
                 
