@@ -58,7 +58,7 @@ class economy_ko(commands.Cog):
     async def on_message(self, ctx):
         if ctx.guild.id == 749595288280498188:
             if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
-                randomnum = random.randrange(1, 3)
+                randomnum = random.randrange(10, 30)
                 wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
                 ws = wb.active
                 suvmoney = int(ws.cell(row=1, column=2).value)
@@ -142,10 +142,10 @@ class economy_ko(commands.Cog):
     @commands.command(aliases=['돈내놔', '돈줘'])
     async def 돈받기(self, ctx):
         if os.path.isfile(userlib + str(ctx.author.id) + ".xlsx"):
-            num = random.randrange(1, 12)
+            num = random.randrange(100, 120)
             jackpot = random.random()
             if jackpot < 0.001:
-                num = num * 10000
+                num = num * 100000
             wb = openpyxl.load_workbook(userlib + str(ctx.author.id) + ".xlsx")
             ws = wb.active
             getmoney = ws.cell(row=1, column=2).value
