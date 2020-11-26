@@ -236,7 +236,7 @@ class Shindan_ko(commands.Cog):
             return False
 
         def reactions_check_(m):
-            if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) in ["ℹ", "🔤", "🆕"]:
+            if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) in ["ℹ", "🔤", "🆕", "🆎"]:
                 global order
                 order = str(m.emoji); print(order)
                 return True
@@ -251,11 +251,12 @@ class Shindan_ko(commands.Cog):
             await msg.add_reaction("✅")
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
             await msg.delete()
-            embed = discord.Embed(title="진단메이커", description="어떤 내용을 수정하시겠습니까?\nℹ : 내용   🔤 : 변수이름   🆕 : 데이터", color=0xeff0f1)
+            embed = discord.Embed(title="진단메이커", description="어떤 내용을 수정하시겠습니까?\nℹ : 내용   🔤 : 변수이름   🆕/🆎 : 데이터 추가/삭제", color=0xeff0f1)
             msg = await ctx.send(embed=embed)
             await msg.add_reaction("ℹ")
             await msg.add_reaction("🔤")
             await msg.add_reaction("🆕")
+            await msg.add_reaction("🆎")
 
         except asyncio.TimeoutError:
             await msg.delete()
@@ -355,10 +356,6 @@ class Shindan_ko(commands.Cog):
                 for i in range(1, len(its) + 1):
                     ws.cell(row=position + 2, column=i).value = its[i]
                 int(ws.cell(row=2, column=position + 2).value) = str(len(its))
-                if newval.content.replace(str(position) + " ", "") == "초기화":
-                    for i in range(1, len(its) + 1):
-                        ws.cell(row=position + 2, column=i).value = None
-                        await ctx.send("특수명령어 : 해당 변수값 초기화")
                     
                 await newval.add_reaction("👍")
 
@@ -367,7 +364,54 @@ class Shindan_ko(commands.Cog):
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 return await ctx.send(embed=embed)
-            
+
+        if order == "🆎":
+            msg.delete()
+            embed = discord.Embed(title="진단메이커", description="삭제할 데이터를 말해주세요.", color=0xeff0f1)
+            await msg.channel.send(embed=embed)
+            try:
+                newval = await self.bot.wait_for('message', timeout=60.0, check=check_)
+                try:
+                    position = int(newval.content.split(" ")[0])
+                except:
+                    embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                if position > 16:
+                    embed = discord.Embed(title="진단메이커", description="변수는 최대 16개까지만 지원합니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                if position < 1:
+                    embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                length = int(ws.cell(row=2, column=position + 2).value)
+                its = []
+                for i in range(1, length + 1):
+                    its.append(ws.cell(position + 2, column=i).value)
+                its = list(set(its))
+                try:
+                    its.remove(newval.content.replace(str(position) + " ", ""))
+                except:
+                    embed = discord.Embed(title="진단메이커", description="존재하지 않는 데이터입니다.", color=0xeff0f1)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                    return await ctx.send(embed=embed)
+                its.sort()
+                for i in range(1, len(its) + 1):
+                    ws.cell(row=position + 2, column=i).value = its[i]
+                int(ws.cell(row=2, column=position + 2).value) = str(len(its))
+                if newval.content.replace(str(position) + " ", "") == "/초기화":
+                    for i in range(1, len(its) + 1):
+                        ws.cell(row=position + 2, column=i).value = None
+                        await ctx.send("특수명령어 : 해당 변수 초기화")
+                    
+                await newval.add_reaction("👍")
+
+            except TimeoutError:
+                await msg.delete()
+                embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                return await ctx.send(embed=embed)
         
         wb.save(shindanlib + f"{shindan}.xlsx")
         wb.close()
