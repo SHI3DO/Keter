@@ -346,8 +346,20 @@ class Shindan_ko(commands.Cog):
                     embed = discord.Embed(title="진단메이커", description="변수가 잘못되었습니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
-                ws.cell(row=2, column=position + 2).value = str(int(ws.cell(row=2, column=position + 2).value) + 1)
-                ws.cell(row=position + 2, column=int(ws.cell(row=2, column=position + 2).value) + 1).value = newval.content.replace(str(position) + " ", "")
+                length = int(ws.cell(row=2, column=position + 2).value)
+                its = [newval.content.replace(str(position) + " ", "")]
+                for i in range(1, length + 1):
+                    its.append(ws.cell(position + 2, column=i).value)
+                its = list(set(its))
+                its.sort()
+                for i in range(1, len(its) + 1):
+                    ws.cell(row=position + 2, column=i).value = its[i]
+                int(ws.cell(row=2, column=position + 2).value) = str(len(its))
+                if newval.content.replace(str(position) + " ", "") == "초기화":
+                    for i in range(1, len(its) + 1):
+                        ws.cell(row=position + 2, column=i).value = None
+                        await ctx.send("특수명령어 : 해당 변수값 초기화")
+                    
                 await newval.add_reaction("👍")
 
             except TimeoutError:
