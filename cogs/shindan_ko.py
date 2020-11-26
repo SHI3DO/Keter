@@ -501,10 +501,6 @@ class Shindan_ko(commands.Cog):
             embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             return await ctx.send(embed=embed)
-        wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
-        ws = wb.active
-        authorid = str(ws.cell(row=1, column=1).value)
-        wb.close()
 
         embed = discord.Embed(title="진단메이커", description=shindan + "에 대한 진단을 삭제하시겠습니까?\n 해당 진단은 영구적으로 삭제될 것입니다.", color=0xeff0f1)
         msg = await ctx.send(embed=embed)
