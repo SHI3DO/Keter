@@ -560,12 +560,12 @@ class Shindan_ko(commands.Cog):
 
         try:
             await self.bot.wait_for('message', timeout=10.0, check=msg_check)
-            ctx.send(str(msg.attachments))
-            if not len(msg.attachments) == 1:
+            try:
+                url = str(msg.attachments).split("url='")[1].replace("'>]", "")
+            except:
                 embed = discord.Embed(title="진단메이커", description="파일이 올바르지 않습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                 return await ctx.send(embed=embed)
-            url = str(msg.attachments).split("url='")[1].replace("'>]", "")
             os.remove(shindanlib + shindan + ".xlsx")
             with open(shindanlib + shindan + ".xlsx", "wb") as file:
                 response = get(url)
