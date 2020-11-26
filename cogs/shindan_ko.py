@@ -559,10 +559,10 @@ class Shindan_ko(commands.Cog):
             return False
 
         try:
-            await self.bot.wait_for('message', timeout=10.0, check=msg_check)
+            rsg = await self.bot.wait_for('message', timeout=10.0, check=msg_check)
             await ctx.send(str(msg.attachments))
             try:
-                url = str(msg.attachments).split("url='")[1].replace("'>]", "")
+                url = str(rsg.attachments).split("url='")[1].replace("'>]", "")
             except:
                 embed = discord.Embed(title="진단메이커", description="파일이 올바르지 않습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
