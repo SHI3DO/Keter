@@ -553,14 +553,14 @@ class Shindan_ko(commands.Cog):
         embed = discord.Embed(title="진단메이커", description=shindan + "에 대한 진단을 덮어씌우시겠습니까?\n 해당 수정은 되돌릴 수 없으며 형식이 올바르지 않은 경우 실행되지 않을 수 있습니다.", color=0xeff0f1)
         msg = await ctx.send(embed=embed)
 
-        def reaction_check_(m):
+        def msg_check(m):
             if m.author.id == ctx.author.id:
                 return True
             return False
 
         try:
             await msg.add_reaction("✅")
-            await self.bot.wait_for('message', timeout=10.0, check=reaction_check_)
+            await self.bot.wait_for('message', timeout=10.0, check=msg_check)
             await msg.delete()
             if ctx.Attachment.size == 0 or message.Attachment.size > 1:
                 embed = discord.Embed(title="진단메이커", description="파일이 올바르지 않습니다.", color=0xeff0f1)
