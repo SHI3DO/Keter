@@ -557,7 +557,6 @@ class Shindan_ko(commands.Cog):
 
         try:
             rsg = await self.bot.wait_for('message', timeout=10.0, check=msg_check)
-            await ctx.send(str(rsg.attachments))
             try:
                 url = str(rsg.attachments).split("url='")[1].replace("'>]", "")
             except:
@@ -571,6 +570,7 @@ class Shindan_ko(commands.Cog):
             embed = discord.Embed(title="진단메이커", description="진단을 업로드하였습니다.", color=0xeff0f1)
             await ctx.send(embed=embed)
             await msg.delete()
+            await rsg.delete()
 
         except asyncio.TimeoutError:
             await msg.delete()
