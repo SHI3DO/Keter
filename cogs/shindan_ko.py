@@ -560,7 +560,6 @@ class Shindan_ko(commands.Cog):
 
         try:
             await self.bot.wait_for('message', timeout=10.0, check=msg_check)
-            await msg.delete()
             ctx.send(str(msg.attachments))
             if not len(msg.attachments) == 1:
                 embed = discord.Embed(title="진단메이커", description="파일이 올바르지 않습니다.", color=0xeff0f1)
@@ -573,6 +572,7 @@ class Shindan_ko(commands.Cog):
                 file.write(response.content)
             embed = discord.Embed(title="진단메이커", description="진단을 업로드하였습니다.", color=0xeff0f1)
             await ctx.send(embed=embed)
+            await msg.delete()
 
         except asyncio.TimeoutError:
             await msg.delete()
