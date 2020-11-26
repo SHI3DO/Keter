@@ -351,6 +351,10 @@ class Shindan_ko(commands.Cog):
                 its = [newval.content.replace(str(position) + " ", "")]
                 for i in range(1, length + 1):
                     its.append(ws.cell(position + 2, column=i).value)
+                try:
+                    its.remove(None)
+                except:
+                    pass
                 its = list(set(its))
                 its.sort()
                 for i in range(1, len(its) + 1):
@@ -396,6 +400,10 @@ class Shindan_ko(commands.Cog):
                     embed = discord.Embed(title="진단메이커", description="존재하지 않는 데이터입니다.", color=0xeff0f1)
                     embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
                     return await ctx.send(embed=embed)
+                try:
+                    its.remove(None)
+                except:
+                    pass
                 its.sort()
                 for i in range(1, len(its) + 1):
                     ws.cell(row=position + 2, column=i).value = its[i]
