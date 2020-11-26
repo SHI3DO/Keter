@@ -586,7 +586,6 @@ class Shindan_ko(commands.Cog):
             await msg.edit(content=embed)
 
     @commands.command(aliases=["진단받기"])
-    @commands.check(permissions.is_owner)
     async def 진단(self, ctx, shindan: str):
         if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
