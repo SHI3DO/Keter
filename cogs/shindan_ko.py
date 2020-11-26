@@ -554,7 +554,7 @@ class Shindan_ko(commands.Cog):
         msg = await ctx.send(embed=embed)
 
         def reaction_check_(m):
-            if m.user_id == ctx.author.id:
+            if m.author.id == ctx.author.id:
                 return True
             return False
 
