@@ -597,7 +597,7 @@ class Shindan_ko(commands.Cog):
         forming = ws.cell(row=1, column=2).value
         seed = ctx.author.id + math.floor(time.time()/86400)
         for i in range(3, 19):
-            if not ws.cell(row=2, column=i).value == "0":
+            if not str(ws.cell(row=2, column=i).value) == "0":
                 count = ws.cell(row=2, column=i).value
                 sid = int(count) - seed % int(count)
                 val = ws.cell(row=i, column=sid).value
