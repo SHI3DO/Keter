@@ -351,11 +351,11 @@ class Shindan_ko(commands.Cog):
                 its = [newval.content.replace(str(position) + " ", "")]
                 for i in range(1, length + 1):
                     its.append(ws.cell(position + 2, column=i).value)
+                its = list(set(its))
                 try:
                     its.remove(None)
                 except:
                     pass
-                its = list(set(its))
                 its.sort()
                 for i in range(1, len(its) + 1):
                     ws.cell(row=position + 2, column=i).value = its[i - 1]
