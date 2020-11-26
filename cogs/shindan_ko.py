@@ -441,8 +441,8 @@ class Shindan_ko(commands.Cog):
                 except:
                     pass
             author = self.bot.get_user(int(authorid))
-            embed = discord.Embed(title="진단메이커", description=f"{shindan}의 정보", color=0xeff0f1)
-            embed.add_field(name="제작자", value=author.name + author.discriminator)
+            embed = discord.Embed(title="진단메이커", description=f"**{shindan}**의 정보", color=0xeff0f1)
+            embed.add_field(name="제작자", value="**" + author.name + "**#" + author.discriminator)
             embed.add_field(name="경우의 수", value=cases)
             wb.close()
             return await ctx.send(embed=embed)
