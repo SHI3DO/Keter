@@ -560,7 +560,7 @@ class Shindan_ko(commands.Cog):
 
         try:
             await self.bot.wait_for('message', timeout=10.0, check=msg_check)
-            url = str(msg.attachments).split("url='")[1].replace("'>]", "")
+            await ctx.send(str(msg.attachments))
             try:
                 url = str(msg.attachments).split("url='")[1].replace("'>]", "")
             except:
