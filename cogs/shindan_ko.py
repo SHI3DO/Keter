@@ -450,7 +450,6 @@ class Shindan_ko(commands.Cog):
         return await ctx.send(embed=embed)
 
     @commands.command(aliases=["진단삭제"])
-    @commands.check(permissions.is_owner)
     async def shindel(self, ctx, shindan: str):
         if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
@@ -520,6 +519,60 @@ class Shindan_ko(commands.Cog):
             await msg.delete()
             os.remove(shindanlib + shindan + ".xlsx")
             await ctx.send(shindan + "에 대한 진단을 삭제처리하였습니다.")
+
+        except asyncio.TimeoutError:
+            await msg.delete()
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            await ctx.send(embed=embed)
+
+        except discord.Forbidden:
+            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
+            await msg.edit(content=embed)
+
+    @commands.command(aliases=["진단업로드"])
+    @commands.check(permissions.is_owner)
+    async def shinupl(self, ctx, shindan: str):
+        if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
+            embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+        wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+        ws = wb.active
+        authorid = str(ws.cell(row=1, column=1).value)
+        wb.close()
+        
+        if not authorid == str(ctx.author.id):
+            embed = discord.Embed(title="진단메이커", description="해당 진단을 수정할 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+
+        embed = discord.Embed(title="진단메이커", description=shindan + "에 대한 진단을 덮어씌우시겠습니까?\n 해당 수정은 되돌릴 수 없으며 형식이 올바르지 않은 경우 실행되지 않을 수 있습니다.", color=0xeff0f1)
+        msg = await ctx.send(embed=embed)
+
+        def reaction_check_(m):
+            if m.user_id == ctx.author.id:
+                return True
+            return False
+
+        try:
+            await msg.add_reaction("✅")
+            await self.bot.wait_for('message', timeout=10.0, check=reaction_check_)
+            await msg.delete()
+            if ctx.Attachment.size == 0 or message.Attachment.size > 1:
+                embed = discord.Embed(title="진단메이커", description="파일이 올바르지 않습니다.", color=0xeff0f1)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+                return await ctx.send(embed=embed)
+            url = str(message.attachments).split("url='")[1].replace("'>]", "")
+            os.remove(shindanlib + shindan + ".xlsx")
+            with open(shindanlib + shindan + ".xlsx", "wb") as file:
+                response = get(url)
+                file.write(response.content)
+            embed = discord.Embed(title="진단메이커", description="진단을 업로드하였습니다.", color=0xeff0f1)
+            await ctx.send(embed=embed)
 
         except asyncio.TimeoutError:
             await msg.delete()
