@@ -399,7 +399,7 @@ class Shindan_ko(commands.Cog):
                 its.sort()
                 for i in range(1, len(its) + 1):
                     ws.cell(row=position + 2, column=i).value = its[i]
-                int(ws.cell(row=2, column=position + 2).value) = str(len(its))
+                ws.cell(row=2, column=position + 2).value = str(len(its))
                 if newval.content.replace(str(position) + " ", "") == "/초기화":
                     for i in range(1, len(its) + 1):
                         ws.cell(row=position + 2, column=i).value = None
