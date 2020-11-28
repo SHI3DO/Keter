@@ -63,18 +63,12 @@ class Shindan_ko(commands.Cog):
             f.close()
             await ctx.send(content + "에 대한 진단을 관리자에게 요청하였습니다.")
 
-        except asyncio.TimeoutError:
+        except:
             await msg.delete()
             embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             await ctx.send(embed=embed)
-
-        except discord.Forbidden:
-            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await msg.edit(content=embed)
 
     @commands.command(aliases=['진단목록', '진단리스트'])
     async def shinlis(self, ctx, plist: int):
@@ -148,18 +142,12 @@ class Shindan_ko(commands.Cog):
             await msg.delete()
             await ctx.send(reqs[position - 1] + "에 대한 진단을 생성하였습니다.")
 
-        except asyncio.TimeoutError:
+        except:
             await msg.delete()
             embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             await ctx.send(embed=embed)
-
-        except discord.Forbidden:
-            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await msg.edit(content=embed)
 
     @commands.command(aliases=["진단거절"])
     @commands.check(permissions.is_owner)
@@ -194,18 +182,12 @@ class Shindan_ko(commands.Cog):
             await msg.delete()
             await ctx.send(reqs[position - 1] + "에 대한 진단요청을 거절하였습니다.")
 
-        except asyncio.TimeoutError:
+        except:
             await msg.delete()
             embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             await ctx.send(embed=embed)
-
-        except discord.Forbidden:
-            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            await msg.edit(content=embed)
 
     @commands.command(aliases=["진단초기화"])
     @commands.check(permissions.is_owner)
@@ -259,23 +241,17 @@ class Shindan_ko(commands.Cog):
             await msg.add_reaction("🆕")
             await msg.add_reaction("🆎")
 
-        except asyncio.TimeoutError:
+        except:
             await msg.delete()
             embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             return await ctx.send(embed=embed)
 
-        except discord.Forbidden:
-            embed = discord.Embed(title="진단메이커", description="동의하지 않으셨습니다.", color=0xeff0f1)
-            embed.set_thumbnail(
-                url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
-            return await msg.edit(content=embed)
-
         try:
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reactions_check_)
 
-        except TimeoutError:
+        except:
             await msg.delete()
             embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -293,7 +269,7 @@ class Shindan_ko(commands.Cog):
                 ws.cell(row=1, column=2).value = newctx.content
                 await newctx.add_reaction("👍")
 
-            except TimeoutError:
+            except:
                 await msg.delete()
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -322,7 +298,7 @@ class Shindan_ko(commands.Cog):
                 ws.cell(row=1, column=position + 2).value = newval.content.replace(str(position) + " ", "")
                 await newval.add_reaction("👍")
 
-            except TimeoutError:
+            except:
                 await msg.delete()
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -364,7 +340,7 @@ class Shindan_ko(commands.Cog):
                     
                 await newval.add_reaction("👍")
 
-            except TimeoutError:
+            except:
                 await msg.delete()
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
@@ -416,7 +392,7 @@ class Shindan_ko(commands.Cog):
                     
                 await newval.add_reaction("👍")
 
-            except TimeoutError:
+            except:
                 await msg.delete()
                 embed = discord.Embed(title="진단메이커", description="시간이 초과되었습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
