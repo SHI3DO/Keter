@@ -71,10 +71,10 @@ class Shindan_ko(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(aliases=['진단목록', '진단리스트'])
-    async def shinlis(self, ctx, plist: int):
+    async def shinlis(self, ctx, page: int):
         shins = os.listdir(shindanlib)
         embed = discord.Embed(title="진단메이커", color=0xeff0f1)
-        for i in range(0 + 10 * (plist - 1), 10 + 10 * (plist - 1)):
+        for i in range(0 + 10 * (page - 1), 10 + 10 * (page - 1)):
             try:
                 embed.add_field(name=str(i + 1), value=shins[i].replace(".xlsx", ""))
             except IndexError:
@@ -82,6 +82,7 @@ class Shindan_ko(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["진단요청", "진단요청목록"])
+    @commands.check(permissions.is_owner)
     async def shinreq(self, ctx):
         f = open("./lib/cache/shindan_request.ccf", "r")
         reqs = f.read().split("/")
@@ -94,7 +95,8 @@ class Shindan_ko(commands.Cog):
         embed = discord.Embed(title="진단메이커", description=f"현재 총 {str(len(reqs))}개의 진단 생성 요청이 있습니다.", color=0xeff0f1)
         for i in range(0, 20):
             try:
-                embed.add_field(name=f"{str(i)} : {reqs[i]}", value=f"requester : {reqid[i]}", inline=False)
+                user = self.bot.get_user(reqid[i])
+                embed.add_field(name=f"{str(i + 1)} : {reqs[i]}", value=f"requester : **{user.name}**#{user.discriminator}", inline=False)
             except:
                 pass
         await ctx.send(embed=embed)
