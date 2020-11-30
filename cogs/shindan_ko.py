@@ -510,7 +510,6 @@ class Shindan_ko(commands.Cog):
             await msg.edit(content=embed)
 
     @commands.command(aliases=["진단업로드"])
-    @commands.check(permissions.is_owner)
     async def shinupl(self, ctx, shindan: str):
         if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
             embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
@@ -587,6 +586,27 @@ class Shindan_ko(commands.Cog):
         wb.close()
         embed = discord.Embed(title=shindan, description=forming, color=0xeff0f1)
         await ctx.send(embed=embed)
+    
+    
+
+    @commands.command(aliases=["진단다운로드", "진단다운"])
+    async def shindow(self, ctx, shindan: str):
+        if not os.path.isfile(shindanlib + f"{shindan}.xlsx"):
+            embed = discord.Embed(title="진단메이커", description="해당 이름의 진단을 찾을 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+        wb = openpyxl.load_workbook(shindanlib + f"{shindan}.xlsx")
+        ws = wb.active
+        authorid = str(ws.cell(row=1, column=1).value)
+        wb.close()
+        
+        if not authorid == str(ctx.author.id):
+            embed = discord.Embed(title="진단메이커", description="해당 진단을 다운로드 할 수 없습니다.", color=0xeff0f1)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
+            return await ctx.send(embed=embed)
+        
+        await ctx.author.send(file=shindanlib + f"{shindan}.xlsx")
+
 
 
 def setup(bot):
