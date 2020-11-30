@@ -605,7 +605,7 @@ class Shindan_ko(commands.Cog):
             embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752690012369190942/DARK_KETER_1.png")
             return await ctx.send(embed=embed)
         
-        await ctx.author.send(file=shindanlib + f"{shindan}.xlsx")
+        await ctx.author.send(file=File(shindanlib + f"{shindan}.xlsx"))
 
 
 
