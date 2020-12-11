@@ -12,7 +12,7 @@ class Say(commands.Cog):
     async def _say(self, ctx, *, content:str):
         async with ctx.typing():
             await ctx.message.delete()
-        if (content == "@everyone"):
+        if "@everyone" in content:
             embed = discord.Embed(title="NO", description='You cannot do that', color=0xeff0f1)
             await ctx.send(embed=embed)
         else:
