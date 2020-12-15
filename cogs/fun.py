@@ -6,14 +6,14 @@ import secrets
 import asyncio
 import aiohttp
 import re
-import alexflipnote
+# import alexflipnote
 
 from io import BytesIO
 from discord.ext import commands
 from evs import lists, permissions, http, default, argparser
 
 
-alex_api = alexflipnote.Client("AHUk8RoCKP66HNGN5rya8ro3SfkgA-AqkeyCgpcU")
+# alex_api = alexflipnote.Client("AHUk8RoCKP66HNGN5rya8ro3SfkgA-AqkeyCgpcU")
 
 
 class Fun_Commands(commands.Cog):
@@ -48,14 +48,14 @@ class Fun_Commands(commands.Cog):
             bio.seek(0)
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
             
-    @commands.command()
-    @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
-    async def logo(self, ctx, *args):
-        """ Makes a cool looking logo """
-        image = await alex_api.pornhub(text=args[0], text2=args[1])
-        image_bytes = await image.read()
-        file = discord.File(image_bytes, "cool-logo.png")
-        await ctx.send(file=file)
+#     @commands.command()
+#     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
+#     async def logo(self, ctx, *args):
+#         """ Makes a cool looking logo """
+#         image = await alex_api.pornhub(text=args[0], text2=args[1])
+#         image_bytes = await image.read()
+#         file = discord.File(image_bytes, "cool-logo.png")
+#         await ctx.send(file=file)
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
