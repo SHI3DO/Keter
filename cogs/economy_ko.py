@@ -1193,7 +1193,7 @@ class economy_ko(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def 주가초기화(self, ctx, cycle :int):
+    async def 주가초기화(self, ctx):
         f = open(cachelib + "is_started.ccf", "w")
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
