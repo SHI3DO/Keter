@@ -1205,10 +1205,10 @@ class economy_ko(commands.Cog):
             ws = wb.active
             last = ws.cell(row=1, column=3).value
             if last == "100":
-                ws.cell(row=2, column=1).value = str(round(int(ws.cell(row=1, column=4).value)*int(ws.cell(row=1, column=5).value)*10/int(ws.cell(row=1, column=2).value)))
+                ws.cell(row=2, column=1).value = str(round(float(ws.cell(row=1, column=4).value)*float(ws.cell(row=1, column=5).value)*10/float(ws.cell(row=1, column=2).value)))
                 ws.cell(row=1, column=3).value = "1"
             else:
-                ws.cell(row=2, column=int(last) + 1).value = str(round(int(ws.cell(row=1, column=4).value)*int(ws.cell(row=1, column=5).value)*10/int(ws.cell(row=1, column=2).value)))
+                ws.cell(row=2, column=int(last) + 1).value = str(round(float(ws.cell(row=1, column=4).value)*float(ws.cell(row=1, column=5).value)*10/float(ws.cell(row=1, column=2).value)))
                 ws.cell(row=1, column=3).value = str(int(last) + 1)
             wb.save(stocklib + file_list[i])
             wb.close()
