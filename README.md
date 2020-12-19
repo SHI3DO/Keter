@@ -40,8 +40,8 @@ Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)
 `Yeon`  
 > Youtube [@Yeon](https://youtube.com/channel/UCf7LMVdl4IhE9zgkXTyukmQ)  
 GitHub [@AngelusYeon](https://github.com/AngelusYeon)  
-Pixiv [@Yeon](https://www.pixiv.net/users/39241005)
-Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)
+Pixiv [@Yeon](https://www.pixiv.net/users/39241005)  
+Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)  
 `RedTea`  
 
 `ych.bup`  
