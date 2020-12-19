@@ -36,7 +36,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#invite">Invite</a> •
   <a href="#license">License</a> •
-  <a href="#Team-Parfait---les-trés-heureux">Team Parfait - les trés heureux</a>
+  <a href="#team-parfait---les-tr%C3%A9s-heureux">Team Parfait - les trés heureux</a>
 </p>
 
 ## Features 
