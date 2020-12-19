@@ -40,6 +40,9 @@
 </p>
 
 ## Features 
+* Supports multiple languages.  
+* Mini games that are tailored to the behavior of users.  
+
 
 ## How to use  
 
