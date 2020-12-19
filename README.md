@@ -7,6 +7,12 @@
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
 <p align="center">
+  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
+         alt="Codacy Badge">
+  </a>
+</p>
+<p align="center">
   <a href="#features">Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#invite">Invite</a> •
@@ -14,8 +20,6 @@
 </p>
 
 ## Features 
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0)](https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade)
 
 ## How to use
 
