@@ -12,7 +12,7 @@
          alt="Codacy Badge">
   </a>
   <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
-    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=for-the-badge&logo=appveyor "
+    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=flat&logo=appveyor "
          alt="Codacy Badge">
   </a>
 </p>
