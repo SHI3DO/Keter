@@ -20,7 +20,7 @@ MIT
 
 ---
 
-> Shio  
+`Shio`  
 Youtube [@Shio](https://youtube.com/c/shio7)  
 GitHub [@Shio7](https://github.com/shio7)  
 Twitter [@shy_shio](https://twitter.com/shy_shio)  
