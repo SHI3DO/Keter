@@ -42,7 +42,10 @@
 ## Features 
 * Supports multiple languages.  
 * Mini games that are tailored to the behavior of users.  
-
+* Various kinds of mischievous commands. 
+* Provides content that users can create and play.  
+* Include commands for server management.  
+* Continued development.
 
 ## How to use  
 
