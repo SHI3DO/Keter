@@ -36,7 +36,7 @@
   <a href="#how-to-use">How To Use</a> •
   <a href="#invite">Invite</a> •
   <a href="#license">License</a> •
-  <a href="#team-parfait---les-tr%C3%A9s-heureux">Team Parfait - les trés heureux</a>
+  <a href="#team-parfait">Team Parfait</a>
 </p>
 
 ## Features 
@@ -68,7 +68,7 @@ MIT
 
 ---
 
-## Team Parfait - les trés heureux
+## Team Parfait
 `Shio`  
 > Youtube [@Shio](https://youtube.com/c/shio7)  
 GitHub [@Shio7](https://github.com/shio7)  
