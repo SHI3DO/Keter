@@ -10,7 +10,7 @@
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/issues/Shio7/Keter "
-         alt="Codacy Badge">
+         alt="Imgshields">
   </a>
   <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
     <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
@@ -18,17 +18,17 @@
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/stars/Shio7/Keter?style=flat&logo=appveyor "
-         alt="Codacy Badge">
+         alt="Imgshields">
   </a>
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/forks/Shio7/Keter "
-         alt="Codacy Badge">
+         alt="Imgshields">
   </a>
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/license/Shio7/Keter "
-         alt="Codacy Badge">
+         alt="Imgshields">
   </a>
 </p>
 <p align="center">
