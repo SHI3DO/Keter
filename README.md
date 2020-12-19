@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/Shio7/Keter"><img src="https://raw.githubusercontent.com/Shio7/Keter/master/Docs/Keter_symbol.png" alt="Markdownify" width="200"></a>
+  <a href="https://github.com/Shio7/Keter"><img src="https://raw.githubusercontent.com/Shio7/Keter/master/Docs/Keter.png" alt="Markdownify" width="200"></a>
   <br>
   Keter
   <br>
