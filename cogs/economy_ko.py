@@ -7,10 +7,8 @@ import openpyxl
 import random
 import math
 import numpy as np
-import datetime
 import matplotlib.pyplot as plt
 
-from datetime import datetime
 from discord.ext import commands
 from evs import default, permissions
 
@@ -52,7 +50,7 @@ class economy_ko(commands.Cog):
             print("stocks folder exist")
         else:
             os.makedirs("./lib/economy/stocks")
-            
+
     # 메시지당 돈
     @commands.Cog.listener()
     async def on_message(self, ctx):
@@ -411,8 +409,8 @@ class economy_ko(commands.Cog):
     async def 초기화(self, ctx):
         file_list = os.listdir(userlib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
-        for i in range(len(file_list)):
-            wb = openpyxl.load_workbook(userlib + file_list[i])
+        for i in file_list:
+            wb = openpyxl.load_workbook(userlib + i)
             ws = wb.active
             if int(ws.cell(row=1, column=3).value) <= 1000:
                 ws.cell(row=1, column=3).value = str(
@@ -815,7 +813,6 @@ class economy_ko(commands.Cog):
             for i in range(1, math.ceil(int(inteli))):
                 if ws.cell(row=6, column=i).value == name:
                     block = i
-                    start = False
             if block == 0:
                 embed = discord.Embed(title="NO", description="해당 이름의 주식을 보유하고 계시지 않아요..", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
@@ -970,7 +967,6 @@ class economy_ko(commands.Cog):
             for i in range(1, math.ceil(int(inteli))):
                 if ws.cell(row=6, column=i).value == name:
                     block = i
-                    start = False
             if block == 0:
                 embed = discord.Embed(title="NO", description="해당 이름의 주식을 보유하고 계시지 않아요..", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
@@ -1109,7 +1105,6 @@ class economy_ko(commands.Cog):
             for i in range(1, math.ceil(int(inteli))):
                 if ws.cell(row=6, column=i).value == name:
                     block = i
-                    start = False
             if amount > int(ws.cell(row=7, column=block).value):
                 embed = discord.Embed(title="NO", description="매각하려는 주만큼을 보유하고 계시지 않습니다.", color=0xeff0f1)
                 embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/750540820842807396/752684853320745000/KETER_PRESTIGE.png")
@@ -1163,7 +1158,7 @@ class economy_ko(commands.Cog):
         x, y = np.meshgrid(x, y)
         z = np.sin(np.sqrt(x**2 + y**2))
 
-        fig = plt.figure(figsize=(12, 6))
+        plt.figure(figsize=(12, 6))
         ax = plt.axes(projection='3d')
         ax.contour3D(x, y, z, 20, cmap=plt.cm.rainbow)
         plt.savefig(str(ctx.author.id) + ".png", dpi=192)
@@ -1194,7 +1189,6 @@ class economy_ko(commands.Cog):
     @commands.command()
     @commands.check(permissions.is_owner)
     async def 주가초기화(self, ctx):
-        f = open(cachelib + "is_started.ccf", "w")
         file_list = os.listdir(stocklib)
         file_list = [file for file in file_list if file.endswith(".xlsx")]
         cycles = 0
@@ -1392,7 +1386,7 @@ class economy_ko(commands.Cog):
         for i in range(len(file_list)):
             wb = openpyxl.load_workbook(stocklib + file_list[i])
             ws = wb.active
-            stocks = ws.cell(row=1, column=2).value = "0"
+            ws.cell(row=1, column=2).value = "0"
             wb.save(stocklib + file_list[i])
             wb.close()
             await ctx.send(file_list[i] + " reseted")
