@@ -5,7 +5,7 @@
   Keter
   <br>
 </h1>
-<h4 align="center">AI that learn and generate images</h4>
+<h4 align="center">Lovely Discord Bot with Various Features</h4>
 <p align="center">
   <a href="#features">Features</a> •
   <a href="#how-to-use">How To Use</a> •
