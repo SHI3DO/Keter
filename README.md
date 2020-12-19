@@ -23,6 +23,7 @@
 ## Features 
 
 ## How to use  
+
 <details><summary>English</summary>
 <p>
 Eng
@@ -31,6 +32,11 @@ Eng
 <details><summary>한국어</summary>
 <p>
 곧 쓸겁니다
+</p>
+</details>
+<details><summary>日本語</summary>
+<p>
+すぐに作成よ
 </p>
 </details>
 
