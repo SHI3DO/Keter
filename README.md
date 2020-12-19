@@ -25,6 +25,7 @@
 ## How to use  
 <details><summary>한국어</summary>
 <p>
+곧 쓸겁니다
 </p>
 </details>
 
