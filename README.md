@@ -40,6 +40,9 @@ Eng
 </p>
 </details>
 
+## Invite
+[Invite me!](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)  
+
 ## License
 
 MIT
