@@ -15,6 +15,11 @@
     <img src="https://img.shields.io/github/stars/Shio7/Keter?style=flat&logo=appveyor "
          alt="Codacy Badge">
   </a>
+  </a>
+  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
+    <img src="https://img.shields.io/github/forks/Shio7/Keter "
+         alt="Codacy Badge">
+  </a>
 </p>
 <p align="center">
   <a href="#features">Features</a> •
