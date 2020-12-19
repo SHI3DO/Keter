@@ -16,6 +16,7 @@
   <a href="#features">Features</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#invite">Invite</a> •
+  <a href="#Team Parfait - les trés">Team Parfait - les trés</a> •
   <a href="#license">License</a>
 </p>
 
