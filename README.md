@@ -7,7 +7,6 @@
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
 <p align="center">
-  </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/issues/Shio7/Keter?style=flat&logo=appveyor"
          alt="Imgshields">
@@ -20,11 +19,9 @@
     <img src="https://img.shields.io/github/stars/Shio7/Keter?style=flat&logo=appveyor"
          alt="Imgshields">
   </a>
-  </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/forks/Shio7/Keter?style=flat&logo=appveyor"
          alt="Imgshields">
-  </a>
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/license/Shio7/Keter?style=flat&logo=appveyor"
