@@ -86,7 +86,7 @@ Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)
 
 `RedTea`  
 > Github [@RedTea](https://github.com/redteadeveloper)  
-Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)  
-Instagram [@redteakor](https://www.instagram.com/redteakor/)
+Instagram [@redteakor](https://www.instagram.com/redteakor/)   
 
 `ych.bup`  
+> Github [@YCH-BUP](https://github.com/ych-bup)
