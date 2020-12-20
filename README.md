@@ -90,3 +90,4 @@ Instagram [@redteakor](https://www.instagram.com/redteakor/)
 
 `ych.bup`  
 > Github [@YCH-BUP](https://github.com/ych-bup)
+Instagram [@ych.bup](https://www.instagram.com/ych.bup/)
