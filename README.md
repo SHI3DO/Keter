@@ -4,6 +4,8 @@
   <br>
   Keter
   <br>
+  <a href="https://github.com/Shio7/Keter"><img src="https://raw.githubusercontent.com/Shio7/Keter/master/Docs/keter_banner.png" alt="Keter" width="3080"></a>
+  <br>
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
 <p align="center">
