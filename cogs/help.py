@@ -39,7 +39,7 @@ class Help(commands.Cog):
     @commands.command()
     async def help(self, ctx):
         embed = discord.Embed(title="Keter Manual",
-                              description=f"**{ctx.author.name}**,\nRead this: [Keter Manual](https://github.com/Shio7/Keter#how-to-use)",
+                              description=f"**{ctx.author.name}**,\nRead [Keter Manual](https://github.com/Shio7/Keter#how-to-use)",
                               color=0xeff0f1)
         embed.set_thumbnail(url=prestige_url)
         embed.set_author(name="Team Parfait", icon_url=parfait_url)
