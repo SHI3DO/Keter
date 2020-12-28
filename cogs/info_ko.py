@@ -12,7 +12,7 @@ from evs import default, permissions
 
 
 cachelib = "./lib/cache/"
-
+prestige_url = "https://cdn.discordapp.com/attachments/751791353779716099/751807294341120070/KETER_PRESTIGE.png"
 
 class Information_ko(commands.Cog):
     def __init__(self, bot):
@@ -50,7 +50,12 @@ class Information_ko(commands.Cog):
     @commands.command()
     async def 소스코드(self, ctx):
         """ Check out my source code <3 """
-        await ctx.send(f"**{ctx.bot.user}** 이 소스 코드로 돌아갑니다:\nhttps://github.com/Shio7/Keter \n\n문서 레포지토리: https://github.com/Shio7/Keter-docs")
+        embed = discord.Embed(title="정보", description="https://github.com/Shio7/Keter", color=0xeff0f1)
+        embed.set_footer(icon_url=ctx.author.avatar_url,
+                         text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                             datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+        embed.set_thumbnail(url=prestige_url)
+        await ctx.send(embed=embed)
         
 
     @commands.command(aliases=['지원 서버', '문의 서버'])
