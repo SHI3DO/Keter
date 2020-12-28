@@ -18,6 +18,9 @@ class Autoupdate(commands.Cog):
     async def 업데이트(self, ctx, *, content:str):
         content = content.split()
         embed = discord.Embed(title="관리모듈 A1", description=content[2] + "모듈을 업데이트 하시겠습니까?", color=0xeff0f1)
+        embed.set_footer(icon_url=ctx.author.avatar_url,
+                         text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                             datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
         msg = await ctx.send(embed=embed)
 
         def reaction_check_(m):
