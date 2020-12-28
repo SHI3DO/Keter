@@ -6,6 +6,8 @@ import requests
 import os
 from datetime import datetime
 
+parfait_url = "https://cdn.discordapp.com/attachments/751791353779716099/792924251803877406/PARFAIT_ICON-1.png"
+
 class Autoupdate(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -21,6 +23,7 @@ class Autoupdate(commands.Cog):
         embed.set_footer(icon_url=ctx.author.avatar_url,
                          text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                              datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+        embed.set_thumbnail(url=parfait_url)
         msg = await ctx.send(embed=embed)
 
         def reaction_check_(m):
@@ -32,26 +35,46 @@ class Autoupdate(commands.Cog):
             await msg.add_reaction("✅")
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
             await ctx.trigger_typing()
-            await ctx.send("소스코드 업데이트 중...")
-            r = requests.get(content[0], allow_redirects=True)
-            if os.path.isfile(content[1]+content[2]+".py"):
-                try:
-                    self.bot.unload_extension(f"cogs.{content[2]}")
-                except Exception as e:
-                    return await ctx.send(default.traceback_maker(e))
-                await ctx.send(f"Unloaded extension **{content[2]}.py**")
-                os.remove(content[1]+content[2]+".py")
-                open(content[1]+content[2]+".py", 'wb').write(r.content)
-            else:
-                open(content[1]+content[2]+".py", 'wb').write(r.content)
 
-            await ctx.send("Updated: " + content[2] + ".py")
-            """ Loads an extension. """
             try:
-                self.bot.load_extension(f"cogs.{content[2]}")
-            except Exception as e:
-                return await ctx.send(default.traceback_maker(e))
-            await ctx.send(f"Loaded extension **{content[2]}.py**")
+                r = requests.get(content[0], allow_redirects=True)
+                
+                if os.path.isfile(content[1] + content[2] + ".py"):
+                    try:
+                        self.bot.unload_extension(f"cogs.{content[2]}")
+                    except Exception as e:
+                        return await ctx.send(default.traceback_maker(e))
+                    os.remove(content[1] + content[2] + ".py")
+                    open(content[1] + content[2] + ".py", 'wb').write(r.content)
+
+                    try:
+                        self.bot.load_extension(f"cogs.{content[2]}")
+                    except Exception as e:
+                        return await ctx.send(default.traceback_maker(e))
+                    embed = discord.Embed(title="관리모듈 A1", description=content[2] + ".py 로드 완료!",
+                                          color=0xeff0f1)
+                    embed.set_footer(icon_url=ctx.author.avatar_url,
+                                     text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                         datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+                    embed.set_thumbnail(url=parfait_url)
+                    msg = await ctx.send(embed=embed)
+
+                else:
+                    embed = discord.Embed(title="관리모듈 A1", description=content[2] + "모듈이 없어요. `다운로드` 커맨드를 사용해 주세요.",
+                                          color=0xeff0f1)
+                    embed.set_footer(icon_url=ctx.author.avatar_url,
+                                     text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                         datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+                    embed.set_thumbnail(url=parfait_url)
+                    msg = await ctx.send(embed=embed)
+            except:
+                embed = discord.Embed(title="관리모듈 A1", description="에러 발생!",
+                                      color=0xeff0f1)
+                embed.set_footer(icon_url=ctx.author.avatar_url,
+                                 text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                     datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+                embed.set_thumbnail(url=parfait_url)
+                msg = await ctx.send(embed=embed)
 
         except:
             await msg.delete()
@@ -59,6 +82,7 @@ class Autoupdate(commands.Cog):
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                                  datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+            embed.set_thumbnail(url=parfait_url)
             await ctx.send(embed=embed)
 
     @commands.command()
