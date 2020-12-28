@@ -1,3 +1,8 @@
+# Last Edited: 2020-12-18
+# Contributor: Shio
+# Code Description: 도움말 명령어들
+# Status: 일본어 필요, Yeon님이 하실 거..?
+
 import random
 import time
 import discord
