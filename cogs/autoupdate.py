@@ -1,3 +1,7 @@
+# Last Edited: 2020-12-18
+# Contributor: Shio
+# Code Description: 업데이트 관련 코드들, 한국어만 지원 (관리자 4명 모두 한국인)
+
 import discord
 from discord.ext import commands
 from evs import default
@@ -38,7 +42,7 @@ class Autoupdate(commands.Cog):
 
             try:
                 r = requests.get(content[0], allow_redirects=True)
-                
+
                 if os.path.isfile(content[1] + content[2] + ".py"):
                     try:
                         self.bot.unload_extension(f"cogs.{content[2]}")
