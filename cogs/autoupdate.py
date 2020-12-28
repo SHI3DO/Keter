@@ -15,8 +15,9 @@ class Autoupdate(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def 업데이트(self, ctx, *, filelink: str, location:str, filename:str):
-        embed = discord.Embed(title="관리모듈 A1", description=filename + "모듈을 업데이트 하시겠습니까?", color=0xeff0f1)
+    async def 업데이트(self, ctx, *, content:str):
+        content = content.split()
+        embed = discord.Embed(title="관리모듈 A1", description=content[2] + "모듈을 업데이트 하시겠습니까?", color=0xeff0f1)
         msg = await ctx.send(embed=embed)
 
         def reaction_check_(m):
@@ -29,25 +30,25 @@ class Autoupdate(commands.Cog):
             await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
             await ctx.trigger_typing()
             await ctx.send("Updating source code...")
-            r = requests.get(filelink, allow_redirects=True)
-            if os.path.isfile(location+filename+".py"):
+            r = requests.get(content[0], allow_redirects=True)
+            if os.path.isfile(content[1]+content[2]+".py"):
                 try:
-                    self.bot.unload_extension(f"cogs.{filename}")
+                    self.bot.unload_extension(f"cogs.{content[2]}")
                 except Exception as e:
                     return await ctx.send(default.traceback_maker(e))
-                await ctx.send(f"Unloaded extension **{filename}.py**")
-                os.remove(location+filename+".py")
-                open(location+filename+".py", 'wb').write(r.content)
+                await ctx.send(f"Unloaded extension **{content[2]}.py**")
+                os.remove(content[1]+content[2]+".py")
+                open(content[1]+content[2]+".py", 'wb').write(r.content)
             else:
-                open(location+filename+".py", 'wb').write(r.content)
+                open(content[1]+content[2]+".py", 'wb').write(r.content)
 
-            await ctx.send("Updated: " + filename + ".py")
+            await ctx.send("Updated: " + content[2] + ".py")
             """ Loads an extension. """
             try:
-                self.bot.load_extension(f"cogs.{filename}")
+                self.bot.load_extension(f"cogs.{content[2]}")
             except Exception as e:
                 return await ctx.send(default.traceback_maker(e))
-            await ctx.send(f"Loaded extension **{filename}.py**")
+            await ctx.send(f"Loaded extension **{content[2]}.py**")
 
         except:
             await msg.delete()
