@@ -4,6 +4,7 @@ from evs import default
 from evs import permissions, default, http, dataIO
 import requests
 import os
+from datetime import datetime
 
 class Autoupdate(commands.Cog):
     def __init__(self, bot):
@@ -14,11 +15,52 @@ class Autoupdate(commands.Cog):
 
     @commands.command()
     @commands.check(permissions.is_owner)
-    async def update(self, ctx, filename: str):
-        await ctx.trigger_typing()
-        await ctx.send("Updating source code...")
-        link = "https://raw.githubusercontent.com/Shio7/Keter/master/cogs/" + filename + ".py"
-        r = requests.get(link, allow_redirects=True)
+    async def 업데이트(self, ctx, *, filelink: str, location:str, filename:str):
+        embed = discord.Embed(title="관리모듈 A1", description=filename + "모듈을 업데이트 하시겠습니까?", color=0xeff0f1)
+        msg = await ctx.send(embed=embed)
+
+        def reaction_check_(m):
+            if m.message_id == msg.id and m.user_id == ctx.author.id and str(m.emoji) == "✅":
+                return True
+            return False
+
+        try:
+            await msg.add_reaction("✅")
+            await self.bot.wait_for('raw_reaction_add', timeout=10.0, check=reaction_check_)
+            await ctx.trigger_typing()
+            await ctx.send("Updating source code...")
+            r = requests.get(filelink, allow_redirects=True)
+            if os.path.isfile(location+filename+".py"):
+                try:
+                    self.bot.unload_extension(f"cogs.{filename}")
+                except Exception as e:
+                    return await ctx.send(default.traceback_maker(e))
+                await ctx.send(f"Unloaded extension **{filename}.py**")
+                os.remove(location+filename+".py")
+                open(location+filename+".py", 'wb').write(r.content)
+            else:
+                open(location+filename+".py", 'wb').write(r.content)
+
+            await ctx.send("Updated: " + filename + ".py")
+            """ Loads an extension. """
+            try:
+                self.bot.load_extension(f"cogs.{filename}")
+            except Exception as e:
+                return await ctx.send(default.traceback_maker(e))
+            await ctx.send(f"Loaded extension **{filename}.py**")
+
+        except:
+            await msg.delete()
+            embed = discord.Embed(title="관리모듈 A1", description="동의하지 않으셨습니다.", color=0xeff0f1)
+            embed.set_footer(icon_url=ctx.author.avatar_url,
+                             text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                 datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+            await ctx.send(embed=embed)
+
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 지우기(self, ctx, filename: str):
         if os.path.isfile('./cogs/' + filename + ".py"):
             try:
                 self.bot.unload_extension(f"cogs.{filename}")
@@ -26,25 +68,9 @@ class Autoupdate(commands.Cog):
                 return await ctx.send(default.traceback_maker(e))
             await ctx.send(f"Unloaded extension **{filename}.py**")
             os.remove('./cogs/' + filename + ".py")
-            open('./cogs/' + filename + ".py", 'wb').write(r.content)
+            await ctx.send(f"**{filename}.py** 삭제완료")
         else:
-            open('./cogs/' + filename + ".py", 'wb').write(r.content)
-        await ctx.send("Updated: "+filename+".py")
-        """ Loads an extension. """
-        try:
-            self.bot.load_extension(f"cogs.{filename}")
-        except Exception as e:
-            return await ctx.send(default.traceback_maker(e))
-        await ctx.send(f"Loaded extension **{filename}.py**")
-
-    @commands.command()
-    @commands.check(permissions.is_owner)
-    async def remove(self, ctx, filename: str):
-        if os.path.isfile('./cogs/' + filename + ".py"):
-            os.remove('./cogs/' + filename + ".py")
-            await ctx.send(f"**{filename}.py** removed")
-        else:
-            await ctx.send(f"Can't find **{filename}.py**")
+            await ctx.send(f"**{filename}.py 찾을 수 없음**")
             
     @commands.command()
     @commands.check(permissions.is_owner)
