@@ -10,7 +10,7 @@ bot = Bot(
     command_prefix=config.prefix,
     prefix=config.prefix,
     command_attrs=dict(hidden=True),
-    help_command=HelpFormat()
+    help_command=None
 )
 
 for file in os.listdir("cogs"):
