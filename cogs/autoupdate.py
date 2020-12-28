@@ -121,6 +121,11 @@ class Autoupdate(commands.Cog):
                     msg = await ctx.send(embed=embed)
 
                 else:
+                    open(content[1] + content[2] + ".py", 'wb').write(r.content)
+                    try:
+                        self.bot.load_extension(f"cogs.{content[2]}")
+                    except Exception as e:
+                        return await ctx.send(default.traceback_maker(e))
                     embed = discord.Embed(title="관리모듈 A1",
                                           description=content[2] + "모듈 다운로드 완료! 로드까지도 완료했어요!",
                                           color=0xeff0f1)
