@@ -4,19 +4,14 @@
 
 import discord
 from discord.ext import commands
-from discord import Embed
-from discord.ext.commands import has_permissions, MissingPermissions
 from evs import default
 from evs import permissions, default, http, dataIO
 import requests
 import os
 from datetime import datetime
-from discord.ext.commands import Cog
 
 logfolder = "./lib/logs/"
 loadingurl = "https://cdn.discordapp.com/attachments/751791353779716099/793328911568076800/keterloading.gif"
-
-client = discord.Client()
 
 class Logger(commands.Cog):
     def __init__(self, bot):
@@ -142,49 +137,15 @@ class Logger(commands.Cog):
             embed.set_thumbnail(url=ctx.guild.icon_url)
             await ctx.send(embed=embed)
 
-    @Cog.listener()
-    async def on_user_update(self, ctx, *, before, after):
-        if os.path.isfile(logfolder+str(ctx.guild.id)+".ktx"):
-            logf = open(logfolder + str(ctx.guild.id) + ".ktx", "r")
+    @commands.Cog.listener()
+    async def on_message_delete(self, message):
+        if os.path.isfile(logfolder+str(message.guild.id)+".ktx"):
+            logf = open(logfolder + str(message.guild.id) + ".ktx", "r")
             log_channel = logf.read()
             logf.close()
-            if before.name != after.name:
-                embed = Embed(title="Username change",
-                              colour=after.colour,
-                              timestamp=datetime.utcnow())
 
-                fields = [("Before", before.name, False),
-                          ("After", after.name, False)]
-
-                for name, value, inline in fields:
-                    embed.add_field(name=name, value=value, inline=inline)
-
-                await log_channel.send(embed=embed)
-
-            if before.discriminator != after.discriminator:
-                embed = Embed(title="Discriminator change",
-                              colour=after.colour,
-                              timestamp=datetime.utcnow())
-
-                fields = [("Before", before.discriminator, False),
-                          ("After", after.discriminator, False)]
-
-                for name, value, inline in fields:
-                    embed.add_field(name=name, value=value, inline=inline)
-
-                await log_channel.send(embed=embed)
-
-            if before.avatar_url != after.avatar_url:
-                embed = Embed(title="Avatar change",
-                              description="New image is below, old to the right.",
-                              colour=log_channel.guild.get_member(after.id).colour,
-                              timestamp=datetime.utcnow())
-
-                embed.set_thumbnail(url=before.avatar_url)
-                embed.set_image(url=after.avatar_url)
-
-                await log_channel.send(embed=embed)
-
+            print(log_channel)
+            print(message.author.id)
         else:
             print("로그 config 없음")
 
