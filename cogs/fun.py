@@ -13,7 +13,7 @@ from discord.ext import commands
 from evs import lists, permissions, http, default, argparser
 
 
-# alex_api = alexflipnote.Client("AHUk8RoCKP66HNGN5rya8ro3SfkgA-AqkeyCgpcU")
+# alex_api = alexflipnote.Client("")
 
 
 class Fun_Commands(commands.Cog):
