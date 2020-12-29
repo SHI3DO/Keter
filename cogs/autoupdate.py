@@ -1,4 +1,4 @@
-# Last Edited: 2020-12-18
+# Last Edited: 2020-12-28
 # Contributor: Shio
 # Code Description: 업데이트 관련 코드들, 한국어만 지원 (관리자 4명 모두 한국인)
 
