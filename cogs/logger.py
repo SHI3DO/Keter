@@ -88,6 +88,7 @@ class Logger(commands.Cog):
                                              text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                                                  datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
                             embed.set_thumbnail(url=ctx.guild.icon_url)
+                            await msg.delete()
                             await ctx.send(embed=embed)
 
                         except:
@@ -123,7 +124,6 @@ class Logger(commands.Cog):
                 logf.write(content[0][2:][:-1])
                 logf.close()
 
-                await msg.delete()
                 embed = discord.Embed(title="관리", description="로그 기능, 세팅 완료하였습니다!", color=0xeff0f1)
                 embed.set_footer(icon_url=ctx.author.avatar_url,
                                  text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
