@@ -201,6 +201,11 @@ class Autoupdate(commands.Cog):
                              text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                                  datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
             await ctx.send(embed=embed)
+
+    @commands.command()
+    @commands.check(permissions.is_owner)
+    async def 업데이트코드(self, ctx, *, content:str):
+        await ctx.send(".업데이트 " + "https://raw.githubusercontent.com/Shio7/Keter/master/cogs/" + content + ".py " + "./cogs/ " +  content)
             
 def setup(bot):
     bot.add_cog(Autoupdate(bot))
