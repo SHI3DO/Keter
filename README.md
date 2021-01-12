@@ -42,22 +42,7 @@
 * Continued development.
 
 ## How to use  
-
-<details><summary>English</summary>
-<p>
-Eng
-</p>
-</details>
-<details><summary>한국어</summary>
-<p>
-곧 쓸겁니다
-</p>
-</details>
-<details><summary>日本語</summary>
-<p>
-すぐに作成よ
-</p>
-</details>
+[Check the docs](hahshshshshs)
 
 ## Invite
 [Invite me!](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)  
