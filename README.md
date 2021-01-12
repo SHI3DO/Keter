@@ -24,7 +24,7 @@
     <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
          alt="Codacy Badge">
   </a>
-
+<hr>
 <p align="center">
   <a href="#features">Features</a> •
   <a href="#how-to-use">How To Use</a> •
