@@ -69,22 +69,10 @@ MIT
 ---
 
 ## Team Parfait
-`Shio`  
-> Youtube [@Shio](https://youtube.com/c/shio7)  
-GitHub [@Shio7](https://github.com/shio7)  
-Twitter [@Parfait_shio](https://twitter.com/Parfait__shio)  
-Discord [@Shio_Discord](https://discord.gg/b9wC3TQ)
+[@Shio7](https://github.com/shio7)  
 
-`Yeon`  
-> Youtube [@Yeon](https://youtube.com/channel/UCf7LMVdl4IhE9zgkXTyukmQ)  
-GitHub [@AngelusYeon](https://github.com/AngelusYeon)  
-Pixiv [@Yeon](https://www.pixiv.net/users/39241005)  
-Discord [@Shio_Discord](https://discord.gg/b9wC3TQ) 
+[@AngelusYeon](https://github.com/AngelusYeon)  
 
-`RedTea`  
-> Github [@RedTea](https://github.com/redteadeveloper)  
-Instagram [@redteakor](https://www.instagram.com/redteakor/)   
+[@RedTea](https://github.com/redteadeveloper)   
 
-`ych.bup`  
-> Github [@YCH-BUP](https://github.com/ych-bup)  
-Instagram [@ych.bup](https://www.instagram.com/ych.bup/)
+[@YCH-BUP](https://github.com/ych-bup)
