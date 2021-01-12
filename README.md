@@ -3,7 +3,8 @@
   <br>
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
-----  
+---  
+
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/issues/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
