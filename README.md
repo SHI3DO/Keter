@@ -69,10 +69,10 @@ MIT
 ---
 
 ## Team Parfait
-[@Shio7](https://github.com/shio7)  
+[@Shio7](https://github.com/shio7)
 
-[@AngelusYeon](https://github.com/AngelusYeon)  
++ [@AngelusYeon](https://github.com/AngelusYeon)
 
-[@RedTea](https://github.com/redteadeveloper)   
++ [@RedTea](https://github.com/redteadeveloper)
 
-[@YCH-BUP](https://github.com/ych-bup)
++ [@YCH-BUP](https://github.com/ych-bup)
