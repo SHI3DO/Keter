@@ -69,7 +69,7 @@ MIT
 ---
 
 ## Team Parfait
-[@Shio7](https://github.com/shio7)
++ [@Shio7](https://github.com/shio7)
 
 + [@AngelusYeon](https://github.com/AngelusYeon)
 
