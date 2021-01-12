@@ -42,7 +42,7 @@
 * Continued development.
 
 ## How to use  
-[Check the docs](hahshshshshs)
+[Check the docs](https://keter.vercel.app)
 
 ## Invite
 [Invite me!](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)  
