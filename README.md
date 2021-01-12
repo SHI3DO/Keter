@@ -3,15 +3,10 @@
   <br>
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
----  
-
+<hr>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/issues/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
-  </a>
-  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
-    <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
-         alt="Codacy Badge">
   </a>
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/stars/Shio7/Keter?style=for-the-badge&logo=appveyor"
@@ -24,6 +19,10 @@
   <a href="https://github.com/Shio7/Keter">
     <img src="https://img.shields.io/github/license/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
+  </a>
+  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
+         alt="Codacy Badge">
   </a>
 
 <p align="center">
