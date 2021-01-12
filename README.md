@@ -5,7 +5,7 @@
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
 <p align="center">
   <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/issues/Shio7/Keter?style=flat&logo=appveyor"
+    <img src="https://img.shields.io/github/issues/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
   <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
@@ -13,15 +13,15 @@
          alt="Codacy Badge">
   </a>
   <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=flat&logo=appveyor"
+    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
   <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/forks/Shio7/Keter?style=flat&logo=appveyor"
+    <img src="https://img.shields.io/github/forks/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
   <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/license/Shio7/Keter?style=flat&logo=appveyor"
+    <img src="https://img.shields.io/github/license/Shio7/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
 </p>
