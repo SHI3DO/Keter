@@ -1,5 +1,7 @@
 import os
 
+import discord
+
 from evs import default
 from evs.data import Bot, HelpFormat
 
@@ -10,13 +12,12 @@ bot = Bot(
     command_prefix=config.prefix,
     prefix=config.prefix,
     command_attrs=dict(hidden=True),
-    help_command=None
+    help_command=None,
+    intents=discord.Intents.all()
 )
 
-for file in os.listdir("cogs"):
-    if file.endswith(".py"):
-        name = file[:-3]
-        bot.load_extension(f"cogs.{name}")
+for name in ['cogs.'+file[:-3] for file in os.listdir("cogs") if file.endswith('.py')]:
+    bot.load_extension(name)
 
 try:
     bot.run(config.token)
