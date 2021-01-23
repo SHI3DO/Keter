@@ -12,8 +12,7 @@ bot = Bot(
     command_prefix=config.prefix,
     prefix=config.prefix,
     command_attrs=dict(hidden=True),
-    help_command=None,
-    intents=discord.Intents.all()
+    help_command=None
 )
 
 for name in ['cogs.'+file[:-3] for file in os.listdir("cogs") if file.endswith('.py')]:
