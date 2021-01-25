@@ -11,6 +11,7 @@ import os
 from datetime import datetime
 
 logfolder = "./lib/logs/"
+logqueuefolder = "./lib/logs/queue/"
 loadingurl = "https://cdn.discordapp.com/attachments/751791353779716099/793328911568076800/keterloading.gif"
 
 class Logger(commands.Cog):
@@ -21,6 +22,11 @@ class Logger(commands.Cog):
             print("Logs exist")
         else:
             os.makedirs("./lib/logs")
+
+        if os.path.isdir("./lib/logs/queue"):
+            print("Logs queue exist")
+        else:
+            os.makedirs("./lib/logs/queue")
 
     @commands.command()
     @commands.check(permissions.is_owner)
@@ -175,6 +181,7 @@ class Logger(commands.Cog):
             logf.close()
 
             print(log_channel)
+
             print(message.author.id)
         else:
             print("로그 config 없음")
