@@ -180,7 +180,8 @@ class Logger(commands.Cog):
             print(ctx.content)
             channel = self.bot.get_channel(int(log_channel))
 
-            embed = discord.Embed(title="Message Deleted", description= "<#" + str(ctx.channel.id) + "> <@"+str(ctx.author.id)+">"+"\n"+str(ctx.content), color=0xeff0f1)
+            embed = discord.Embed(title="Message Deleted", description= "The message sent by <@" + str(ctx.author.id) + "> in <#" + str(ctx.channel.id) + "> was deleted", color=0xeff0f1)
+            embed.add_field(name="**Message**", value=str(ctx.content))
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                                  datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
