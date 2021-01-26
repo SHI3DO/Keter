@@ -169,15 +169,22 @@ class Logger(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_message_delete(self, message):
-        if os.path.isfile(logfolder+str(message.guild.id)+".ktx"):
-            logf = open(logfolder + str(message.guild.id) + ".ktx", "r")
+    async def on_message_delete(self, ctx):
+        if os.path.isfile(logfolder+str(ctx.guild.id)+".ktx"):
+            logf = open(logfolder + str(ctx.guild.id) + ".ktx", "r")
             log_channel = logf.read()
             logf.close()
 
             print("log_channel = " + log_channel)
-            print("author id = " + str(message.author.id))
-            print(message.content)
+            print("author id = " + str(ctx.author.id))
+            print(ctx.content)
+            channel = self.bot.get_channel(int(log_channel))
+
+            embed = discord.Embed(title="Message Deleted", description= "<#" + str(ctx.channel.id) + "> <@"+str(ctx.author.id)+">"+"\n"+str(ctx.content), color=0xeff0f1)
+            embed.set_footer(icon_url=ctx.author.avatar_url,
+                             text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                 datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+            await channel.send(embed=embed)
 
         else:
             print("로그 dir 없음")
