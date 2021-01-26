@@ -174,16 +174,32 @@ class Logger(commands.Cog):
             logf = open(logfolder + str(ctx.guild.id) + ".ktx", "r")
             log_channel = logf.read()
             logf.close()
-
-            print("log_channel = " + log_channel)
-            print("author id = " + str(ctx.author.id))
-            print(ctx.content)
             channel = self.bot.get_channel(int(log_channel))
 
             embed = discord.Embed(title="Message Deleted", description= "The message sent by <@" + str(ctx.author.id) + "> in <#" + str(ctx.channel.id) + "> was deleted", color=0xeff0f1)
             embed.add_field(name="**Message**", value=str(ctx.content))
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
+                                 datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
+            await channel.send(embed=embed)
+
+        else:
+            print("로그 dir 없음")
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, beforectx, afterctx):
+        if os.path.isfile(logfolder + str(beforectx.guild.id) + ".ktx"):
+            logf = open(logfolder + str(beforectx.guild.id) + ".ktx", "r")
+            log_channel = logf.read()
+            logf.close()
+            channel = self.bot.get_channel(int(log_channel))
+
+            embed = discord.Embed(title="Message Edited",
+                                  description="<@"+str(beforectx.author.id)+"> edited their message in <#" + str(beforectx.channel.id)+">", color=0xeff0f1)
+            embed.add_field(name="**Before**", value=str(beforectx.content))
+            embed.add_field(name="**After**", value=str(afterctx.content))
+            embed.set_footer(icon_url=beforectx.author.avatar_url,
+                             text=beforectx.author.name + "#" + beforectx.author.discriminator + " " + str(
                                  datetime.today().strftime('%Y-%m-%d %H:%M:%S')))
             await channel.send(embed=embed)
 
