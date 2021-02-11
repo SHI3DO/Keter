@@ -1,1 +1,22 @@
-
+{
+  "token": "",
+  "join_message": "I have joined to do stuff 🌟",
+  "owners": [
+    643116087919116298,
+    528925841241931786,
+    611396886418685982,
+    602011789408075777
+  ],
+  "prefix": [
+    ".",
+    etc...
+  ],
+  "playing": "Nice to meet you, I'm Keter!",
+  "playing_type": "playing|watching|listening",
+  "status_type": "online|idle|dnd",
+  "version": "1.5.0",
+  "translation_client_id": "",
+  "translation_client_secret": "",
+  "wolframapi_token": "",
+  "botserver": "https://discord.gg/T3Z8hYS"
+}
