@@ -1,26 +1,26 @@
 <h1 align="center">
-  <a href="https://github.com/Shio7/Keter"><img src="https://raw.githubusercontent.com/Shio7/Keter/master/docs/keter_banner.png" alt="Keter" width="3080"></a>
+  <a href="https://github.com/SHI3DO/Keter"><img src="https://raw.githubusercontent.com/SHI3DO/Keter/master/docs/keter_banner.png" alt="Keter" width="3080"></a>
   <br>
 </h1>
 <h4 align="center">Lovely Discord Bot with Various Features</h4>
 
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/issues/Shio7/Keter?style=for-the-badge&logo=appveyor"
+  <a href="https://github.com/SHI3DO/Keter">
+    <img src="https://img.shields.io/github/issues/SHI3DO/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=for-the-badge&logo=appveyor"
+  <a href="https://github.com/SHI3DO/Keter">
+    <img src="https://img.shields.io/github/stars/SHI3DO/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/forks/Shio7/Keter?style=for-the-badge&logo=appveyor"
+  <a href="https://github.com/SHI3DO/Keter">
+    <img src="https://img.shields.io/github/forks/SHI3DO/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/license/Shio7/Keter?style=for-the-badge&logo=appveyor"
+  <a href="https://github.com/SHI3DO/Keter">
+    <img src="https://img.shields.io/github/license/SHI3DO/Keter?style=for-the-badge&logo=appveyor"
          alt="Imgshields">
   </a>
-  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
+  <a href="https://app.codacy.com/gh/SHI3DO/Keter?utm_source=github.com&utm_medium=referral&utm_content=SHI3DO/Keter&utm_campaign=Badge_Grade">
     <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
          alt="Codacy Badge">
   </a>
@@ -54,7 +54,7 @@ MIT
 ---
 
 ## Team Parfait
-+ [@Shio7](https://github.com/shio7)
++ [@SHI3DO](https://github.com/SHI3DO)
 
 + [@AngelusYeon](https://github.com/AngelusYeon)
 
