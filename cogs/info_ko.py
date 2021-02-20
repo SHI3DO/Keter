@@ -184,7 +184,7 @@ class Information_ko(commands.Cog):
         channel__count = len([x for x in server.channels if type(x) == discord.channel.VoiceChannel])
         embed = discord.Embed(title='서버 정보',description='',color=0xEFF0F1)
         embed.add_field(name='서버 이름',value=server.name)
-        embed.add_field(name='오너',value=server.owner,inline=True)
+        embed.add_field(name='오너',value=guild.owner,inline=True)
         embed.add_field(name='유저 수',value=server.member_count)
         embed.add_field(name='서버 위치',value=server.region)
         embed.add_field(name='역할 수',value=str(len(server.roles)))
