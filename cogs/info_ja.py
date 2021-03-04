@@ -31,7 +31,7 @@ class Information_ja(commands.Cog):
     @commands.command()
     async def コード(self, ctx):
         """ Check out my source code <3 """
-        await ctx.send(f"**{ctx.bot.user}** コードはこちらからご確認ください。:\nhttps://github.com/Shio7/Keter")
+        await ctx.send(f"**{ctx.bot.user}** コードはこちらからご確認ください。:\nhttps://github.com/SHI3DO/Keter")
 
     @commands.command(aliases=['サーバ', 'サバー', 'サバ'])
     async def サーバー(self, ctx):

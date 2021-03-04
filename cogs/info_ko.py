@@ -50,7 +50,7 @@ class Information_ko(commands.Cog):
     @commands.command()
     async def 소스코드(self, ctx):
         """ Check out my source code <3 """
-        embed = discord.Embed(title="정보", description="https://github.com/Shio7/Keter", color=0xeff0f1)
+        embed = discord.Embed(title="정보", description="https://github.com/SHI3DO/Keter", color=0xeff0f1)
         embed.set_footer(icon_url=ctx.author.avatar_url,
                          text=ctx.author.name + "#" + ctx.author.discriminator + " " + str(
                              datetime.today().strftime('%Y-%m-%d %H:%M:%S')))

@@ -32,7 +32,7 @@ class Information(commands.Cog):
     @commands.command()
     async def source(self, ctx):
         """ Check out my source code <3 """
-        await ctx.send(f"**{ctx.bot.user}** is powered by this source code:\nhttps://github.com/Shio7/Keter")
+        await ctx.send(f"**{ctx.bot.user}** is powered by this source code:\nhttps://github.com/SHI3DO/Keter")
 
     @commands.command(aliases=['supportserver', 'feedbackserver'])
     async def botserver(self, ctx):
