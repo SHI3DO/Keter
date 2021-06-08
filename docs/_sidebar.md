@@ -1,3 +1,0 @@
-- [Intro](intro.md)
-- [What is ANTLR](Whatisantlr.md)
-- [Aren’t regular expressions enough?](Aree.md)

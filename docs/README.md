@@ -1,64 +1,59 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/de44d168-eb1d-47a5-8731-d77bb40af7c8/deploy-status)](https://app.netlify.com/sites/jamdocs/deploys)
 
-<h1 align="center">
-  <a href="https://github.com/Shio7/Keter"><img src="https://raw.githubusercontent.com/Shio7/Keter/master/docs/keter_banner.png" alt="Keter" width="3080"></a>
-  <br>
-</h1>
-<h4 align="center">Lovely Discord Bot with Various Features</h4>
+# ![Jamdocs](https://github.com/samuelhorn/jamdocs/blob/master/src/assets/img/logo-dark.svg)
 
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/issues/Shio7/Keter?style=for-the-badge&logo=appveyor"
-         alt="Imgshields">
-  </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/stars/Shio7/Keter?style=for-the-badge&logo=appveyor"
-         alt="Imgshields">
-  </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/forks/Shio7/Keter?style=for-the-badge&logo=appveyor"
-         alt="Imgshields">
-  </a>
-  <a href="https://github.com/Shio7/Keter">
-    <img src="https://img.shields.io/github/license/Shio7/Keter?style=for-the-badge&logo=appveyor"
-         alt="Imgshields">
-  </a>
-  <a href="https://app.codacy.com/gh/Shio7/Keter?utm_source=github.com&utm_medium=referral&utm_content=Shio7/Keter&utm_campaign=Badge_Grade">
-    <img src="https://api.codacy.com/project/badge/Grade/f5164554f8cc426ba6232263110d91f0"
-         alt="Codacy Badge">
-  </a>
-<hr>
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#invite">Invite</a> •
-  <a href="#license">License</a> •
-  <a href="#team-parfait">Team Parfait</a>
-</p>
+The ultimate static generated documentation theme for the JAM-stack. Highly customizable, based on Gridsome, ready to deploy to Netlify in one click. [DEMO](https://jamdocs.samuelhorn.com/)
 
-## Features 
-* Supports multiple languages.  
-* Mini games that are tailored to the behavior of users.  
-* Various kinds of mischievous commands. 
-* Provides content that users can create and play.  
-* Include commands for server management.  
-* Continued development.
+_Beware, Jamdocs is still in heavy development and will probably change a lot in the near future. And the docs for it is still not completed._
 
-## How to use  
-[Check the docs](https://keter.vercel.app)
+## Fast by default
 
-## Invite
-[Invite me!](https://discord.com/oauth2/authorize?client_id=749629426777456691&permissions=8&scope=bot)  
+Jamdocs is optimized to be as fast as possible, right now generating 100/100/100/100 score in Google Lighthouse. And 100/100 score in Google Page Speed Insights.
+
+![100/100/100/100 Lighthouse scores](https://github.com/samuelhorn/jamdocs/blob/master/src/assets/img/pagespeed.png)
+
+## Local installation for development
+
+1. `git clone https://github.com/samuelhorn/jamdocs project-name`.
+2. `cd project-name`
+3. `gridsome develop`.
+
+## Deploy to Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/samuelhorn/jamdocs)
+
+## Import to Forestry CMS
+
+[![](https://assets.forestry.io/import-to-forestryK.svg)](https://app.forestry.io/quick-start?repo=samuelhorn/jamdocs&engine=other "Import to Forestry")
+
+This project has been pre-configured to work with [Forestry](https://forestry.io). Any changes you make in Forestry will be commited back to your repo. ✨
+
+![Forestry documentation in JAMdocs](static/screenshor-forestry-preview.png)
+
+## Setup & configuration
+
+See the [demo](https://jamdocs.samuelhorn.com/), which is also the documentation, obviously!
+
+## Todos
+
+1. Improve the actual documentation for Jamdocs, in Jamdocs :)
+2. ~~Build the homepage better, dividing stuff into components and so on.~~
+3. Implement Algolia search.
+4. ~~Add a link to this repository from the demo.~~
+
+## Credits
+
+* Creds to the [Netlify](https://www.netlify.com/) team for making an awesome all in one hosting soluiton for the JAM-stack.
+* Creds to the [Gridsome](https://gridsome.org/) team for developing a great foundation to build static sites.
+* Creds to [Evan You](https://twitter.com/youyuxi) for making [Vue](https://vuejs.org/).
+* Creds to [Cole Bemis](https://twitter.com/colebemis) for making [feathericons](https://feathericons.com/), my favourite icon set.
+* Creds to [Egoist](https://github.com/egoist), who's not that egoistic. Because he made [vue-feather-icons](https://github.com/egoist/vue-feather-icons).
+* Creds to [Forestry](https://forestry.io/) for finalizing the Forestry configuration and writing about it in the docs, adding their great headless CMS to the mix.
 
 ## License
 
-MIT
+[MIT](https://github.com/samuelhorn/jamdocs/blob/master/LICENSE)
 
----
+## Finally
 
-## Team Parfait
-+ [@Shio7](https://github.com/shio7)
-
-+ [@AngelusYeon](https://github.com/AngelusYeon)
-
-+ [@RedTea](https://github.com/redteadeveloper)
-
-+ [@YCH-BUP](https://github.com/ych-bup)
+Enjoy Jamdocs, and if you like and use this project commercially, please consider sponsoring on Github since I have put a lot of spare time into this.
